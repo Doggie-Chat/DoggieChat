@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block body_class %}
+  class="login-page"
+{% endblock %}
+
+{% block content %}
+
+<!--login page-->
+<div class="login-part">
+  <h1 class="login-title"><strong>LOGIN</strong></h1>
+    <div>
+      <!--login form-->
+      <form action="/login" method="POST">
+        <!--username block-->
+        <div id="username" class="login-block">    
+          <label class="control-label" for="login-username">Username</label> 
+          <i class="icon bi bi-person-fill"></i>
+          <input class="form-control" type="text" name="username" id="login-username" placeholder="Please enter your username" required><br>
+        </div>
+        <!--username block end-->
+        <!--password block-->
+        <div id="password" class="login-block ">   
+          <label class="control-label " for="pwd">Password</label>    
+          <input class="form-control" type="password" name="pwd" id="pwd" placeholder="Please provide a password with at least 7 characters" required><br>
+          <i class="icon bi bi-lock-fill"></i>
+          {% if msg %}
+            <span style="color: red;">{{ msg }}</span>
+          {% else %}
+            <span></span>
+          {% endif %}
+        </div>
+        <!--password block end-->
+        <!--remember me and forget password block-->
+        <div class="login-block remember-reset row">
+          <span id="remember-me"><input type="checkbox" /> Remember me</span>
+          <h6><a href="reset">Forget password</a></h6>    
+        </div>
+        <!--remember me and forget password block end-->
+     <!--submit block-->
+      <div id="submit " class="login-block">
+        <input type="submit" value="Login">
+      </div>
+      <!--submit block end-->
+    </form>
+    <!--login form end-->
+      <!--register or reset block-->
+      <div id="register" class="login-block">
+        <p> Don't have an account yet? <a href="register">Register</a></p>
+      </div>
+      <!--register or reset block end-->
+    </div>
+</div>
+<!--flash message-->
+{% if request.endpoint == 'login' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+{% endif %}
+
+
+{% endblock content %}
