@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static',filename='jquery-3.6.3.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='my.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="POST">
+        <div id="mainchat">
+            <div class="Ans">Woof woof! Hello there, I'm Jack. How can I assist you today?</div>
+        </div>
+        <div id="insert">
+            Chat:<input type="text" name="Chat" id="chat" />
+            <button id="enter">Enter</button>
+        </div>
+    </form>
+    <button id="Luna">Luna</button>
+    <button id="Jack">Jack</button>
+    <button id="Bob">Bob</button>
+    <button id="checkin">Checkin!</button>
+</body>
+</html>

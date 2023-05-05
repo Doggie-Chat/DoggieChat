@@ -140,13 +140,17 @@ body {
 .page-1 {
   background-color: #ffffff;
   margin-top: 10px;
+
 }
 
 #home-container{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  margin-top: 10px;
   width: 100%;
+
 }
 
 
@@ -253,6 +257,7 @@ body {
 
 /*--responsive--*/
 @media (max-width: 480px) {
+
   .page-1 {
     margin-top: 0px;
   }
@@ -298,13 +303,14 @@ body {
 ---------------------------------------
 */
 
+/* styles.css */
+
 .login-page, .register-page, .reset-page {
   background-image: url(images/dog_background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
-
 
 
 .login-part, .register-part, .reset-part {
@@ -489,10 +495,12 @@ input[type="submit"]:hover {
 /*--responsive--*/
 @media (max-width: 480px) {
 
+
   .login-page, .register-page, .reset-page {
     background-image: none;
   }
   
+
 
   .login-part, .register-part {
     width: 100%;

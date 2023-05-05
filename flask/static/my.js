@@ -27,9 +27,6 @@ function checkPasswords(prefix) {
   if (passwordInput.value !== confirmPasswordInput.value) {
     passwordMessage.style.display = "block";
     passwordMessage.textContent = "Passwords do not match!";
-  } else if (passwordInput.value.length < 7) {
-    passwordMessage.style.display = "block";
-    passwordMessage.textContent = "Password must be at least 7 characters long!";
   } else {
     passwordMessage.style.display = "none";
     passwordMessage.textContent = "";
@@ -214,6 +211,44 @@ $(function () {
         console.log(rp);
         var newans = $("<div>").text(rp).addClass("Ans");
         $("#mainchat").append(newans);
+        $("input[name='Chat']").val("")
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  });
+  $("#checkin").click(function (event) {
+    $this=$(this);
+    event.preventDefault();
+    $.ajax({
+      url: "/chat/check",
+      type: "GET",
+      success: function (data) {
+        count = data["counts"];
+        $this.text("Checked in " + count+" day");
+        $this.prop("disabled", true);
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  });
+  $("#Luna,#Jack,#Bob").click(function (event) {
+    $this=$(this);
+    var name = $this.attr('id');
+    event.preventDefault();
+    $.ajax({
+      url: "/chat/switch?dog="+name,
+      type: "GET",
+      success: function (data) {
+        code=data["code"];
+        if (code == 200) {
+          console.log("success");
+          var ans = $("<div>").text("Woof woof! Hello there, I'm "+name+". How can I assist you today?").addClass("Ans");
+          $("#mainchat").empty();
+          $("#mainchat").append(ans);
+        }
       },
       error: function (error) {
         console.log(error);
