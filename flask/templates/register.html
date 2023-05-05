@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block body_class %}
+  class="register-page"
+{% endblock %}
+
+{% block content %}
+
+
+<div class="register-part">
+  <h1 class="register-title"><strong>REGISTER</strong></h1>
+  <div>
+    <!--register form-->
+    <form action="#" method="POST">
+    <!--username block-->
+    <div id="username" class="register-block">
+      <label class="control-label" for="register-username">Username</label>
+      <i class="icon bi bi-person-fill"></i>
+      <input class="form-control" type="text" name="username" id="register-username" placeholder="Please enter your username" required><br>
+    </div>
+    <!--username block end-->
+    <!--password block-->
+    <div id="password" class="register-block">
+      <label class="control-label " for="resigter-password">Password</label>
+      <input class="form-control" type="password" name="pwd" id="register-password" placeholder="Please provide a password with at least 7 characters" required><br>
+      <i class="icon bi bi-lock-fill"></i>
+    </div>
+    <!--password block end-->
+    <!--confirm password block-->
+    <div id="confirm-password" class="register-block">
+      <label class="control-label " for="confirm-resigter-password">Confirm Password</label>
+      <input class="form-control" type="password" name="repwd" id="confirm-register-password" placeholder="Please confirm your password" required onblur="checkPasswords('register')"><br>
+      <i class="icon bi bi-file-check-fill"></i>
+      <span id="register-password-message" class="password-message"></span>
+    </div>
+    <!--confirm password block end-->
+    <!--email block-->
+    <div id="email" class="register-block">
+      <label class="control-label " for="resigter-email">Email</label>
+      <input class="form-control" type="email" name="email" id="register-email" placeholder="Please enter your email" required><br>
+      <i class="icon bi bi-envelope-fill"></i>
+    </div>
+    <!--email block end-->
+    <!--verify block-->
+    <div id="verify" class="register-block verify-block row">
+      <button id="captcha-btn" type="button" onclick="clickVerify('register')">Verify!</button>
+      <div id="verify-wrap">
+      <label class="control-label " for="register-varify">Verification code:</label>
+      <input class="form-control" type="text" name="key" id="register-varify"><br>
+      </div>
+      <span id="register-verify-message" class="verify-message"></span>
+    </div>
+    <!--verify block end-->
+    <!--submit block-->
+    <div>
+      <input type="submit" value="Create account">
+    </div>
+     <!--submit block end-->
+  </form>
+    <!--register form end-->
+</div>
+</div>
+
+
+
+
+  {% if request.endpoint == 'register' %} {% with messages =
+  get_flashed_messages(with_categories=true) %} {% if messages %} {% for
+  category, message in messages %}
+  <div class="flash-{{ category }}">{{ message }}</div>
+  {% endfor %} {% endif %} {% endwith %} {% endif %}
+
+
+{% endblock content %}
+
