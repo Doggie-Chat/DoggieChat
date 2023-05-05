@@ -1,0 +1,503 @@
+/* The layout.html file 
+---------------------------------------
+1. Basic setting
+2. Header
+3. Main
+4. Footer
+5. Mobile setting 
+*/
+
+/* 1. Basic setting */
+body {
+  font-family: verdana, sans-serif;
+}
+
+
+/* 2. Header */
+.customer-header {
+    background: linear-gradient(to right, #66bb48 0%, #d8e67c 100%);
+    top: 0;
+    width: 100%;
+    position: fixed; /* fix the header */
+    z-index: 100; /* make sure the header is on top of the background image */
+  }
+  
+  .logo {
+    padding: 10px 10px 0px 0px;
+  }
+  
+  .logo img {
+    padding-left: 20px;
+    height: 75px;
+    transition: all 0.3s;
+  }
+  
+  .logo a:hover img {
+    opacity: 0.8;
+    transform: scale(0.9);
+  }
+  
+  .navbar-nav .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 50px;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+  
+  .navbar-toggler {
+    border: none;
+  }
+
+
+.login-signup .button {
+    background-color: #76cefd;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 25px;
+    width: 120px;
+    font-weight: bold;
+  }
+
+  .login-signup .button:hover {
+    background-color: #1e88e5;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-signup .button:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+
+
+/* 3. Main */
+.main-container {
+  min-height: calc(100vh - 100px); /* set the minimum height to the container, minus the header height */
+  width: 100%; /* set the width of the container */
+  padding-top: 100px; /* Add padding-top equal to the height of the header to prevent content from being hidden */
+  flex-grow: 1; /* make the main-container grow to take up all available space */
+  margin: 0 30px; /* set 12px margin on the left and right sides */
+}
+
+
+
+/* 4. Footer */
+.footer {
+    background: linear-gradient(to right,  #66bb48 0%, #d8e67c 100%);
+    position: fixed; 
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    margin-top: auto;
+    font-size: small;
+  }
+
+/* 5. Mobile setting */
+/*--responsive--*/
+@media (max-width: 480px) {
+  .customer-header {
+    padding: 0 10px; /* Reduce padding on small screens */
+    width: 100%;
+  }
+
+  .login-signup .button {
+    font-size: 14px; /* Reduce font size on small screens */
+    padding: 8px 16px; /* Reduce padding on small screens */
+    margin-top: 5px; /* Reduce margin on small screens */
+  }
+
+  .main-container {
+    padding-top: 160px; /* Add some top padding to avoid content overlay */
+  }
+}
+/*--responsive end--*/
+
+
+
+/* The index.html file 
+---------------------------------------
+*/
+
+.page-1 {
+  background-color: #ffffff;
+}
+
+#home-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 10px;
+}
+
+
+/* Welcome part*/
+
+/* Style the welcome div */
+
+#welcome {
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Style the welcome h1 */
+#welcome h1 {
+  font-size: 35px;
+  font-weight: bold;
+  color: #5c4536;
+  margin-bottom: 60px;
+  text-shadow: 1px 1px 3px rgba(5, 5, 5, 0.1);
+}
+
+
+.intro .typing {
+  font-size: 30px;
+  letter-spacing: 2px;
+  height: auto;
+  position: absolute;
+  color: #775555;
+}
+
+/* Style the welcome paragraph */
+#welcome p {
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+#welcome p:first-of-type {
+  color: #a648bb;
+}
+
+#welcome p:nth-of-type(2) {
+  color: #6048da;
+}
+
+#welcome p:nth-of-type(3) {
+  color: #8452e7;
+}
+
+#welcome .larger-text {
+  font-size: 20px; 
+}
+
+/* Style the welcome button */
+#start-chat {
+  margin-top: 30px;
+  color: white;
+  width: 200px;
+  background: #76cefd;
+  border: none;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#start-chat:hover {
+  background:  #1e88e5;;
+  box-shadow: 0px 0px 10px #5b72e6;
+}
+
+
+/* Dog image part*/
+#dog-img{
+  margin-top: 30px;
+  margin-left: 30px;
+  padding-left: 50px;
+  width: 65%;
+  
+}
+
+
+#dog-img.animated {
+  animation: jumpAndWag 3s;
+  animation-iteration-count: 2;
+}
+
+@keyframes jumpAndWag  {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-30px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(5deg);
+  }
+  75% {
+    transform: translateY(-30px) rotate(0);
+  }
+}
+
+
+/*--responsive--*/
+@media (max-width: 480px) {
+  #welcome {
+    margin: 10px;
+    width: 100%;
+  }
+
+  #welcome h1 {
+    font-size: 24px;
+    margin-top: 50px;
+    height: 80px;
+    margin-bottom: 0px;
+  }
+
+  .intro .typing {
+    font-size: 20px;
+    height: auto;
+  }
+
+  #welcome p {
+    font-size: 14px;
+
+  }
+
+  #welcome .larger-text {
+    font-size: 18px; /* adjust the font size as needed */
+  }
+
+  #dog-img{
+    margin-bottom: 80px;
+  }
+}
+/*--responsive end--*/
+
+/*===================================*/
+/* The login.html file,  register.html file, and reset.html file
+---------------------------------------
+*/
+
+/* styles.css */
+
+.login-part, .register-part, .reset-part {
+  width: 600px;
+  background-color: #ffffff;
+  padding: 40px;
+  margin: 50px auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+
+.login-title, .register-title, .reset-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #66bb48;
+}
+
+.login-block, .register-block, .reset-block {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: calc(38%);
+  left: 10px;
+}
+
+.login-block label, 
+.register-block label,
+.reset-block label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+.login-block input[type="text"], 
+.login-block input[type="password"], 
+.register-block input[type="text"], 
+.register-block input[type="password"], 
+.register-block input[type="email"],
+.reset-block input[type="text"], 
+.reset-block input[type="password"], 
+.reset-block input[type="email"]{
+  width: 100%;
+  padding: 8px;
+  padding-left: 35px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-block input[type="text"]:focus, 
+.login-block input[type="password"]:focus,
+.register-block input[type="text"]:focus, 
+.register-block input[type="password"]:focus, 
+.register-block input[type="email"]:focus,
+.reset-block input[type="text"]:focus, 
+.reset-block input[type="password"]:focus, 
+.reset-block input[type="email"]:focus {
+  border-color: #3498db;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color:  #76cefd;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+  background-color: #5b72e6;
+}
+
+
+.login-block.remember-reset.row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.login-block span {
+  font-size: 16px;
+  width: 32%;
+  margin-left: 5px;
+}
+
+.login-block h6 {
+  font-size: 16px;
+  float: right;
+  width: 37%;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.login-block h6 a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+.login-block p {
+  font-size: 17px;
+}
+
+.login-block p a {
+  text-transform: uppercase;
+  font-size: 18px;
+  text-decoration:none;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+.login-block h6 a:hover, .login-block p a:hover {
+  text-decoration: underline;
+}
+
+
+/* Styles for verify part */
+#verify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#verify button {
+  width: 20%;
+  padding: 8px;
+  background-color: #66bb48;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: 12px;
+}
+
+#verify button:hover {
+  background-color: #5b72e6;
+}
+
+#verify-wrap {
+  display: flex;
+  align-items: right;
+  width: 50%;
+}
+
+#verify-wrap label {
+  margin-top: 10px;
+  font-size: 14px;
+  min-width: 130px;
+  color: #007bff;
+}
+
+#verify-wrap input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#verify-wrap input[type="text"]:focus {
+  border-color: #3498db;
+}
+
+.password-message, .verify-message {
+  color: red;
+  font-size: 15px;
+  display: none;
+}
+
+
+
+/*--responsive--*/
+@media (max-width: 480px) {
+  .login-part, .register-part {
+    width: 100%;
+  }
+
+  .login-block input[type="text"],
+  .login-block input[type="password"],
+  .register-block input[type="text"], 
+  .register-block input[type="password"], 
+  .register-block input[type="email"] {
+    font-size: 10.5px;
+  }
+
+  .login-block span#remember-me, .login-block h6, .login-block p {
+    font-size: 14px;
+  }
+
+  #verify-wrap {
+    width: 60%;
+  }
+
+  #verify-wrap label {
+    min-width: 95px;
+    font-size: 10px;
+
+  }
+
+}
+/*--responsive end--*/
