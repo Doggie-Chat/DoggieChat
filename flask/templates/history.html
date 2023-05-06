@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static',filename='jquery-3.6.3.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='my.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="search-result">
+    </div>
+    <input type="date" id="date-input" value="{{ today }}"/>
+    <select id="dogname">
+        <option value="All">All</option>
+        <option value="Jack">Jack</option>
+        <option value="Luna">Luna</option>
+        <option value="Bob">Bob</option>
+    </select>
+    <button id="Search">Search</button>
+</body>
+</html>

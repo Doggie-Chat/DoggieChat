@@ -155,6 +155,7 @@ def send():
         msg.attach(MIMEText(mail_content,'html','utf-8'))
         receiver = [email ]
         msg["To"] = Header(str(receiver),'utf-8')
+        print(msg.as_string())
         try:
            smtp.sendmail(sender_mail,receiver,msg.as_string())
            return jsonify({"code":200,"message": "","data":None})
@@ -272,6 +273,34 @@ def switch():
     global name
     name=dog
     return jsonify({"code":200})
+
+@app.route("/history", methods=['POST','GET'])
+@login_required
+def history():
+    username=current_user.username
+    today = date.today()
+    return render_template("history.html",username=username,today=today)
+
+@app.route("/history/search", methods=['POST','GET'])
+@login_required
+def search():
+    username=current_user.username
+    date = request.form.get('date')
+    dogname = request.form.get('dogname')
+    if  dogname !='All':
+        data = History.query.filter_by(username=username,name=dogname,date=date).all()
+        resultlist=[]
+        for row in data:
+            dateandtext=str(row.date) + ":  "+ row.content
+            resultlist.append(dateandtext)
+        return jsonify(resultlist)
+    else:
+        data = History.query.filter_by(username=username,date=date).all()
+        resultlist=[]
+        for row in data:
+            dateandtext=str(row.date) + "  Dog name: "+row.name + "  Text:  "+row.content
+            resultlist.append(dateandtext)
+        return jsonify(resultlist)
 
 if __name__ == '__main__':
     app.debug = True

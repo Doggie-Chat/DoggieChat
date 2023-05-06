@@ -255,4 +255,26 @@ $(function () {
       },
     });
   });
+  $("#Search").click(function (event) {
+    $this=$(this);
+    $("#search-result").empty();
+    var dogname=$("#dogname").val();
+    var date=$("#date-input").val();
+    event.preventDefault();
+    $.ajax({
+      url: "/history/search",
+      type: "POST",
+      data: { dogname:dogname, date:date },
+      success: function (data) {
+        for (var i = 0; i < data.length; i++) {
+          console.log(data[i]);
+          var display = $("<div>").text(data[i]).addClass("search");
+          $("#search-result").append(display);
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  });
 });
