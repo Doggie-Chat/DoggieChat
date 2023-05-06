@@ -9,14 +9,92 @@
 <div class="chat-container">
 <!--chat page left part-->
 <div class="chat-left">
+    <!-- chat left header-->
     <div class="chat-left-header">
         <div class="app-logo">
-                <img src="static/images/dog.png" alt="logo" class="img-fluid">
+                <img src="static/images/favicon.ico" alt="logo" class="img-fluid">
         </div>
-        <h1>Doggie Chat</h1>
+        <h1>Doggie Chat</h1>    
     </div>
+     <!-- chat left header end-->
+     <!--chat left tab box-->
+     <div class="dog-tab-parent">
+        <!--chat left tab header-->
+        <div class="tab_header">
+            <div class="tab">
+               <input id="tab_1" type="radio" name="tab" checked>
+               <label for="tab_1">Luna</label>
+            </div>
+            <div class="tab">
+               <input id="tab_2" type="radio" name="tab">
+               <label for="tab_2">Jack</label>
+            </div>
+            <div class="tab">
+               <input id="tab_3" type="radio" name="tab">
+               <label for="tab_3">Bob</label>
+            </div>
+            <div class="tab_marker"></div>
+         </div>
+         <!--chat left tab header end-->
+        <!--chat left tab content-->
+        <!--chat left tab content 1-->
+         <div class="tab_content visible" data-associated-tab="tab_1">
+            <!--chat left dog profile box-->
+            <div class="dog-profile-box">         
+                <img src="static/images/dog.png" alt="dog profile" class="img-fluid">
+                <div class="dog-profile-box-name">
+                    <h2 class="dog-name">Luna</h2>
+                </div>
+                <button id="Luna">Luna</button>
+                <div class="dog-info">
+                    <p>Age: <span class="dog-age">3 years</span></p>
+                    <p>Breed: <span class="dog-breed">Golden Retriever</span></p>
+                    <p>Characteristics:</p>
+                    <ul class="dog-characteristics">
+                    <li>Playful</li>
+                    <li>Energetic</li>
+                    <li>Loyal</li>
+                    </ul>
+                </div>
+            </div>
+            <!--chat left dog profile box end-->
+         </div>
+         <!--chat left tab content 1 end-->
+        <!--chat left tab content 2-->
+        <div class="tab_content" data-associated-tab="tab_2">
+            <!--chat left dog profile box-->
+            <div class="dog-profile-box">         
+                <img src="static/images/dog.png" alt="dog profile" class="img-fluid">
+                <div class="dog-profile-box-name">
+                    <h2 class="dog-name">Jack</h2>
+                </div>
+                <button id="Jack">Jack</button>
+            </div>
+            <!--chat left dog profile box end-->
+        </div>
+        <!--chat left tab content 2 end-->
+
+        <!--chat left tab content 3-->
+        <div class="tab_content" data-associated-tab="tab_3">
+        <!--chat left dog profile box-->
+        <div class="dog-profile-box">         
+            <img src="static/images/dog.png" alt="dog profile" class="img-fluid">
+            <div class="dog-profile-box-name">
+                <h2>Bob</h2>
+            </div>
+            <button id="Bob">Bob</button>
+        </div>
+        <!--chat left dog profile box end-->
+        </div>
+        <!--chat left tab content 3 end-->
+    
+</div>
+ <!--chat left tab box-->
 </div>
 <!--chat page left part end-->
+
+
+
 <!--chat page middle part-->
 <div class="chat-middle">
 
@@ -24,11 +102,24 @@
 <!-- chat page middle part end-->
 <!--chat page right part-->
 <div class="chat-right">
+
+    <div class="app-right-bottom">
+        <div class="app-theme-selector">
+        <button class="theme-color indigo" data-color="indigo">
+            <i class="bi bi-palette"></i>
+        </button>
+        <button class="theme-color green" data-color="green" title="Green">
+            <i class="bi bi-palette"></i>
+        </button>
+      </div>
+      </div>
 </div>
 <!-- chat page right part end-->
 
 
 </div>
+<!--Dog select js-->
+<script src="{{ url_for('static',filename='dog_select.js') }}"></script>
 {% endblock content %}
 
 
@@ -42,8 +133,10 @@
             <button id="enter">Enter</button>
         </div>
     </form>
+<!--
     <button id="Luna">Luna</button>
     <button id="Jack">Jack</button>
     <button id="Bob">Bob</button>
     <button id="checkin">Checkin!</button>
+-->
 </body>

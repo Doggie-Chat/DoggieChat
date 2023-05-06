@@ -58,7 +58,7 @@ body {
   }
 
 
-.login-signup .button {
+.login-signup .button{
     background-color: #76cefd;
     border: none;
     border-radius: 5px;
@@ -84,6 +84,20 @@ body {
     box-shadow: none;
   }
 
+  #Welcome-msg {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 50px;
+  }
+  
+  #Welcome-msg #username {
+    color: #1e88e5; 
+    text-transform: uppercase;
+  }
 
 
 /* 3. Main */
@@ -300,8 +314,7 @@ body {
 
 /*===================================*/
 /* The login.html file,  register.html file, and reset.html file
----------------------------------------
-*/
+---------------------------------------*/
 
 /* styles.css */
 
@@ -530,3 +543,218 @@ input[type="submit"]:hover {
 
 }
 /*--responsive end--*/
+
+/*===================================*/
+/* The chat.html
+---------------------------------------*/
+
+/* chat left part */
+.chat-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--app-bg);
+  --app-bg: #fff;
+  --box-color: #f5f8fc;
+  --box-border: #e7edf5;
+  --tab-color: #c8ebfc;
+  --tab-move: #c4b3f8;
+  --tab-select: #97b6f9;
+  --text-dark: #5c4536;
+  --button-color: #effd76;
+}
+
+.chat-page [data-theme=green] {
+  --app-bg: #f9e8e8;
+  --box-color: #f5f8fc;
+  --box-border: #e7edf5;
+  --tab-color: #c4e7f8;
+  --text-dark: #5c4536;
+}
+
+
+.chat-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+  max-width: 1800px;
+}
+
+.chat-left {
+  flex-basis: 320px;
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin-right: 24px;
+  overflow-y: auto;
+}
+
+.chat-left-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--app-bg);
+}
+.chat-left-header h1 {
+  margin: 0;
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+.chat-left-header .app-logo{
+  width: 40px;
+  height: 40px;
+  margin-left: 12px;
+  border-radius: 50%; 
+}
+
+.chat-left-header .app-logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* tab part*/
+.dog-tab-parent .tab_header {
+  display: flex;
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dog-tab-parent .tab_header .tab {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+}
+.dog-tab-parent .tab_header input {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+.dog-tab-parent .tab_header label {
+  display: block;
+  padding: 1rem 1.5rem;
+  background-color: var(--tab-color);
+  cursor: pointer;
+  font-weight: bold;
+}
+.dog-tab-parent .tab_header input:not(:checked) + label:hover {
+  background-color: var(--tab-move);
+}
+.dog-tab-parent .tab_header input:checked + label {
+  background-color: var(--tab-select);
+}
+.dog-tab-parent .tab_header .tab:nth-child(1) label {
+  border-radius: 10px 0 0 10px;
+}
+.dog-tab-parent .tab_header .tab:nth-child(3) label {
+  border-radius: 0 10px 10px 0;
+}
+
+.dog-tab-parent .tab_content {
+  margin: auto;
+  display: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.dog-tab-parent .tab_content.visible {
+  display: block;
+}
+
+/* tab part end*/
+
+.dog-profile-box {
+  border: 1px solid var(--box-border);
+  background-color: var(--box-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.dog-profile-box img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border: 1px solid var(--box-border); 
+}
+
+.dog-profile-box h2 {
+  font-size: 26px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.dog-profile-box button{
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dog-info p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  line-height: 1.4;
+}
+
+.dog-info span {
+  font-weight: 600;
+  color: #333;
+}
+
+.dog-info .dog-characteristics {
+  list-style-type: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dog-info .dog-characteristics li {
+  padding: 2px 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+/* chat middle part */
+
+/* chat right part */
