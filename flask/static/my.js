@@ -58,6 +58,12 @@ function clickVerify(prefix) {
   }
 }
 
+// Function to scroll to the bottom of the chat window
+function scrollToBottom() {
+  var mainchat = document.getElementById("mainchat");
+  mainchat.scrollTop = mainchat.scrollHeight;
+}
+
 function bindEmailCaptchaClick() {
   $("#captcha-btn").click(function (event) {
     $this = $(this);
