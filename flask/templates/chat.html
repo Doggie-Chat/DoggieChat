@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ url_for('static',filename='jquery-3.6.3.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='my.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="static/style.css">
-    <title>Document</title>
-</head>
+{% extends "layout.html" %}
+
+{% block body_class %}
+  class="chat-page"
+{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+<!--chat page left part-->
+<div class="chat-left">
+    <div class="chat-left-header">
+        <div class="app-logo">
+                <img src="static/images/dog.png" alt="logo" class="img-fluid">
+        </div>
+        <h1>Doggie Chat</h1>
+    </div>
+</div>
+<!--chat page left part end-->
+<!--chat page middle part-->
+<div class="chat-middle">
+
+</div>
+<!-- chat page middle part end-->
+<!--chat page right part-->
+<div class="chat-right">
+</div>
+<!-- chat page right part end-->
+
+
+</div>
+{% endblock content %}
+
+
 <body>
     <form action="#" method="POST">
         <div id="mainchat">
@@ -24,4 +47,3 @@
     <button id="Bob">Bob</button>
     <button id="checkin">Checkin!</button>
 </body>
-</html>
