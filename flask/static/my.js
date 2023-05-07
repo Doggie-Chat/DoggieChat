@@ -238,10 +238,10 @@ $(function () {
           console.log("success");
           var ans = $("<div>").text("Woof woof! Hello there, I'm "+name+". How can I assist you today?").addClass("Ans");
           var currentTimeQ = new Date().toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth'});
-          var qtime= $("<div>").text(currentTimeQ).addClass("qtime");
+          var atime= $("<div>").text(currentTimeQ).addClass("atime");
           $("#mainchat").empty();
           $("#mainchat").append(ans);
-          $("#mainchat").append(qtime);
+          $("#mainchat").append(atime);
         }
       },
       error: function (error) {

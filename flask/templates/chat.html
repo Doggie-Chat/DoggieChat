@@ -33,7 +33,7 @@
                <input id="tab_3" type="radio" name="tab">
                <label for="tab_3">Bob</label>
             </div>
-            {% if checkin>=7 %}
+             {% if checkin >= 4 %}
               <div class="tab">
                 <input id="tab_4" type="radio" name="tab">
                 <label for="tab_4">Ruby</label>
@@ -46,7 +46,7 @@
                 <input id="tab_6" type="radio" name="tab">
                 <label for="tab_6">Zeus</label>
               </div>
-            {% endif %}
+             {% endif %}
             <div class="tab_marker"></div>
          </div>
          <!--chat left tab header end-->
@@ -296,7 +296,7 @@
                 </div>
             </div>
         </div>
-        <div class="tips">Check in today</div>
+        <div class="tips">Check in more than 7 days to unlock doggies</div>
         <div class="Calendar">
             <div id="toyear">
                 <div id="idCalendarPre">&lt;</div>
@@ -326,15 +326,10 @@
 
 
     <div class="app-right-bottom">
-        <div class="app-theme-selector">
-        <button class="theme-color indigo" data-color="indigo">
-            <i class="bi bi-palette"></i>
-        </button>
-        <button class="theme-color green" data-color="green" title="Green">
-            <i class="bi bi-palette"></i>
-        </button>
-      </div>
-      </div>
+        <div class="slogan">
+            <p>Have a good time with Doggie Chat!</p>
+        </div>
+    </div>
 </div>
 <!-- chat page right part end-->
 
@@ -345,15 +340,4 @@
 <!--Login record js-->
 <script src="{{ url_for('static',filename='login_record.js') }}"></script>
 {% endblock content %}
-
-
-
-
-
-<!--
-    <button id="Luna">Luna</button>
-    <button id="Jack">Jack</button>
-    <button id="Bob">Bob</button>
-    <button id="checkin">Checkin!</button>
--->
 
