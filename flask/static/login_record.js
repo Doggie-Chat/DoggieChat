@@ -176,7 +176,7 @@ var cale = new Calendar("idCalendar", {
 		$$("sign-txt").innerHTML = 'Success';
 	},
 	onFinish: function() {
-		$$("sign-count").innerHTML = myday.length // Number of check-ins
+		//$$("sign-count").innerHTML = myday.length // Number of check-ins
 		$$("idCalendarYear").innerHTML = this.Year;
 		$$("idCalendarMonth").innerHTML = this.Month; // header year and month
 
@@ -190,18 +190,29 @@ $$("idCalendarNext").onclick = function() {
 }
 // Add today's check-in
 $$("signIn").onclick = function() {
-	if(isSign == false) {
-		var res = cale.SignIn();
-		if(res == '1') {
-			$$("sign-txt").innerHTML = 'Success';
-			$$("sign-count").innerHTML = parseInt($$("sign-count").innerHTML) + 1;
-			isSign = true;
-		} else if (res == '2'){
-			$$("sign-txt").innerHTML = 'Success';
-			alert('Already Checked In Today')
-		}
-	} else {
-		alert('Already Checked In Today')
-	}
+	$.ajax({
+		url: "/chat/check",
+		type: "GET",
+		success: function (data) {
+			count = data["counts"];
+			if(isSign == false) {
+				var res = cale.SignIn();
+				if(res == '1') {
+					$$("sign-txt").innerHTML = 'Success';
+					$$("sign-count").innerHTML = count;
+					isSign = true;
+				} else if (res == '2'){
+					$$("sign-txt").innerHTML = 'Success';
+					alert('Already Checked In Today')
+				}
+			} else {
+				alert('Already Checked In Today')
+			}
+
+		},
+		error: function (error) {
+		    console.log(error);
+		},
+	});
 }
 

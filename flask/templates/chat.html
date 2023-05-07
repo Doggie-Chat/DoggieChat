@@ -33,18 +33,20 @@
                <input id="tab_3" type="radio" name="tab">
                <label for="tab_3">Bob</label>
             </div>
-            <div class="tab">
-                <input id="tab_4" type="radio" name="tab" checked>
+            {% if checkin>=7 %}
+              <div class="tab">
+                <input id="tab_4" type="radio" name="tab">
                 <label for="tab_4">Ruby</label>
-             </div>
-             <div class="tab">
+              </div>
+              <div class="tab">
                 <input id="tab_5" type="radio" name="tab">
                 <label for="tab_5">Rosie</label>
-             </div>
-             <div class="tab">
+              </div>
+              <div class="tab">
                 <input id="tab_6" type="radio" name="tab">
                 <label for="tab_6">Zeus</label>
-             </div>
+              </div>
+            {% endif %}
             <div class="tab_marker"></div>
          </div>
          <!--chat left tab header end-->
@@ -268,7 +270,6 @@
     <div class="chat-wrapper">
         <form action="#" method="POST">
             <div id="mainchat">
-                <div class="Ans">Woof woof! Hello there, I'm Jack. How can I assist you today?</div>
             </div>
             <div class="chat-input-wrapper" id="insert">
                 <div class="input-wrapper">
@@ -290,7 +291,7 @@
                 <div class="out-2">
                     <div class="signBtn">
                         <strong id="sign-txt">Check in</strong>
-                        <span>Login Days: <em id="sign-count">0</em></span>
+                        <span>Login Days: <em id="sign-count">{{ checkin }}</em></span>
                     </div>
                 </div>
             </div>
