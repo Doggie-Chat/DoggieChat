@@ -569,6 +569,9 @@ input[type="submit"]:hover {
   --text-dark: #1a2f45;
   --text-light: #445e78;
   --que-ans:#72c0ff;
+  --send-button: #0062ff;
+  --check-in: #5f94f5;
+  --check-in-select: #1485ff;
 }
 
 .chat-page [data-theme=green] {
@@ -809,7 +812,7 @@ input[type="submit"]:hover {
 #mainchat{
   overflow-y: scroll;
   scroll-behavior: smooth;
-  width: 630px;
+  width: 660px;
   height: 600px;
 }
 
@@ -821,10 +824,9 @@ input[type="submit"]:hover {
   align-self: flex-end;
   margin-right: 10px;
   padding: 8px 12px;
-  background-color: #72c0ff;
+  background-color: var(--que-ans);
   color: #fff;
   margin-bottom: 10px;
-  display: inline-block;
   border-radius: 15px;
   max-width: 80%;
   word-wrap: break-word;
@@ -836,10 +838,9 @@ input[type="submit"]:hover {
   margin-top: 10px;
   margin-left: 10px;
   padding: 8px 12px;
-  background-color: #72c0ff;
+  background-color: var(--que-ans);
   color: #fff;
   margin-bottom: 10px;
-  display: inline-block;
   border-radius: 15px;
   max-width: 80%;
   word-wrap: break-word;
@@ -859,7 +860,7 @@ input[type="submit"]:hover {
   margin-left: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: var(--que-ans);
+  background-color: var(--send-button);
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -869,7 +870,7 @@ input[type="submit"]:hover {
 }
 
 .chat-send-btn:hover {
-  background-color: var(--que-ans);
+  background-color: #f100fd;
 }
 
 .chat-input-wrapper {
@@ -906,149 +907,186 @@ input[type="submit"]:hover {
   background-color: var(--chat-input);
   color: var(--text-dark);
 }
+
 .chat-input:placeholder {
   color: var(--text-light);
   font-size: 12px;
 }
 
 
-/*
-.chat-middle {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-right: 24px;
-  overflow-y: auto;
-}
-
-
-.chat-wrapper {
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  max-width: 100%;
-}
-
-
-.chat-wrapper form {
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-.chat-wrapper #mainchat {
-  flex: 1;
-  overflow-y: scroll;
-  padding: 10px;
-}
-
-
-.chat-wrapper .Que {
-  align-items: flex-start;
-  padding: 8px 12px;
-  background-color: #81c784;
-  color: #fff;
-  margin-bottom: 10px;
-  display: block;
-  border-radius: 15px;
-  max-width: 80%;
-  word-wrap: break-word;
-  float: right; 
-}
-
-.chat-wrapper .Ans{
-  padding: 8px 12px;
-  background-color: #81c784;
-  color: #fff;
-  margin-bottom: 10px;
-  display: block;
-  border-radius: 15px;
-  max-width: 80%;
-  word-wrap: break-word;
-  justify-content: flex-end;
-  float: left;
-}
-
-.chat-wrapper #insert {
-  margin-top: 80%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.chat-wrapper input[type="text"] {
-  flex-grow: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.chat-wrapper button {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 8px 16px;
-  margin-left: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.chat-wrapper button:hover {
-  background-color: #45a049;
-}
-
-.chat-input-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: var(--box-shadow);
-  margin-top: auto;
-  border-radius: 6px;
-  padding: 12px;
-  background-color: var(--chat-input);
-}
-
-.input-wrapper {
-  border: 1px solid var(--border-light);
-  border-radius: 4px;
-  font-size: 12px;
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  padding: 0 6px 0 12px;
-  justify-content: space-between;
-  margin: 0 8px;
-  background-color: var(--chat-input);
-}
-
-/*
-.chat-attachment-btn,
-.emoji-btn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
-  color: #666;
-}
-
-.chat-send-btn {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.chat-send-btn:hover {
-  background-color: #3e8e41;
-}
-*/
-
 /* chat right part */
+.chat-right{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  width: 280px;
+}
+
+.app-login-record {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 2px solid var(--check-in); 
+  border-radius: 30px;
+  overflow: hidden; /* To hide overflowing child elements */
+  height: 580px; /* Set height to 580px */
+}
+
+/* Styles for the login record Top part */
+.top {
+  width: 100%;
+  height: 200px;
+  background: var(--check-in); 
+  margin-bottom: 16px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+
+.top .out-1 {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 10px auto;
+}
+
+
+.top .out-1 .out-2 {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.top .out-1 .out-2 .signBtn {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: 1px #7ebdff solid;
+}
+
+.top .out-1 .out-2 .signBtn strong,
+.top .out-1 .out-2 .signBtn span {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+  color: #007aff;
+}
+
+.top .out-1 .out-2 .signBtn strong {
+  height: 4rem;
+  line-height: 5rem;
+  font-weight: 600;
+  border-bottom: 1px #eee solid;
+}
+
+.top .out-1 .out-2 .signBtn span {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 10px;
+  line-height: 2rem !important;
+}
+
+
+.top .out-1:active {
+  animation: sign .25s forwards;
+  -webkit-animation: sign .25s forwards;
+}
+
+#signIn {
+  margin-bottom: 10px;
+}
+
+#sign-txt {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#sign-count {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.tips {
+  width: 100%;
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  margin-bottom: 16px;
+
+}
+
+/* Styles for the login record Top part end */
+
+/* Styles for the login record Calendar part */
+.Calendar {
+  background: #fff;
+  padding-bottom: 16px;
+}
+
+.Calendar #toyear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px #e7e7e7 solid;
+  width: 96%;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+}
+
+.Calendar #toyear .year-month {
+  height: 100%;
+  line-height: 24px;
+}
+.Calendar #toyear #idCalendarPre,
+.Calendar #toyear #idCalendarNext {
+  height: 100%;
+  line-height: 40px;
+  padding: 0 32px;
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+}
+.Calendar table,
+.Calendar tr,
+.Calendar td {
+  border: 0;
+}
+.Calendar table {
+  width: 95%;
+  margin: 0 auto;
+}
+.Calendar table tr {
+  text-align: center;
+  height: 35px;
+}
+.Calendar table tr td span {
+  margin: 0 auto;
+  display: block;
+  line-height: 40px;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  border-radius: 100%;
+}
+.Calendar table tr .onToday span {
+  background: var(--check-in-select);
+  color: #fff;
+}
+/* Styles for the login record  Calendar part end */
