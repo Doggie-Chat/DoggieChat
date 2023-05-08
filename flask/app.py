@@ -97,7 +97,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return 'Logged out'
+    return render_template("login.html")
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -106,6 +106,7 @@ def unauthorized():
 
 @app.route("/register", methods=['POST','GET'])
 def register():
+    msg=""
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('pwd')
@@ -120,22 +121,19 @@ def register():
             return redirect(url_for("register"))
         elif len(password)<=6 or len(password)>=16:
             msg="The length of the password should be more than 6 and less than 15."
-            return redirect(url_for("register"))
+            return redirect(url_for("register"),msg=msg)
         elif email not in code.keys() or key!=code[email]:
             msg="Invalid Code! please verify your email!"
-            return redirect(url_for("register"))
+            return redirect(url_for("register"),msg=msg)
         else:
             user=User(username=username,password=generate_password_hash(password),email=email)
-            check=Checkin(username=username)
+            check=Checkin(username=username,checkincount=0)
             db.session.add(user)
             db.session.add(check)
             db.session.commit()
             users.append(username)
             msg="Registeration Successful!"
-            redirect(url_for("register"))
-            time.sleep(2)
-            print('succ')
-            return render_template("login.html")
+            return redirect(url_for("login"))
     return render_template('register.html')
 
 @app.route("/send", methods=['POST','GET'])
@@ -155,9 +153,10 @@ def send():
         msg.attach(MIMEText(mail_content,'html','utf-8'))
         receiver = [email ]
         msg["To"] = Header(str(receiver),'utf-8')
+        print(msg.as_string())
         try:
            smtp.sendmail(sender_mail,receiver,msg.as_string())
-           return jsonify({"code":200,"message": "","data":None})
+           return jsonify({"code":200,"message": "","data":verifycode})
         except SMTPRecipientsRefused:
            return jsonify({"code":300,"message": "","data":None})
         
@@ -181,13 +180,13 @@ def reset():
             return render_template("reset.html")
         elif usr.email!=email:
             msg="Email not correct!"
-            return render_template("reset.html")
+            return render_template("reset.html",msg=msg)
         elif email not in code.keys():
             msg="please send verification code first!"
-            return render_template("reset.html")
+            return render_template("reset.html",msg=msg)
         elif key!=code[email]:
             msg="incorrect code"
-            return render_template("reset.html")
+            return render_template("reset.html",msg=msg)
         else:
             usr.password=generate_password_hash(repassword)
             db.session.commit()
@@ -225,7 +224,8 @@ def update():
 @login_required
 def chat():
     username=current_user.username
-    return render_template("chat.html",username=username)
+    checkin=Checkin.query.filter_by(username=username).first().checkincount
+    return render_template("chat.html",username=username,checkin=checkin)
 
 @app.route("/chat/answer", methods=['POST','GET'])
 def answer():
@@ -272,6 +272,34 @@ def switch():
     global name
     name=dog
     return jsonify({"code":200})
+
+@app.route("/history", methods=['POST','GET'])
+@login_required
+def history():
+    username=current_user.username
+    today = date.today()
+    return render_template("history.html",username=username,today=today)
+
+@app.route("/history/search", methods=['POST','GET'])
+@login_required
+def search():
+    username=current_user.username
+    date = request.form.get('date')
+    dogname = request.form.get('dogname')
+    if  dogname !='All':
+        data = History.query.filter_by(username=username,name=dogname,date=date).all()
+        resultlist=[]
+        for row in data:
+            dateandtext=str(row.date) + ":  "+ row.content
+            resultlist.append(dateandtext)
+        return jsonify(resultlist)
+    else:
+        data = History.query.filter_by(username=username,date=date).all()
+        resultlist=[]
+        for row in data:
+            dateandtext=str(row.date) + "  Dog name: "+row.name + "  Text:  "+row.content
+            resultlist.append(dateandtext)
+        return jsonify(resultlist)
 
 if __name__ == '__main__':
     app.debug = True

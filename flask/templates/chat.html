@@ -1,27 +1,343 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ url_for('static',filename='jquery-3.6.3.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='my.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="static/style.css">
-    <title>Document</title>
-</head>
-<body>
-    <form action="#" method="POST">
-        <div id="mainchat">
-            <div class="Ans">Woof woof! Hello there, I'm Jack. How can I assist you today?</div>
+{% extends "layout.html" %}
+
+{% block body_class %}
+  class="chat-page"
+{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+<!--chat page left part-->
+<div class="chat-left">
+    <!-- chat left header-->
+    <div class="chat-left-header">
+        <div class="app-logo">
+                <img src="static/images/favicon.ico" alt="logo" class="img-fluid">
         </div>
-        <div id="insert">
-            Chat:<input type="text" name="Chat" id="chat" />
-            <button id="enter">Enter</button>
+        <h1>Doggie Chat</h1>    
+    </div>
+     <!-- chat left header end-->
+     <!--chat left tab box-->
+     <div class="dog-tab-parent">
+        <!--chat left tab header-->
+        <div class="tab_header">
+            <div class="tab">
+               <input id="tab_1" type="radio" name="tab" checked>
+               <label for="tab_1">Luna</label>
+            </div>
+            <div class="tab">
+               <input id="tab_2" type="radio" name="tab">
+               <label for="tab_2">Jack</label>
+            </div>
+            <div class="tab">
+               <input id="tab_3" type="radio" name="tab">
+               <label for="tab_3">Bob</label>
+            </div>
+             {% if checkin >= 7 %}
+              <div class="tab">
+                <input id="tab_4" type="radio" name="tab">
+                <label for="tab_4">Ruby</label>
+              </div>
+              <div class="tab">
+                <input id="tab_5" type="radio" name="tab">
+                <label for="tab_5">Rosie</label>
+              </div>
+              <div class="tab">
+                <input id="tab_6" type="radio" name="tab">
+                <label for="tab_6">Zeus</label>
+              </div>
+             {% endif %}
+            <div class="tab_marker"></div>
+         </div>
+         <!--chat left tab header end-->
+
+        <!--chat left tab content-->
+        <!--chat left tab content 1-->
+         <div class="tab_content visible" data-associated-tab="tab_1">
+            <!--chat left dog profile box-->
+            <div class="dog-profile-box">        
+                <div class="dog-profile-box-name">
+                    <h2 class="dog-name">Luna</h2>
+                </div> 
+                <img src="static/images/dog.png" alt="dog profile" class="img-fluid">
+                <!-- dog info part-->
+                <div class="dog-info">
+                    <div class="info-row">
+                      <span class="info-label">Age</span> <span class="dog-age">3 years</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Gender</span> <span class="dog-age">Girl</span>
+                     </div>
+                    <div class="info-row">
+                      <span class="info-label">Breed</span> <span class="dog-breed">Toy Poodle</span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-label">Characteristics</span>
+                      <ul class="dog-characteristics">
+                        <li>Intelligent</li>
+                        <li>Affectionate</li>
+                        <li>Playful</li>
+                      </ul>
+                    </div>
+                  </div>
+                   <!-- dog info part end-->
+                   <button id="Luna">Chat with Luna</button>
+            </div>
+            <!--chat left dog profile box end-->
+         </div>
+         <!--chat left tab content 1 end-->
+        <!--chat left tab content 2-->
+        <div class="tab_content" data-associated-tab="tab_2">
+            <!--chat left dog profile box-->
+            <div class="dog-profile-box">        
+                <div class="dog-profile-box-name">
+                    <h2 class="dog-name">Jack</h2>
+                </div> 
+                <img src="static/images/pit_bull.png" alt="dog profile" class="img-fluid">
+                <!-- dog info part-->
+                <div class="dog-info">
+                    <div class="info-row">
+                      <span class="info-label">Age</span> <span class="dog-age">6 years</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Gender</span> <span class="dog-age">Boy</span>
+                     </div>
+                    <div class="info-row">
+                      <span class="info-label">Breed</span> <span class="dog-breed">Pit Bull</span>
+                    </div>
+                    <div class="info-row">
+                      <span class="info-label">Characteristics</span>
+                      <ul class="dog-characteristics">
+                        <li>Loyal</li>
+                        <li>Strong</li>
+                        <li>Confident</li>
+                      </ul>
+                    </div>
+                  </div>
+                   <!-- dog info part end-->
+                   <button id="Jack">Chat with Jack</button>
+            </div>
+            <!--chat left dog profile box end-->
         </div>
-    </form>
-    <button id="Luna">Luna</button>
-    <button id="Jack">Jack</button>
-    <button id="Bob">Bob</button>
-    <button id="checkin">Checkin!</button>
-</body>
-</html>
+        <!--chat left tab content 2 end-->
+
+        <!--chat left tab content 3-->
+        <div class="tab_content" data-associated-tab="tab_3">
+        <!--chat left dog profile box-->
+        <div class="dog-profile-box">        
+            <div class="dog-profile-box-name">
+                <h2 class="dog-name">Bob</h2>
+            </div> 
+            <img src="static/images/Samoyed.png" alt="dog profile" class="img-fluid">
+            <!-- dog info part-->
+            <div class="dog-info">
+                <div class="info-row">
+                  <span class="info-label">Age</span> <span class="dog-age">5 years</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Gender</span> <span class="dog-age">Boy</span>
+                 </div>
+                <div class="info-row">
+                  <span class="info-label">Breed</span> <span class="dog-breed">Samoyed</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Characteristics</span>
+                  <ul class="dog-characteristics">
+                    <li>Energetic</li>
+                    <li>Sociable</li>
+                    <li>Gentle</li>
+                  </ul>
+                </div>
+              </div>
+               <!-- dog info part end-->
+               <button id="Bob">Chat with Bob</button>
+        </div>
+        <!--chat left dog profile box end-->
+        </div>
+        <!--chat left tab content 3 end-->
+            <!--chat left tab content 4-->
+            <div class="tab_content" data-associated-tab="tab_4">
+            <!--chat left dog profile box-->
+            <div class="dog-profile-box">        
+                <div class="dog-profile-box-name">
+                    <h2 class="dog-name">Ruby</h2>
+                </div> 
+                <img src="static/images/Dachshund.png" alt="dog profile" class="img-fluid">
+                <!-- dog info part-->
+                <div class="dog-info">
+                    <div class="info-row">
+                        <span class="info-label">Age</span> <span class="dog-age">2 years</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Gender</span> <span class="dog-age">Boy</span>
+                        </div>
+                    <div class="info-row">
+                        <span class="info-label">Breed</span> <span class="dog-breed">Dachshund</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Characteristics</span>
+                        <ul class="dog-characteristics">
+                        <li>Curious</li>
+                        <li>Agile</li>
+                        <li>Adaptable</li>
+                        </ul>
+                    </div>
+                    </div>
+                    <!-- dog info part end-->
+                    <button id="Ruby">Chat with Ruby</button>
+            </div>
+            <!--chat left dog profile box end-->
+            </div>
+            <!--chat left tab content 4 end-->
+        <!--chat left tab content 5-->
+        <div class="tab_content" data-associated-tab="tab_5">
+            <!--chat left dog profile box-->
+            <div class="dog-profile-box">        
+                <div class="dog-profile-box-name">
+                    <h2 class="dog-name">Rosie</h2>
+                </div> 
+                <img src="static/images/Labrador.png" alt="dog profile" class="img-fluid">
+                <!-- dog info part-->
+                <div class="dog-info">
+                    <div class="info-row">
+                        <span class="info-label">Age</span> <span class="dog-age">4 years</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Gender</span> <span class="dog-age">Girl</span>
+                        </div>
+                    <div class="info-row">
+                        <span class="info-label">Breed</span> <span class="dog-breed">Labrador</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Characteristics</span>
+                        <ul class="dog-characteristics">
+                        <li>Loving</li>
+                        <li>Friendly</li>
+                        <li>Elegant</li>
+                        </ul>
+                    </div>
+                    </div>
+                    <!-- dog info part end-->
+                    <button id="Rosie">Chat with Rosie</button>
+            </div>
+            <!--chat left dog profile box end-->
+        </div>
+        <!--chat left tab content 5 end-->
+
+        <!--chat left tab content 6-->
+        <div class="tab_content" data-associated-tab="tab_6">
+        <!--chat left dog profile box-->
+        <div class="dog-profile-box">        
+            <div class="dog-profile-box-name">
+                <h2 class="dog-name">Zeus</h2>
+            </div> 
+            <img src="static/images/Husky.png" alt="dog profile" class="img-fluid">
+            <!-- dog info part-->
+            <div class="dog-info">
+                <div class="info-row">
+                    <span class="info-label">Age</span> <span class="dog-age">10 years</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Gender</span> <span class="dog-age">Boy</span>
+                    </div>
+                <div class="info-row">
+                    <span class="info-label">Breed</span> <span class="dog-breed">Husky</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Characteristics</span>
+                    <ul class="dog-characteristics">
+                    <li>Sun-lover</li>
+                    <li>Patient</li>
+                    <li>Majestic</li>
+                    </ul>
+                </div>
+                </div>
+                <!-- dog info part end-->
+                <button id="Zeus">Chat with Zeus</button>
+        </div>
+        <!--chat left dog profile box end-->
+        </div>
+        <!--chat left tab content 3 end-->
+</div>
+ <!--chat left tab box-->
+</div>
+<!--chat page left part end-->
+
+
+
+<!--chat page middle part-->
+<div class="chat-middle">
+    <div class="chat-wrapper">
+        <form action="#" method="POST">
+            <div id="mainchat">
+            </div>
+            <div class="chat-input-wrapper" id="insert">
+                <div class="input-wrapper">
+                    <input type="text" class="chat-input" name="Chat" id="chat" placeholder="Enter your message here" />
+                </div>
+                <button class="chat-send-btn" id="enter" type="submit" onclick="scrollToBottom()">Send</button>
+            </div>
+        </form>
+      </div>
+</div>
+<!-- chat page middle part end-->
+<!--chat page right part-->
+<div class="chat-right">
+
+    <!-- chat page right login record part-->
+    <div class="app-login-record">
+        <div class="top">
+            <div class="out-1" id="signIn">
+                <div class="out-2">
+                    <div class="signBtn">
+                        <strong id="sign-txt">Check in</strong>
+                        <span>Login Days: <em id="sign-count">{{ checkin }}</em></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tips">Check in more than 7 days to unlock doggies</div>
+        <div class="Calendar">
+            <div id="toyear">
+                <div id="idCalendarPre">&lt;</div>
+                <div class="year-month">
+                    <span id="idCalendarYear">2018</span>-<span id="idCalendarMonth">6</span>
+                </div>
+                <div id="idCalendarNext">&gt;</div>
+            </div>
+            <table>
+                <thead>
+                    <tr class="tou">
+                        <td>Su</td>
+                        <td>M</td>
+                        <td>Tu</td>
+                        <td>W</td>
+                        <td>Thu</td>
+                        <td>F</td>
+                        <td>Sa</td>
+                    </tr>
+                </thead>
+                <tbody id="idCalendar">
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <!-- chat page right login record part end-->
+
+
+    <div class="app-right-bottom">
+        <div class="slogan">
+            <p>Have a good time with Doggie Chat!</p>
+        </div>
+    </div>
+</div>
+<!-- chat page right part end-->
+
+
+</div>
+<!--Dog select js-->
+<script src="{{ url_for('static',filename='dog_select.js') }}"></script>
+<!--Login record js-->
+<script src="{{ url_for('static',filename='login_record.js') }}"></script>
+{% endblock content %}
+

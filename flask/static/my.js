@@ -202,7 +202,10 @@ $(function () {
     event.preventDefault();
     var question = $("input[name='Chat']").val();
     var newqe = $("<div>").text(question).addClass("Que");
+    var currentTimeQ = new Date().toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth'});
+    var qtime= $("<div>").text(currentTimeQ).addClass("qtime");
     $("#mainchat").append(newqe);
+    $("#mainchat").append(qtime);
     $.ajax({
       url: "/chat/answer?question=" + question,
       type: "GET",
@@ -210,7 +213,10 @@ $(function () {
         rp = data["response"];
         console.log(rp);
         var newans = $("<div>").text(rp).addClass("Ans");
+        var currentTimeA = new Date().toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth'});
+        var atime= $("<div>").text(currentTimeA).addClass("atime");
         $("#mainchat").append(newans);
+        $("#mainchat").append(atime);
         $("input[name='Chat']").val("")
       },
       error: function (error) {
@@ -218,23 +224,8 @@ $(function () {
       },
     });
   });
-  $("#checkin").click(function (event) {
-    $this=$(this);
-    event.preventDefault();
-    $.ajax({
-      url: "/chat/check",
-      type: "GET",
-      success: function (data) {
-        count = data["counts"];
-        $this.text("Checked in " + count+" day");
-        $this.prop("disabled", true);
-      },
-      error: function (error) {
-        console.log(error);
-      },
-    });
-  });
-  $("#Luna,#Jack,#Bob").click(function (event) {
+
+  $("#Luna,#Jack,#Bob,#Ruby,#Rosie,#Zeus").click(function (event) {
     $this=$(this);
     var name = $this.attr('id');
     event.preventDefault();
@@ -246,8 +237,33 @@ $(function () {
         if (code == 200) {
           console.log("success");
           var ans = $("<div>").text("Woof woof! Hello there, I'm "+name+". How can I assist you today?").addClass("Ans");
+          var currentTimeQ = new Date().toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth'});
+          var atime= $("<div>").text(currentTimeQ).addClass("atime");
           $("#mainchat").empty();
           $("#mainchat").append(ans);
+          $("#mainchat").append(atime);
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  });
+  $("#Search").click(function (event) {
+    $this=$(this);
+    $("#search-result").empty();
+    var dogname=$("#dogname").val();
+    var date=$("#date-input").val();
+    event.preventDefault();
+    $.ajax({
+      url: "/history/search",
+      type: "POST",
+      data: { dogname:dogname, date:date },
+      success: function (data) {
+        for (var i = 0; i < data.length; i++) {
+          console.log(data[i]);
+          var display = $("<div>").text(data[i]).addClass("search");
+          $("#search-result").append(display);
         }
       },
       error: function (error) {
