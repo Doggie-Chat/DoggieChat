@@ -285,8 +285,12 @@ def history():
 def search():
     username=current_user.username
     date = request.form.get('date')
+    if date == "":
+        print(True)
+    else:
+        print(False)
     dogname = request.form.get('dogname')
-    if  dogname !='All':
+    if  dogname !='All' and date != "":
         print ("A")
         print(dogname)
         data = History.query.filter_by(username=username,name=dogname,date=date).all()
@@ -298,7 +302,7 @@ def search():
             doglist.append(row.name)
             content.append(row.content)
         return jsonify({'date':datelist,'dog':doglist,'content':content})
-    else:
+    elif dogname =='All' and date != "":
         data = History.query.filter_by(username=username,date=date).all()
         datelist=[]
         doglist=[]
@@ -308,7 +312,26 @@ def search():
             doglist.append(row.name)
             content.append(row.content)
         return jsonify({'date':datelist,'dog':doglist,'content':content})
-
+    elif dogname=='All' and date == "":
+        data = History.query.filter_by(username=username).all()
+        datelist=[]
+        doglist=[]
+        content=[]
+        for row in data:
+            datelist.append(str(row.date))
+            doglist.append(row.name)
+            content.append(row.content)
+        return jsonify({'date':datelist,'dog':doglist,'content':content})
+    else:
+        data = History.query.filter_by(username=username,name=dogname).all()
+        datelist=[]
+        doglist=[]
+        content=[]
+        for row in data:
+            datelist.append(str(row.date))
+            doglist.append(row.name)
+            content.append(row.content)
+        return jsonify({'date':datelist,'dog':doglist,'content':content})
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
