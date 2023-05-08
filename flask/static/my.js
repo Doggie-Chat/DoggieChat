@@ -264,17 +264,30 @@ $(function () {
         date=data.date
         dog=data.dog
         content=data.content
+        var table = $("<table>");
+        headerRow = $("<tr>");
+        headerRow.append($("<th>").text("Date"));
+        headerRow.append($("<th>").text("Name"));
+        headerRow.append($("<th>").text("Content"));
+        table.append(headerRow);
+        var dataRow = $("<tr>");
         $.each(date, function(index, value) {
           var item1 = value;
           var item2 = dog[index];
           var item3 = content[index];
-          var displaydate = $("<div>").text(item1).addClass("searchdate");
+          var dataRow = $("<tr>").addClass("table-content");
+          dataRow.append($("<td>").text(item1));
+          dataRow.append($("<td>").text(item2));
+          dataRow.append($("<td>").text(item3));
+          table.append(dataRow);
+          /* var displaydate = $("<div>").text(item1).addClass("searchdate");
           $("#search-result").append(displaydate)
           var displaydog = $("<div>").text(item2).addClass("searchdog");
           $("#search-result").append(displaydog)
           var displaytxt = $("<div>").text(item3).addClass("searchtxt");
-          $("#search-result").append(displaytxt)
+          $("#search-result").append(displaytxt) */
         });
+        $("#search-result").html(table);
       },
       error: function (error) {
         console.log(error);
