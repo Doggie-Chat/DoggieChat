@@ -270,7 +270,6 @@ $(function () {
         headerRow.append($("<th>").text("Name"));
         headerRow.append($("<th>").text("Content"));
         table.append(headerRow);
-        var dataRow = $("<tr>");
         $.each(date, function(index, value) {
           var item1 = value;
           var item2 = dog[index];
