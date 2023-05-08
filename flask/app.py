@@ -295,11 +295,14 @@ def search():
         return jsonify(resultlist)
     else:
         data = History.query.filter_by(username=username,date=date).all()
-        resultlist=[]
+        datelist=[]
+        doglist=[]
+        content=[]
         for row in data:
-            dateandtext=str(row.date) + "  Dog name: "+row.name + "  Text:  "+row.content
-            resultlist.append(dateandtext)
-        return jsonify(resultlist)
+            datelist.append(str(row.date))
+            doglist.append(row.name)
+            content.append(row.content)
+        return jsonify({'date':datelist,'dog':doglist,'content':content})
 
 if __name__ == '__main__':
     app.debug = True
