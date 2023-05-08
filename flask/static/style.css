@@ -58,7 +58,7 @@ body {
   }
 
 
-.login-signup .button {
+.login-signup .button{
     background-color: #76cefd;
     border: none;
     border-radius: 5px;
@@ -84,11 +84,25 @@ body {
     box-shadow: none;
   }
 
+  #Welcome-msg {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 50px;
+  }
+  
+  #Welcome-msg #username {
+    color: #1e88e5; 
+    text-transform: uppercase;
+  }
 
 
 /* 3. Main */
 .main-container {
-  min-height: calc(100vh - 100px); /* set the minimum height to the container, minus the header height */
+  min-height: calc(100vh - 110px); /* set the minimum height to the container, minus the header and footer height */
   width: 100%; /* set the width of the container */
   padding-top: 100px; /* Add padding-top equal to the height of the header to prevent content from being hidden */
   flex-grow: 1; /* make the main-container grow to take up all available space */
@@ -104,10 +118,11 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     color: white;
     text-align: center;
     margin-top: auto;
+    margin-bottom: 0px;
     font-size: small;
   }
 
@@ -300,8 +315,7 @@ body {
 
 /*===================================*/
 /* The login.html file,  register.html file, and reset.html file
----------------------------------------
-*/
+---------------------------------------*/
 
 /* styles.css */
 
@@ -530,3 +544,549 @@ input[type="submit"]:hover {
 
 }
 /*--responsive end--*/
+
+/*===================================*/
+/* The chat.html
+---------------------------------------*/
+
+/* chat left part */
+.chat-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--app-bg);
+  --app-bg: #fff;
+  --box-color: #f5f8fc;
+  --box-border: #e7edf5;
+  --tab-color: #c8ebfc;
+  --tab-move: #c4b3f8;
+  --tab-select: #97b6f9;
+  --text-dark: #5c4536;
+  --button-color: #a6e8f7;
+  --border-light: #8187a2;
+  --chat-input: #f5f8fc;
+  --text-dark: #1a2f45;
+  --text-light: #445e78;
+  --que-ans:#72c0ff;
+  --send-button: #0062ff;
+  --check-in: #5f94f5;
+  --check-in-select: #1485ff;
+}
+
+.chat-page [data-theme=green] {
+  --app-bg: #f9e8e8;
+  --box-color: #f5f8fc;
+  --box-border: #e7edf5;
+  --tab-color: #c4e7f8;
+  --text-dark: #5c4536;
+}
+
+
+.chat-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+  max-width: 1800px;
+}
+
+.chat-left {
+  flex-basis: 320px;
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin-right: 24px;
+  overflow-y: auto;
+}
+
+.chat-left-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--app-bg);
+}
+.chat-left-header h1 {
+  margin: 0;
+  font-size: 20px;
+  margin-left: 12px;
+}
+
+.chat-left-header .app-logo{
+  width: 40px;
+  height: 40px;
+  margin-left: 12px;
+  border-radius: 50%; 
+}
+
+.chat-left-header .app-logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* tab part*/
+.dog-tab-parent .tab_header {
+  display: flex;
+  flex-wrap: wrap; /* Allow the tabs to wrap into multiple rows */
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dog-tab-parent .tab_header .tab {
+  position: relative;
+  flex-grow: 1;
+  text-align: center;
+  width: 30%; /* Set the width of the tab to occupy half the container width */
+}
+.dog-tab-parent .tab_header input {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+.dog-tab-parent .tab_header label {
+  display: block;
+  padding: 10px;
+  background-color: var(--tab-color);
+  cursor: pointer;
+  font-weight: bold;
+}
+.dog-tab-parent .tab_header input:not(:checked) + label:hover {
+  background-color: var(--tab-move);
+}
+.dog-tab-parent .tab_header input:checked + label {
+  background-color: var(--tab-select);
+}
+
+
+
+.dog-tab-parent .tab_header .tab:nth-child(1) label {
+  border-radius: 10px 0 0 0px;
+}
+
+.dog-tab-parent .tab_header .tab:nth-child(3) label{
+   border-radius: 0 10px 0 0;
+}
+
+.dog-tab-parent .tab_header .tab:nth-child(4) label {
+  border-radius: 0 0 0 10px;
+}
+
+.dog-tab-parent .tab_header .tab:nth-child(6) label {
+  border-radius: 0 0 10px 0;
+}
+
+
+.dog-tab-parent .tab_content {
+  margin: auto;
+  display: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.dog-tab-parent .tab_content.visible {
+  display: block;
+}
+
+/* tab part end*/
+
+.dog-profile-box {
+  border: 1px solid var(--box-border);
+  background-color: var(--box-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.dog-profile-box img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border: 1px solid var(--box-border); 
+}
+
+.dog-profile-box h2 {
+  font-size: 26px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.dog-profile-box button{
+  padding: 12px;
+  width: 180px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--tab-select);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dog-profile-box button:hover {
+  background-color: var(--tab-move); /* Choose a slightly darker color for hover */
+  transform: scale(1.1); /* Slightly increase the button size on hover */
+}
+
+.dog-info {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.dog-info .info-row {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.dog-info .info-label {
+  font-weight: 600;
+  color: #000000;
+  margin-right: 5px;
+}
+
+.dog-info .dog-age, .dog-info .dog-breed {
+  font-weight: 500;
+  color: #595656;
+}
+
+.dog-info .dog-characteristics {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dog-info .dog-characteristics li {
+  padding: 2px 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+
+
+
+/* chat middle part */
+
+.chat-wrapper {
+  background-color: var(--box-color);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.chat-input-wrapper {
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+#mainchat{
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  width: 660px;
+  height: 600px;
+}
+
+#mainchat div {
+  clear: both;
+}
+
+.chat-wrapper .Que {
+  align-self: flex-end;
+  margin-right: 10px;
+  padding: 8px 12px;
+  background-color: var(--que-ans);
+  color: #fff;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+  float: right;
+}
+
+.chat-wrapper .Ans {
+  align-self: flex-start;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 8px 12px;
+  background-color: var(--que-ans);
+  color: #fff;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+  float: left;
+}
+
+.chat-wrapper #insert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f2f2f2;
+  border-top: 1px solid #ddd;
+}
+
+
+.chat-wrapper .chat-send-btn {
+  margin-left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: var(--send-button);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.chat-send-btn:hover {
+  background-color: #f100fd;
+}
+
+.chat-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  margin-top: auto;
+  border-radius: 6px;
+  padding: 12px;
+  background-color: var(--chat-input);
+}
+
+.input-wrapper {
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 12px;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 0 6px 0 12px;
+  justify-content: space-between;
+  margin: 0 8px;
+  background-color: var(--chat-input);
+}
+
+
+.chat-input {
+  border: none;
+  outline: none;
+  height: 32px;
+  flex: 1;
+  margin-right: 4px;
+  background-color: var(--chat-input);
+  color: var(--text-dark);
+}
+
+.chat-input:placeholder {
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+
+/* chat right part */
+.chat-right{
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  width: 280px;
+}
+
+.app-login-record {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 2px solid var(--check-in); 
+  border-radius: 30px;
+  overflow: hidden; /* To hide overflowing child elements */
+  height: 580px; /* Set height to 580px */
+}
+
+/* Styles for the login record Top part */
+.top {
+  width: 100%;
+  height: 200px;
+  background: var(--check-in); 
+  margin-bottom: 16px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+
+.top .out-1 {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 10px auto;
+}
+
+
+.top .out-1 .out-2 {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.top .out-1 .out-2 .signBtn {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: 1px #7ebdff solid;
+}
+
+.top .out-1 .out-2 .signBtn strong,
+.top .out-1 .out-2 .signBtn span {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+  color: #007aff;
+}
+
+.top .out-1 .out-2 .signBtn strong {
+  height: 4rem;
+  line-height: 5rem;
+  font-weight: 600;
+  border-bottom: 1px #eee solid;
+}
+
+.top .out-1 .out-2 .signBtn span {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 10px;
+  line-height: 2rem !important;
+}
+
+
+.top .out-1:active {
+  animation: sign .25s forwards;
+  -webkit-animation: sign .25s forwards;
+}
+
+#signIn {
+  margin-bottom: 10px;
+}
+
+#sign-txt {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#sign-count {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.tips {
+  width: 100%;
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  margin-bottom: 16px;
+
+}
+
+/* Styles for the login record Top part end */
+
+/* Styles for the login record Calendar part */
+.Calendar {
+  background: #fff;
+  padding-bottom: 16px;
+}
+
+.Calendar #toyear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px #e7e7e7 solid;
+  width: 96%;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+}
+
+.Calendar #toyear .year-month {
+  height: 100%;
+  line-height: 24px;
+}
+.Calendar #toyear #idCalendarPre,
+.Calendar #toyear #idCalendarNext {
+  height: 100%;
+  line-height: 40px;
+  padding: 0 32px;
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+}
+.Calendar table,
+.Calendar tr,
+.Calendar td {
+  border: 0;
+}
+.Calendar table {
+  width: 95%;
+  margin: 0 auto;
+}
+.Calendar table tr {
+  text-align: center;
+  height: 35px;
+}
+.Calendar table tr td span {
+  margin: 0 auto;
+  display: block;
+  line-height: 40px;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  border-radius: 100%;
+}
+.Calendar table tr .onToday span {
+  background: var(--check-in-select);
+  color: #fff;
+}
+/* Styles for the login record  Calendar part end */

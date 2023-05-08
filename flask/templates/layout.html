@@ -65,7 +65,7 @@
                         <a class="nav-link" href="chat">Chat</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="search.html">Search</a>
+                        <a class="nav-link" href="history">Search</a>
                       </li>        
                     </ul>
                   </div>
@@ -79,7 +79,7 @@
             <!--sign up / log in area-->
             <div class="col-md-3 login-signup">
               {% if current_user.is_authenticated %}
-                <p>Welcome, <span id="username">{{ current_user.username }}</span>!</p>
+                <p id="Welcome-msg">Welcome, <span id="username">{{ current_user.username }}</span></p>
                 <button class="button" onclick="location.href='logout'">Log Out</button>
               {% else %}
                 <button class="button" onclick="location.href='register'">Sign Up</button>        

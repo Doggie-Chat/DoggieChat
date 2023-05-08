@@ -16,7 +16,7 @@ class History(db.Model):
     name=db.Column(db.String(20),nullable=False)
 class Checkin(db.Model):
     __tablename__="checkin"
-    username=db.Column(db.String(100),primary_key=True,nullable=False)
+    username=db.Column(db.String(100),db.ForeignKey("user.username"),primary_key=True,nullable=False)
     last_login=db.Column(db.Date,nullable=True)
     current_login=db.Column(db.Date,nullable=True)
     checkincount=db.Column(db.Integer,nullable=True)
