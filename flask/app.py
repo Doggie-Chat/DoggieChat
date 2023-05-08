@@ -287,19 +287,27 @@ def search():
     date = request.form.get('date')
     dogname = request.form.get('dogname')
     if  dogname !='All':
+        print ("A")
+        print(dogname)
         data = History.query.filter_by(username=username,name=dogname,date=date).all()
-        resultlist=[]
+        datelist=[]
+        doglist=[]
+        content=[]
         for row in data:
-            dateandtext=str(row.date) + ":  "+ row.content
-            resultlist.append(dateandtext)
-        return jsonify(resultlist)
+            datelist.append(str(row.date))
+            doglist.append(row.name)
+            content.append(row.content)
+        return jsonify({'date':datelist,'dog':doglist,'content':content})
     else:
         data = History.query.filter_by(username=username,date=date).all()
-        resultlist=[]
+        datelist=[]
+        doglist=[]
+        content=[]
         for row in data:
-            dateandtext=str(row.date) + "  Dog name: "+row.name + "  Text:  "+row.content
-            resultlist.append(dateandtext)
-        return jsonify(resultlist)
+            datelist.append(str(row.date))
+            doglist.append(row.name)
+            content.append(row.content)
+        return jsonify({'date':datelist,'dog':doglist,'content':content})
 
 if __name__ == '__main__':
     app.debug = True

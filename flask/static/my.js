@@ -237,8 +237,9 @@ $(function () {
         if (code == 200) {
           console.log("success");
           var ans = $("<div>").text("Woof woof! Hello there, I'm "+name+". How can I assist you today?").addClass("Ans");
-          var currentTimeQ = new Date().toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth'});
-          var atime= $("<div>").text(currentTimeQ).addClass("atime");
+
+          var currentTimeA = new Date().toLocaleTimeString('en-AU', {timeZone: 'Australia/Perth'});
+          var atime= $("<div>").text(currentTimeA).addClass("atime");
           $("#mainchat").empty();
           $("#mainchat").append(ans);
           $("#mainchat").append(atime);
@@ -260,11 +261,32 @@ $(function () {
       type: "POST",
       data: { dogname:dogname, date:date },
       success: function (data) {
-        for (var i = 0; i < data.length; i++) {
-          console.log(data[i]);
-          var display = $("<div>").text(data[i]).addClass("search");
-          $("#search-result").append(display);
-        }
+        date=data.date
+        dog=data.dog
+        content=data.content
+        var table = $("<table>");
+        headerRow = $("<tr>");
+        headerRow.append($("<th>").text("Date"));
+        headerRow.append($("<th>").text("Name"));
+        headerRow.append($("<th>").text("Content"));
+        table.append(headerRow);
+        $.each(date, function(index, value) {
+          var item1 = value;
+          var item2 = dog[index];
+          var item3 = content[index];
+          var dataRow = $("<tr>").addClass("table-content");
+          dataRow.append($("<td>").text(item1));
+          dataRow.append($("<td>").text(item2));
+          dataRow.append($("<td>").text(item3));
+          table.append(dataRow);
+          /* var displaydate = $("<div>").text(item1).addClass("searchdate");
+          $("#search-result").append(displaydate)
+          var displaydog = $("<div>").text(item2).addClass("searchdog");
+          $("#search-result").append(displaydog)
+          var displaytxt = $("<div>").text(item3).addClass("searchtxt");
+          $("#search-result").append(displaytxt) */
+        });
+        $("#search-result").html(table);
       },
       error: function (error) {
         console.log(error);
