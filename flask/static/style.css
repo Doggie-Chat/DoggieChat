@@ -570,6 +570,7 @@ input[type="submit"]:hover {
   --que-ans:#72c0ff;
   --que-ans-time: #868686;
   --send-button: #0062ff;
+  --send-button-hover: #f100fd;;
   --check-in: #5f94f5;
   --check-in-select: #1485ff;
 }
@@ -878,7 +879,7 @@ input[type="submit"]:hover {
 }
 
 .chat-send-btn:hover {
-  background-color: #f100fd;
+  background-color: var(--send-button-hover);
 }
 
 .chat-input-wrapper {
@@ -1123,7 +1124,7 @@ input[type="submit"]:hover {
 /*chat right part end*/
 
 
-
+/*--responsive--*/
 @media screen and (max-width: 1025px) {
   .chat-container{
     margin-top: 100px;
@@ -1181,6 +1182,8 @@ input[type="submit"]:hover {
   }
 }
 
+/*--responsive end--*/
+
 
 /*===================================*/
 /* The history.html file
@@ -1190,8 +1193,9 @@ input[type="submit"]:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  --send-button: #0062ff;
+  --send-button-hover: #f100fd;;
 }
-
 
 .history-container {
   margin: 0 auto;
@@ -1218,7 +1222,7 @@ input[type="submit"]:hover {
 }
 
 .search-input button {
-  background-color: #5C7AEA;
+  background-color: var(--send-button);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -1227,7 +1231,7 @@ input[type="submit"]:hover {
 }
 
 .search-input button:hover {
-  background-color: #4F6AD7;
+  background-color: var(--send-button-hover);
 }
 
 #search-result {
@@ -1236,8 +1240,8 @@ input[type="submit"]:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
-  max-height: 600px;  /* Set this to the height you want */
-  overflow: auto;  /* This will create a scrollbar when the content exceeds the height */
+  max-height: 600px;  /* Set the height */
+  overflow: auto;  /* Create a scrollbar when the content exceeds the height */
 }
 
 #search-result table {
@@ -1278,61 +1282,25 @@ input[type="submit"]:hover {
   width: 86%;  
 }
 
-/*
 
-#search-result th, .table-content td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
+/*--responsive--*/
+@media screen and (max-width: 680px) {
+  .history-container {
+    margin-top: 80px;
+    width: 95%;
+  }
 
-.table-content td {
-  background-color: #f4f4f4;
-}
+  .search-input input, .search-input select {
+    padding: 5px;
+    margin: 5px
+  }
 
-.table-content:nth-child(even) td {
-  background-color: #e8e8e8;
-}
-*/
+  #search-result th {
+    font-size: 14px;
+  }
 
-/*
-.history-container {
-  margin: 0 auto;
-  width: 60%;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-  border-radius: 5px;
-  margin-top: 100px;
+  .table-content td{
+    font-size: 12px;
+  }
 }
-
-.history-container input, .history-container select {
-  width: 30%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.history-container button {
-  background-color: #5C7AEA;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.history-container button:hover {
-  background-color: #4F6AD7;
-}
-
-#search-result {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  min-height: 200px;
-  background-color: #f9f9f9;
-}
-*/
+/*--responsive end--*/
