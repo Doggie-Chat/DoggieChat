@@ -1180,3 +1180,159 @@ input[type="submit"]:hover {
     width:300px
   }
 }
+
+
+/*===================================*/
+/* The history.html file
+---------------------------------------*/
+.history-page {
+  background-image: url(images/dog_background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+.history-container {
+  margin: 0 auto;
+  width: 80%;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  margin-top: 50px;
+}
+
+.search-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input input, .search-input select {
+  width: 30%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-input button {
+  background-color: #5C7AEA;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-input button:hover {
+  background-color: #4F6AD7;
+}
+
+#search-result {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  max-height: 600px;  /* Set this to the height you want */
+  overflow: auto;  /* This will create a scrollbar when the content exceeds the height */
+}
+
+#search-result table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#search-result th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  background-color: #5C7AEA;
+  color: white;
+  font-weight: bold;
+}
+
+.table-content td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  background-color: #fbfbfb;
+  font-size: 14px;
+}
+
+.table-content:nth-child(even) td {
+  background-color: #ebebeb;
+}
+
+#search-result .date-col {
+  width: 8%; 
+}
+
+#search-result .name-col {
+  width: 6%;  
+}
+
+#search-result .content-col {
+  width: 86%;  
+}
+
+/*
+
+#search-result th, .table-content td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table-content td {
+  background-color: #f4f4f4;
+}
+
+.table-content:nth-child(even) td {
+  background-color: #e8e8e8;
+}
+*/
+
+/*
+.history-container {
+  margin: 0 auto;
+  width: 60%;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  margin-top: 100px;
+}
+
+.history-container input, .history-container select {
+  width: 30%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.history-container button {
+  background-color: #5C7AEA;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.history-container button:hover {
+  background-color: #4F6AD7;
+}
+
+#search-result {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-height: 200px;
+  background-color: #f9f9f9;
+}
+*/

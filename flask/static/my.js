@@ -266,9 +266,9 @@ $(function () {
         content=data.content
         var table = $("<table>");
         headerRow = $("<tr>");
-        headerRow.append($("<th>").text("Date"));
-        headerRow.append($("<th>").text("Name"));
-        headerRow.append($("<th>").text("Content"));
+        headerRow.append($("<th>").addClass("date-col").text("Date"));
+        headerRow.append($("<th>").addClass("name-col").text("Name"));
+        headerRow.append($("<th>").addClass("content-col").text("Content"));
         table.append(headerRow);
         $.each(date, function(index, value) {
           var item1 = value;
@@ -279,12 +279,6 @@ $(function () {
           dataRow.append($("<td>").text(item2));
           dataRow.append($("<td>").text(item3));
           table.append(dataRow);
-          /* var displaydate = $("<div>").text(item1).addClass("searchdate");
-          $("#search-result").append(displaydate)
-          var displaydog = $("<div>").text(item2).addClass("searchdog");
-          $("#search-result").append(displaydog)
-          var displaytxt = $("<div>").text(item3).addClass("searchtxt");
-          $("#search-result").append(displaytxt) */
         });
         $("#search-result").html(table);
       },
