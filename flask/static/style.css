@@ -350,9 +350,17 @@ body {
   position: relative;
 }
 
-.icon {
+
+.login-page #username .icon, .register-block .icon, .reset-block .icon {
   position: absolute;
-  top: calc(38%);
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+
+.login-page #password .icon {
+  position: absolute;
+  top: calc(30%); /* Set different top to the password icon to make it look better on the screen*/
   left: 10px;
 }
 
