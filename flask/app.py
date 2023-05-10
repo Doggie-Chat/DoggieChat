@@ -291,8 +291,6 @@ def search():
         print(False)
     dogname = request.form.get('dogname')
     if  dogname !='All' and date != "":
-        print ("A")
-        print(dogname)
         data = History.query.filter_by(username=username,name=dogname,date=date).all()
         datelist=[]
         doglist=[]
