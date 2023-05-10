@@ -280,6 +280,7 @@ $(function () {
           dataRow.append($("<td>").text(item3));
           table.append(dataRow);
         });
+        $("#search-result").empty();
         $("#search-result").html(table);
       },
       error: function (error) {

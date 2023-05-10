@@ -14,7 +14,6 @@ from chatgpt import chatgpt
 from prompt import messages,dogdic,name
 import random
 import string
-import time
 import openai
 from datetime import date,datetime
 #setup chatgpt api
@@ -38,7 +37,7 @@ users=[] # grab all users in the db
 emailst=[] # grab all the emails in the db
 code={} # store the verification code temporarily
 maildress=""
-# test whether the database is connected successfully
+# Test whether the database is connected successfully
 """ with app.app_context():
     with db.engine.connect() as conn:
         rs=conn.execute(text("select 1"))
