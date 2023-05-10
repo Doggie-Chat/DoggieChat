@@ -80,14 +80,19 @@ def login():
     elif request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("pwd")
+        my_checkbox = request.form.get('my-checkbox')
         user=User.query.filter_by(username=username).first()
         if username is not None:
             if username not in users:
                 msg="username not found, please register first!"
                 return redirect(url_for("register"))
             elif user and check_password_hash(user.password, password):
-                login_user(user)
-                return redirect(url_for('index'))
+                if my_checkbox == "on":
+                    login_user(user,remember=True)
+                    return redirect(url_for('index'))
+                else:
+                    login_user(user,remember=False)
+                    return redirect(url_for('index'))
             else:
                 msg="Incorrect password, please try again"
                 return render_template("login.html",msg=msg)
