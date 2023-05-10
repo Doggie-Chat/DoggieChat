@@ -16,7 +16,7 @@ import random
 import string
 import time
 import openai
-from datetime import date
+from datetime import date,datetime
 #setup chatgpt api
 openai.api_key = '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'
 openai.organization = "org-TbfW12zKWBbFDrfoDdtPTlQv"
@@ -121,10 +121,10 @@ def register():
             return redirect(url_for("register"))
         elif len(password)<=6 or len(password)>=16:
             msg="The length of the password should be more than 6 and less than 15."
-            return redirect(url_for("register"),msg=msg)
+            return redirect(url_for("register"))
         elif email not in code.keys() or key!=code[email]:
             msg="Invalid Code! please verify your email!"
-            return redirect(url_for("register"),msg=msg)
+            return redirect(url_for("register"))
         else:
             user=User(username=username,password=generate_password_hash(password),email=email)
             check=Checkin(username=username,checkincount=0)
@@ -224,8 +224,9 @@ def update():
 @login_required
 def chat():
     username=current_user.username
+    current_time = datetime.now().strftime("%I:%M:%S %p").lower().lstrip("0")
     checkin=Checkin.query.filter_by(username=username).first().checkincount
-    return render_template("chat.html",username=username,checkin=checkin)
+    return render_template("chat.html",username=username,checkin=checkin,current_time=current_time)
 
 @app.route("/chat/answer", methods=['POST','GET'])
 def answer():
