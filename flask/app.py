@@ -37,118 +37,114 @@ users=[] # grab all users in the db
 emailst=[] # grab all the emails in the db
 code={} # store the verification code temporarily
 maildress=""
-# Test whether the database is connected successfully
+# The code below tests whether the database is connected successfully
 """ with app.app_context():
     with db.engine.connect() as conn:
         rs=conn.execute(text("select 1"))
         print(rs.fetchone()) """
 
-""" users=[]
-ppl={}
-class User:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-
-    def __str__(self):
-        return self.username """
-
+# store all the users and emails from database to a list.
 with app.app_context():
     allusers=User.query.all()
     for i in allusers:
         users.append(i.username)
         emailst.append(i.email)
 
-""" with app.app_context():
-    db.create_all()   """
-
+# define the login manager
 @login_manager.user_loader
 def load_user(username):
     return db.session.get(User, username)
 
+# define the route of home page of our website
 @app.route("/")
 @app.route("/home")
 def index():
     return render_template("index.html")
 
+# define the route of login page of our website
 @app.route("/login", methods=['POST','GET'])
 def login():
     msg=""
-    if current_user.is_authenticated:
+    if current_user.is_authenticated: # check whether the user is already logged in. if true, redirect the user to home page.
         return redirect(url_for('index'))
-    elif request.method == 'POST':
+    elif request.method == 'POST':# to get the user's input info and whether the user check the checkbox.
         username = request.form.get("username")
         password = request.form.get("pwd")
         my_checkbox = request.form.get('my-checkbox')
         user=User.query.filter_by(username=username).first()
         if username is not None:
-            if username not in users:
+            if username not in users:# if the user's username is not exists, return to register page
                 msg="username not found, please register first!"
                 return redirect(url_for("register"))
-            elif user and check_password_hash(user.password, password):
-                if my_checkbox == "on":
+            elif user and check_password_hash(user.password, password):# the user's input matches record
+                if my_checkbox == "on":# check whether user checked 'remember me'
                     login_user(user,remember=True)
-                    return redirect(url_for('index'))
+                    return redirect(url_for('index'))# login success and return to home page
                 else:
                     login_user(user,remember=False)
                     return redirect(url_for('index'))
             else:
-                msg="Incorrect password, please try again"
+                msg="Incorrect password, please try again"# user's input not match the database, parse message to html and return to login page again.
                 return render_template("login.html",msg=msg)
     return render_template("login.html")
 
+# define the user logout.
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return render_template("login.html")
 
+# if the user access login required page before login, return to login page.
 @login_manager.unauthorized_handler
 def unauthorized():
     # Redirect unauthorized users to the login page
     return redirect(url_for("login"))
 
+# define the route of register page.
 @app.route("/register", methods=['POST','GET'])
 def register():
-    msg=""
-    if request.method == 'POST':
+    if request.method == 'POST':# get the user's input via POST.
         username = request.form.get('username')
         password = request.form.get('pwd')
         repassword = request.form.get('repwd')
         email = request.form.get("email")
         key = request.form.get("key")
-        if username in users:
+        if username in users: # check whether username exists.
             msg="username already exists! Please login in!"
             return redirect(url_for("login"))
-        elif password != repassword:
+        elif password != repassword: # check whether input passwords are same
             msg="The passwords are not the same!"
             return redirect(url_for("register"))
-        elif len(password)<=6 or len(password)>=16:
+        elif len(password)<=6 or len(password)>=16:# check the length of password
             msg="The length of the password should be more than 6 and less than 15."
             return redirect(url_for("register"))
-        elif email not in code.keys() or key!=code[email]:
+        elif email not in code.keys() or key!=code[email]:# check whether the email code is correct.
             msg="Invalid Code! please verify your email!"
             return redirect(url_for("register"))
-        else:
-            user=User(username=username,password=generate_password_hash(password),email=email)
-            check=Checkin(username=username,checkincount=0)
+        else: # everything is correct.
+            user=User(username=username,password=generate_password_hash(password),email=email)# store the user's info into user table.
+            check=Checkin(username=username,checkincount=0)# create a checkin record in checkin table at the same time.
             db.session.add(user)
             db.session.add(check)
-            db.session.commit()
-            users.append(username)
+            db.session.commit()# update the new records to database.
+            users.append(username)# add the new username to list.
+            emailst.append(email)# add the new email to list.
             msg="Registeration Successful!"
             return redirect(url_for("login"))
     return render_template('register.html')
 
+# define the function of sending verification email code.
 @app.route("/send", methods=['POST','GET'])
 def send():
-    email = request.args.get("email")
-    if email in emailst:
+    email = request.args.get("email")# get the input email.
+    if email in emailst:# email has already been used.
         return jsonify({"code":500,"message": "","data":None})
     elif request.method == 'GET':
-        verifycode=''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-        code[email]=verifycode
-        mail_content = verifycode
+        verifycode=''.join(random.choices(string.ascii_uppercase + string.digits, k=6))# generate 6 characters verification code.
+        code[email]=verifycode# store code to dictionary
+        mail_content = verifycode# add the code to mail content
+        # the code below use the smtp and SSL to send the code to the input email.
         msg = MIMEMultipart()
         msg["Subject"] = Header(mail_title,'utf-8')
         msg["From"] = sender_mail
@@ -158,44 +154,47 @@ def send():
         receiver = [email ]
         msg["To"] = Header(str(receiver),'utf-8')
         print(msg.as_string())
-        try:
+        try:# successfully sent the email
            smtp.sendmail(sender_mail,receiver,msg.as_string())
            return jsonify({"code":200,"message": "","data":verifycode})
-        except SMTPRecipientsRefused:
+        except SMTPRecipientsRefused:# the email is incorrect
            return jsonify({"code":300,"message": "","data":None})
-        
+
+# define the route of reset page.
 @app.route("/reset", methods=['POST','GET'])
 def reset():
-    if request.method == 'POST':
+    if request.method == 'POST': # get all the input info
         username = request.form.get('username')
         newpassword = request.form.get('pwd')
         repassword = request.form.get('repwd')
         email = request.form.get("email")
         key = request.form.get("key")
-        usr=User.query.filter_by(username=username).first()
-        if username not in users:
+        usr=User.query.filter_by(username=username).first()# get the record from database
+        if username not in users:# username not exist
             msg="username not exists! Please register!"
-            return render_template("reset.html")
-        elif newpassword != repassword:
+            return render_template("reset.html",msg=msg)
+        elif newpassword != repassword:# different password
             msg="The passwords are not the same!"
-            return render_template("reset.html")
-        elif len(newpassword)<=6 or len(newpassword)>=16:
+            return render_template("reset.html",msg=msg)
+        elif len(newpassword)<=6 or len(newpassword)>=16:# check the length of password
             msg="The length of the password should be more than 6 and less than 15."
-            return render_template("reset.html")
-        elif usr.email!=email:
+            return render_template("reset.html",msg=msg)
+        elif usr.email!=email:# check whether the email match the records in database.
             msg="Email not correct!"
             return render_template("reset.html",msg=msg)
-        elif email not in code.keys():
+        elif email not in code.keys():# check whether user has send the email code.
             msg="please send verification code first!"
             return render_template("reset.html",msg=msg)
-        elif key!=code[email]:
+        elif key!=code[email]:# check whether the code match the record stored in dictionary.
             msg="incorrect code"
             return render_template("reset.html",msg=msg)
-        else:
-            usr.password=generate_password_hash(repassword)
-            db.session.commit()
+        else:# pass the verification and correctly reset the password.
+            usr.password=generate_password_hash(repassword)# use hash to encode the password.
+            db.session.commit() # Update the new password to record in database.
             return render_template("login.html")
     return render_template("reset.html")
+
+# define the function of sending email verification code in reset page which is similar to the function of sending email verification code in register page.
 @app.route("/reset/update", methods=['POST','GET'])
 def update():
     email = request.args.get("email")
@@ -207,6 +206,7 @@ def update():
     elif actemail!=email:
         return jsonify({"code":400,"message": "","data":None})
     elif request.method == 'GET':
+        # generate the code and send email to user's input email
         verifycode=''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         code[email]=verifycode
         mail_content = verifycode
@@ -220,121 +220,122 @@ def update():
         msg["To"] = Header(str(receiver),'utf-8')
         try:
            smtp.sendmail(sender_mail,receiver,msg.as_string())
-           return jsonify({"code":200,"message": "","data":None})
+           return jsonify({"code":200,"message": "","data":verifycode})
         except SMTPRecipientsRefused:
            return jsonify({"code":300,"message": "","data":None})
         
+# define the route of chat page.
 @app.route("/chat", methods=['POST','GET'])
 @login_required
-def chat():
+def chat():# parse the username, checkin days and time to html.
     username=current_user.username
     current_time = datetime.now().strftime("%I:%M:%S %p").lower().lstrip("0")
     checkin=Checkin.query.filter_by(username=username).first().checkincount
     return render_template("chat.html",username=username,checkin=checkin,current_time=current_time)
 
+# define the function of getting the user's input question and generate response from Chatgpt API and parse it to front-end via Ajax.
 @app.route("/chat/answer", methods=['POST','GET'])
 def answer():
     response=""
     username = current_user.username
-    question = request.args.get('question')
-    today = date.today()
-    print(question)
-    dicuser["content"]=question
+    question = request.args.get('question')# get the user's input question.
+    today = date.today()# get the time
+    dicuser["content"]=question # store the question in a dictionary
     messages.append(dicuser)
-    response=chatgpt(messages)
-    print(response)
-    history=History(username=username,content="Q: "+question+" A: "+response,date=today,name=name)
+    response=chatgpt(messages)# get chatgpt's response
+    history=History(username=username,content="Q: "+question+" A: "+response,date=today,name=name)# store the history into the history table
     db.session.add(history)
-    db.session.commit()
-    dicass["content"]=response
-    messages.append(dicass)
-    return jsonify({"response":response}) 
+    db.session.commit()# update the new record to database
+    dicass["content"]=response# store the answer in a dictionary
+    messages.append(dicass)# add the history to prompt to let chatgpt know the history.
+    return jsonify({"response":response,"status":"success"}) # parse the response to front-end via Ajax
 
+# define the function of check in days via Ajax.
 @app.route("/chat/check", methods=['POST','GET'])
 @login_required
 def check():
     username=current_user.username
     today = date.today()
-    check=Checkin.query.filter_by(username=username).first()
-    if check.current_login==today:
-        return jsonify({"counts":check.checkincount})
+    check=Checkin.query.filter_by(username=username).first()# get the previous check in days from database.
+    if check.current_login==today:# if the user has already checked in today, keep the count.
+        return jsonify({"counts":check.checkincount,"status":"checked"})
     else:
-        if check.checkincount is None:
+        if check.checkincount is None:# check whether the user has checked before
             check.checkincount=1
         else:
             check.checkincount=check.checkincount+1
         check.last_login=check.current_login
         check.current_login=today
         db.session.commit()
-    return jsonify({"counts":check.checkincount}) 
+    return jsonify({"counts":check.checkincount,"status":"checked"}) # parse the checked days to front-end via ajax.
 
+# define the function of switch dogs.
 @app.route("/chat/switch", methods=['POST','GET'])
 @login_required
 def switch():
     dog=request.args.get("dog")
     global messages
-    messages=dogdic[dog]
+    messages=dogdic[dog]# switch to different prompt based on the dogname.
     global name
     name=dog
-    return jsonify({"code":200})
+    return jsonify({"code":200,"dog":name})
 
+# define the route of history page.
 @app.route("/history", methods=['POST','GET'])
 @login_required
 def history():
     username=current_user.username
     today = date.today()
-    return render_template("history.html",username=username,today=today)
+    return render_template("history.html",username=username,today=today)# parse the username and date to front-end.
 
+# define the function of searching histories.
 @app.route("/history/search", methods=['POST','GET'])
 @login_required
 def search():
     username=current_user.username
-    date = request.form.get('date')
-    if date == "":
-        print(True)
-    else:
-        print(False)
-    dogname = request.form.get('dogname')
-    if  dogname !='All' and date != "":
+    date = request.form.get('date')# get the user's input date
+    dogname = request.form.get('dogname')# get the user's input dogname
+    if  dogname !='All' and date != "":# use the specific dogname and date to filter the database and get related records
         data = History.query.filter_by(username=username,name=dogname,date=date).all()
         datelist=[]
         doglist=[]
         content=[]
-        for row in data:
+        for row in data:# get the data and store them into a list and parse them to front-end via ajax.
             datelist.append(str(row.date))
             doglist.append(row.name)
             content.append(row.content)
-        return jsonify({'date':datelist,'dog':doglist,'content':content})
-    elif dogname =='All' and date != "":
+        return jsonify({'date':datelist,'dog':doglist,'content':content,'status':'success1'})
+    elif dogname =='All' and date != "":# use the specific date to filter the database and get related records as users select all dogs.
         data = History.query.filter_by(username=username,date=date).all()
         datelist=[]
         doglist=[]
         content=[]
-        for row in data:
+        for row in data:# get the data and store them into a list and parse them to front-end via ajax.
             datelist.append(str(row.date))
             doglist.append(row.name)
             content.append(row.content)
-        return jsonify({'date':datelist,'dog':doglist,'content':content})
-    elif dogname=='All' and date == "":
+        return jsonify({'date':datelist,'dog':doglist,'content':content,'status':'success2'})
+    elif dogname=='All' and date == "":# get all records as users select all dogs and all dates.
         data = History.query.filter_by(username=username).all()
         datelist=[]
         doglist=[]
         content=[]
-        for row in data:
+        for row in data:# get the data and store them into a list and parse them to front-end via ajax.
             datelist.append(str(row.date))
             doglist.append(row.name)
             content.append(row.content)
-        return jsonify({'date':datelist,'dog':doglist,'content':content})
-    else:
+        return jsonify({'date':datelist,'dog':doglist,'content':content,'status':'success3'})
+    else:# use the specific dogname to filter the database and get related records as users select all dates.
         data = History.query.filter_by(username=username,name=dogname).all()
         datelist=[]
         doglist=[]
         content=[]
-        for row in data:
+        for row in data:# get the data and store them into a list and parse them to front-end via ajax.
             datelist.append(str(row.date))
             doglist.append(row.name)
             content.append(row.content)
-        return jsonify({'date':datelist,'dog':doglist,'content':content})
+        return jsonify({'date':datelist,'dog':doglist,'content':content,'status':'success4'})
+    
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
