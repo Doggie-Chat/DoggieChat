@@ -15,8 +15,10 @@
       <div id="username" class="reset-block">
         <label class="control-label" for="reset-username">Username</label>
         <i class="icon bi bi-person-fill"></i>
-        <input class="form-control" type="text" name="username" id="reset-username" placeholder="Please enter your username" required><br>
+        <input class="form-control" type="text" name="username" id="reset-username" placeholder="Please enter your username" required onblur="checkUsername('reset')"><br>
       </div>
+      <div id="reset-username-list">{{ users | tojson | safe }}</div>
+      <span id="reset-username-message" class="username-message"></span>
       <!--username block end-->
       <!--new password block-->
       <div id="newpassword" class="reset-block">
@@ -30,8 +32,8 @@
         <label class="control-label " for="confirm-reset-password">Confirm Password</label>
         <input class="form-control" type="password" name="repwd" id="confirm-reset-password" placeholder="Please confirm your password" required onblur="checkPasswords('reset')"><br>
         <i class="icon bi bi-file-check-fill"></i>
-        <span id="reset-password-message" class="password-message"></span>
       </div>
+      <span id="reset-password-message" class="password-message"></span>
       <!--confirm password block end-->
       <div id="email" class="reset-block">
         <label class="control-label " for="reset-email">Email</label>

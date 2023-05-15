@@ -118,8 +118,8 @@ def register():
         email = request.form.get("email")
         key = request.form.get("key")
         if username in users:
-            msg="username already exists! Please login in!"
-            return redirect(url_for("login"))
+            msg="Username already exists! Please login in!"
+            return render_template('login.html')
         elif password != repassword:
             msg="The passwords are not the same!"
             return redirect(url_for("register"))
@@ -136,9 +136,10 @@ def register():
             db.session.add(check)
             db.session.commit()
             users.append(username)
+            emailst.append(email)
             msg="Registeration Successful!"
             return redirect(url_for("login"))
-    return render_template('register.html')
+    return render_template('register.html', users=users)
 
 @app.route("/send", methods=['POST','GET'])
 def send():
@@ -195,7 +196,8 @@ def reset():
             usr.password=generate_password_hash(repassword)
             db.session.commit()
             return render_template("login.html")
-    return render_template("reset.html")
+    return render_template("reset.html", users=users)
+    
 @app.route("/reset/update", methods=['POST','GET'])
 def update():
     email = request.args.get("email")

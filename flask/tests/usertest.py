@@ -1,10 +1,16 @@
 import unittest
+import requests
+from time import sleep
 from selenium import webdriver
-#from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 #from selenium.webdriver.support.ui import WebDriverWait
-#from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.alert import Alert
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import ActionChains
 
 class UserTest(unittest.TestCase):
 
@@ -14,34 +20,33 @@ class UserTest(unittest.TestCase):
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
 
+    # # # 0. Test the layout page
+    # # def test_layout_page(self):
+    # #     driver = self.driver
+    # #     driver.get("http://127.0.0.1:5000")  
 
-    # # 0. Test the layout page
-    # def test_layout_page(self):
-    #     driver = self.driver
-    #     driver.get("http://127.0.0.1:5000")  
+    # #     # Check if the page title is correct
+    # #     self.assertIn("Doggie Chat", driver.title)
 
-    #     # Check if the page title is correct
-    #     self.assertIn("Doggie Chat", driver.title)
+    # #     # Check if the logo is displayed
+    # #     logo = driver.find_element_by_xpath("//div[@class='logo']/a/img")
+    # #     self.assertTrue(logo.is_displayed())
 
-    #     # Check if the logo is displayed
-    #     logo = driver.find_element_by_xpath("//div[@class='logo']/a/img")
-    #     self.assertTrue(logo.is_displayed())
+    # #     # Check if the navigation links are displayed
+    # #     nav_links = driver.find_elements_by_xpath("//ul[@class='navbar-nav ml-auto']/li/a")
+    # #     self.assertEqual(len(nav_links), 3)
 
-    #     # Check if the navigation links are displayed
-    #     nav_links = driver.find_elements_by_xpath("//ul[@class='navbar-nav ml-auto']/li/a")
-    #     self.assertEqual(len(nav_links), 3)
+    # #     # Check if the "Sign Up" button is displayed
+    # #     signup_button = driver.find_element_by_xpath("//button[contains(text(), 'Sign Up')]")
+    # #     self.assertTrue(signup_button.is_displayed())
 
-    #     # Check if the "Sign Up" button is displayed
-    #     signup_button = driver.find_element_by_xpath("//button[contains(text(), 'Sign Up')]")
-    #     self.assertTrue(signup_button.is_displayed())
+    # #     # Check if the "Log In" button is displayed
+    # #     login_button = driver.find_element_by_xpath("//button[contains(text(), 'Log In')]")
+    # #     self.assertTrue(login_button.is_displayed())
 
-    #     # Check if the "Log In" button is displayed
-    #     login_button = driver.find_element_by_xpath("//button[contains(text(), 'Log In')]")
-    #     self.assertTrue(login_button.is_displayed())
-
-    #     # Check if the footer is displayed
-    #     footer = driver.find_element_by_xpath("//footer/p[@class='footer']")
-    #     self.assertTrue(footer.is_displayed())
+    # #     # Check if the footer is displayed
+    # #     footer = driver.find_element_by_xpath("//footer/p[@class='footer']")
+    # #     self.assertTrue(footer.is_displayed())
 
 
     # def test_navigation_links(self):
@@ -374,7 +379,83 @@ class UserTest(unittest.TestCase):
     #     self.assertIn("/register", driver.current_url)
 
     # 3.Test the register page
-    # def test_register_success(self):
+    def test_register_success(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:5000/register")
+
+        # Check if the register form is displayed
+        register_form = driver.find_element_by_css_selector("div.register-part form")
+        self.assertTrue(register_form.is_displayed())
+
+        # Fill out the registration form
+        username = driver.find_element_by_id("register-username")
+        username.clear()
+        username.send_keys("test123")
+
+        password = driver.find_element_by_id("register-password")
+        password.clear()
+        password.send_keys("password123")
+
+        confirm_password = driver.find_element_by_id("confirm-register-password")
+        confirm_password.clear()
+        confirm_password.send_keys("password123")
+
+        email = driver.find_element_by_id("register-email")
+        email.clear()
+        email.send_keys("jessiexieee@gmail.com")
+
+        # Click the verify button
+        verify_button = driver.find_element_by_id("captcha-btn")
+        verify_button.click()
+        
+        try:
+            # Wait for the alert to appear
+            alert = WebDriverWait(driver, 10).until(EC.alert_is_present())
+            # Get the alert text
+            alert_text = alert.text
+            # Handle the alert
+            if alert_text == "Sucessfully send the code!":
+                # Accept the alert
+                alert.accept()
+            else:
+                # Dismiss the alert
+                alert.dismiss()
+
+        except TimeoutException:
+            # Handle the case when no alert is present
+            pass
+
+        # Send a request to generate a verification code
+        response = requests.get("http://127.0.0.1:5000/send", params={"email": "jessiexieee@gmail.com"})
+        data = response.json()
+
+
+        # Check the response and get the verification code
+        if data.get("code") == 200 and "data" in data:
+            verification_code = data["data"]
+            # Wait for the verification code input field to be visible
+            code_input = driver.find_element_by_id("register-varify")
+            # Enter the verification code
+            code_input.clear()
+            code_input.send_keys(verification_code)
+
+            # Submit the registration form
+            submit_button = driver.find_element_by_id("register-submit")
+            # Scroll down the page to the submit button
+            driver.execute_script("arguments[0].scrollIntoView();", submit_button)
+            sleep(2)
+            # Click the submit button
+            submit_button.click()
+            # Check if the user is redirected to the login page after successful registration
+            self.assertIn("/login", driver.current_url)
+        elif data.get("code") == 500:
+            print("Email is already registered")
+            self.assertIn("/register", driver.current_url)
+            return
+        else:
+            # Handle the case when the verification code generation fails
+            print("Failed to generate verification code")
+            return
 
 
     def tearDown(self):

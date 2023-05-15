@@ -15,7 +15,25 @@ function mOut(obj) {
 }
 
 
-// Function to check if the passwords match and display a message if not
+
+function checkUsername(prefix) {
+  const usernameInput = document.getElementById(`${prefix}-username`);
+  const username = usernameInput.value;
+  const users = JSON.parse(document.getElementById(`${prefix}-username-list`).textContent);
+
+  const usernameMessage = document.getElementById(`${prefix}-username-message`);
+
+  if (users.includes(username)) {
+    usernameMessage.style.display = "block";
+    usernameMessage.textContent = "Username already exists!";
+  } else {
+    usernameMessage.style.display = "none";
+    usernameMessage.textContent = "";
+  }
+}
+
+
+// Function to check if the passwords match and display a message if not (used for register and reset page)
 function checkPasswords(prefix) {
   // Get the password input elements
   const passwordInput = document.getElementById(`${prefix}-password`);
@@ -35,7 +53,7 @@ function checkPasswords(prefix) {
 
 
 
-// Function to verify user input when the "Verify!" button is clicked
+// Function to verify user input when the "Verify!" button is clicked (used for register and reset page)
 function clickVerify(prefix) {
   // Get the input elements
   const username = document.getElementById(`${prefix}-username`);
