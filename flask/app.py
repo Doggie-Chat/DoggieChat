@@ -84,7 +84,6 @@ def login():
         user=User.query.filter_by(username=username).first()
         if username is not None:
             if username not in users:
-                msg="username not found, please register first!"
                 return redirect(url_for("register"))
             elif user and check_password_hash(user.password, password):
                 if my_checkbox == "on":
