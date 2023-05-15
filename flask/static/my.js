@@ -41,10 +41,15 @@ function checkPasswords(prefix) {
 
   // Get the message element
   const passwordMessage = document.getElementById(`${prefix}-password-message`);
+  const password = passwordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
 
-  if (passwordInput.value !== confirmPasswordInput.value) {
+  if (password !== confirmPassword) {
     passwordMessage.style.display = "block";
     passwordMessage.textContent = "Passwords do not match!";
+  } else if (password.length < 7 || password.length > 15) {
+    passwordMessage.style.display = "block";
+    passwordMessage.textContent = "Password must be between 7 and 15 characters!";
   } else {
     passwordMessage.style.display = "none";
     passwordMessage.textContent = "";

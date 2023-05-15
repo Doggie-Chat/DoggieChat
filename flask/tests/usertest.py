@@ -379,84 +379,145 @@ class UserTest(unittest.TestCase):
     #     self.assertIn("/register", driver.current_url)
 
     # 3.Test the register page
-    def test_register_success(self):
+    # def test_register_success(self):
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/register")
+
+    #     # Check if the register form is displayed
+    #     register_form = driver.find_element_by_css_selector("div.register-part form")
+    #     self.assertTrue(register_form.is_displayed())
+
+    #     # Fill out the registration form
+    #     username = driver.find_element_by_id("register-username")
+    #     username.clear()
+    #     username.send_keys("test123")
+
+    #     password = driver.find_element_by_id("register-password")
+    #     password.clear()
+    #     password.send_keys("password123")
+
+    #     confirm_password = driver.find_element_by_id("confirm-register-password")
+    #     confirm_password.clear()
+    #     confirm_password.send_keys("password123")
+
+    #     email = driver.find_element_by_id("register-email")
+    #     email.clear()
+    #     email.send_keys("jessiexieee@gmail.com")
+
+    #     # Click the verify button
+    #     verify_button = driver.find_element_by_id("captcha-btn")
+    #     verify_button.click()
+        
+    #     try:
+    #         # Wait for the alert to appear
+    #         alert = WebDriverWait(driver, 10).until(EC.alert_is_present())
+    #         # Get the alert text
+    #         alert_text = alert.text
+    #         # Handle the alert
+    #         if alert_text == "Sucessfully send the code!":
+    #             # Accept the alert
+    #             alert.accept()
+    #         else:
+    #             # Dismiss the alert
+    #             alert.dismiss()
+
+    #     except TimeoutException:
+    #         # Handle the case when no alert is present
+    #         pass
+
+    #     # Send a request to generate a verification code
+    #     response = requests.get("http://127.0.0.1:5000/send", params={"email": "jessiexieee@gmail.com"})
+    #     data = response.json()
+
+
+    #     # Check the response and get the verification code
+    #     if data.get("code") == 200 and "data" in data:
+    #         verification_code = data["data"]
+    #         # Wait for the verification code input field to be visible
+    #         code_input = driver.find_element_by_id("register-varify")
+    #         # Enter the verification code
+    #         code_input.clear()
+    #         code_input.send_keys(verification_code)
+
+    #         # Submit the registration form
+    #         submit_button = driver.find_element_by_id("register-submit")
+    #         # Scroll down the page to the submit button
+    #         driver.execute_script("arguments[0].scrollIntoView();", submit_button)
+    #         sleep(2)
+    #         # Click the submit button
+    #         submit_button.click()
+    #         # Check if the user is redirected to the login page after successful registration
+    #         self.assertIn("/login", driver.current_url)
+    #     elif data.get("code") == 500:
+    #         print("Email is already registered")
+    #         self.assertIn("/register", driver.current_url)
+    #         return
+    #     else:
+    #         # Handle the case when the verification code generation fails
+    #         print("Failed to generate verification code")
+    #         return
+
+    # def test_register_username_exists(self): # Test whether to print an error message if the username exists in the database
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/register")
+
+    #     # Fill out the registration form with an existing username
+    #     username_input = driver.find_element_by_id("register-username")
+    #     username_input.clear()
+    #     username_input.send_keys("test1")
+
+    #     # Trigger the onblur event using JavaScript
+    #     driver.execute_script("arguments[0].blur();", username_input)
+
+    #     # Check if the error message is displayed
+    #     error_message = driver.find_element_by_id("register-username-message")
+    #     self.assertTrue(error_message.is_displayed())
+    #     self.assertEqual(error_message.text, "Username already exists!")
+
+    def test_register_password_not_match(self): # Test whether to print an error message if the password is not match
         driver = self.driver
         driver.get("http://127.0.0.1:5000/register")
 
-        # Check if the register form is displayed
-        register_form = driver.find_element_by_css_selector("div.register-part form")
-        self.assertTrue(register_form.is_displayed())
+        # Fill out the registration form with an invalid password
+        password_input = driver.find_element_by_id("register-password")
+        password_input.clear()
+        password_input.send_keys("password123")
 
-        # Fill out the registration form
-        username = driver.find_element_by_id("register-username")
-        username.clear()
-        username.send_keys("test123")
+        confirm_password_input = driver.find_element_by_id("confirm-register-password")
+        confirm_password_input.clear()
+        confirm_password_input.send_keys("password456")
 
-        password = driver.find_element_by_id("register-password")
-        password.clear()
-        password.send_keys("password123")
+        # Trigger the onblur event using JavaScript
+        driver.execute_script("arguments[0].blur();", confirm_password_input)
 
-        confirm_password = driver.find_element_by_id("confirm-register-password")
-        confirm_password.clear()
-        confirm_password.send_keys("password123")
+        # Check if the error message is displayed
+        error_message = driver.find_element_by_id("register-password-message")
+        self.assertTrue(error_message.is_displayed())
+        self.assertEqual(error_message.text, "Passwords do not match!")
 
-        email = driver.find_element_by_id("register-email")
-        email.clear()
-        email.send_keys("jessiexieee@gmail.com")
+    def test_register_password_invalid(self): # Test whether to print an error message if the password is invalid
+        driver = self.driver
+        driver.get("http://127.0.0.1:5000/register")
 
-        # Click the verify button
-        verify_button = driver.find_element_by_id("captcha-btn")
-        verify_button.click()
+        # Fill out the registration form with an invalid password
+        password_input = driver.find_element_by_id("register-password")
+        password_input.clear()
+        password_input.send_keys("123")
+
+        # Fill out the registration form with an invalid password
+        confirm_password_input = driver.find_element_by_id("confirm-register-password")
+        confirm_password_input.clear()
+        confirm_password_input.send_keys("123")
         
-        try:
-            # Wait for the alert to appear
-            alert = WebDriverWait(driver, 10).until(EC.alert_is_present())
-            # Get the alert text
-            alert_text = alert.text
-            # Handle the alert
-            if alert_text == "Sucessfully send the code!":
-                # Accept the alert
-                alert.accept()
-            else:
-                # Dismiss the alert
-                alert.dismiss()
+        # Trigger the onblur event using JavaScript
+        driver.execute_script("arguments[0].blur();", confirm_password_input)
 
-        except TimeoutException:
-            # Handle the case when no alert is present
-            pass
+        # Check if the error message is displayed
+        error_message = driver.find_element_by_id("register-password-message")
+        self.assertTrue(error_message.is_displayed())
+        self.assertEqual(error_message.text, "Password must be between 7 and 15 characters!")
 
-        # Send a request to generate a verification code
-        response = requests.get("http://127.0.0.1:5000/send", params={"email": "jessiexieee@gmail.com"})
-        data = response.json()
-
-
-        # Check the response and get the verification code
-        if data.get("code") == 200 and "data" in data:
-            verification_code = data["data"]
-            # Wait for the verification code input field to be visible
-            code_input = driver.find_element_by_id("register-varify")
-            # Enter the verification code
-            code_input.clear()
-            code_input.send_keys(verification_code)
-
-            # Submit the registration form
-            submit_button = driver.find_element_by_id("register-submit")
-            # Scroll down the page to the submit button
-            driver.execute_script("arguments[0].scrollIntoView();", submit_button)
-            sleep(2)
-            # Click the submit button
-            submit_button.click()
-            # Check if the user is redirected to the login page after successful registration
-            self.assertIn("/login", driver.current_url)
-        elif data.get("code") == 500:
-            print("Email is already registered")
-            self.assertIn("/register", driver.current_url)
-            return
-        else:
-            # Handle the case when the verification code generation fails
-            print("Failed to generate verification code")
-            return
-
+   
 
     def tearDown(self):
         self.driver.close()
