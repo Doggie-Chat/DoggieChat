@@ -15,7 +15,42 @@ function mOut(obj) {
 }
 
 
-// Function to check if the passwords match and display a message if not
+// Function to display a message if the username exists (used for register page)
+function checkUsernameRegister() {
+  const usernameInput = document.getElementById(`register-username`);
+  const username = usernameInput.value;
+  const users = JSON.parse(document.getElementById(`register-username-list`).textContent);
+
+  const usernameMessage = document.getElementById(`register-username-message`);
+
+  if (users.includes(username)) {
+    usernameMessage.style.display = "block";
+    usernameMessage.textContent = "Username already exists!";
+  } else {
+    usernameMessage.style.display = "none";
+    usernameMessage.textContent = "";
+  }
+}
+
+// Function to display a message if the username does NOT exist (used for reset page)
+function checkUsernameReset() {
+  const usernameInput = document.getElementById(`reset-username`);
+  const username = usernameInput.value;
+  const users = JSON.parse(document.getElementById(`reset-username-list`).textContent);
+
+  const usernameMessage = document.getElementById(`reset-username-message`);
+
+  if (!users.includes(username)) {
+    usernameMessage.style.display = "block";
+    usernameMessage.textContent = "Username does not exist!";
+  } else {
+    usernameMessage.style.display = "none";
+    usernameMessage.textContent = "";
+  }
+}
+
+
+// Function to display a message if passwords are invalid and not match (used for register and reset page)
 function checkPasswords(prefix) {
   // Get the password input elements
   const passwordInput = document.getElementById(`${prefix}-password`);
@@ -23,10 +58,15 @@ function checkPasswords(prefix) {
 
   // Get the message element
   const passwordMessage = document.getElementById(`${prefix}-password-message`);
+  const password = passwordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
 
-  if (passwordInput.value !== confirmPasswordInput.value) {
+  if (password !== confirmPassword) {
     passwordMessage.style.display = "block";
     passwordMessage.textContent = "Passwords do not match!";
+  } else if (password.length < 7 || password.length > 15) {
+    passwordMessage.style.display = "block";
+    passwordMessage.textContent = "Password must be between 7 and 15 characters!";
   } else {
     passwordMessage.style.display = "none";
     passwordMessage.textContent = "";
@@ -35,7 +75,7 @@ function checkPasswords(prefix) {
 
 
 
-// Function to verify user input when the "Verify!" button is clicked
+// Function to verify user input when the "Verify!" button is clicked (used for register and reset page)
 function clickVerify(prefix) {
   // Get the input elements
   const username = document.getElementById(`${prefix}-username`);

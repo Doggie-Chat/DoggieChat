@@ -80,14 +80,18 @@ def login():
     elif request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("pwd")
+        my_checkbox = request.form.get('my-checkbox')
         user=User.query.filter_by(username=username).first()
         if username is not None:
             if username not in users:
-                msg="username not found, please register first!"
                 return redirect(url_for("register"))
             elif user and check_password_hash(user.password, password):
-                login_user(user)
-                return redirect(url_for('index'))
+                if my_checkbox == "on":
+                    login_user(user,remember=True)
+                    return redirect(url_for('index'))
+                else:
+                    login_user(user,remember=False)
+                    return redirect(url_for('index'))
             else:
                 msg="Incorrect password, please try again"
                 return render_template("login.html",msg=msg)
@@ -114,8 +118,8 @@ def register():
         email = request.form.get("email")
         key = request.form.get("key")
         if username in users:
-            msg="username already exists! Please login in!"
-            return redirect(url_for("login"))
+            msg="Username already exists! Please login in!"
+            return render_template('login.html')
         elif password != repassword:
             msg="The passwords are not the same!"
             return redirect(url_for("register"))
@@ -132,9 +136,10 @@ def register():
             db.session.add(check)
             db.session.commit()
             users.append(username)
+            emailst.append(email)
             msg="Registeration Successful!"
             return redirect(url_for("login"))
-    return render_template('register.html')
+    return render_template('register.html', users=users)
 
 @app.route("/send", methods=['POST','GET'])
 def send():
@@ -190,19 +195,23 @@ def reset():
         else:
             usr.password=generate_password_hash(repassword)
             db.session.commit()
-            return render_template("login.html")
-    return render_template("reset.html")
+            return redirect(url_for("login"))
+    return render_template("reset.html", users=users)
+
 @app.route("/reset/update", methods=['POST','GET'])
 def update():
     email = request.args.get("email")
     username = request.args.get("username")
-    actemail=User.query.filter_by(username=username).first().email
-    print(username)
+    if username in users:
+        actemail=User.query.filter_by(username=username).first().email
+    else:
+        actemail=None
     if email not in emailst:
         return jsonify({"code":500,"message": "","data":None})
     elif actemail!=email:
         return jsonify({"code":400,"message": "","data":None})
     elif request.method == 'GET':
+        # generate the code and send email to user's input email
         verifycode=''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         code[email]=verifycode
         mail_content = verifycode
@@ -216,7 +225,7 @@ def update():
         msg["To"] = Header(str(receiver),'utf-8')
         try:
            smtp.sendmail(sender_mail,receiver,msg.as_string())
-           return jsonify({"code":200,"message": "","data":None})
+           return jsonify({"code":200,"message": "","data":verifycode})
         except SMTPRecipientsRefused:
            return jsonify({"code":300,"message": "","data":None})
         
