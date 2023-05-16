@@ -15,7 +15,6 @@ from selenium.webdriver.support.select import Select
 
 class UserTest(unittest.TestCase):
 
-
     def setUp(self):
         #self.driver = webdriver.Chrome(executable_path=r'/Users/jessiexie/Documents/GitHub/DoggieChat/flask/chromedriver') 
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
