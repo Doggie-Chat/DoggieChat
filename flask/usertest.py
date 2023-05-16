@@ -4,7 +4,6 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-#from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
@@ -18,11 +17,11 @@ class UserTest(unittest.TestCase):
 
 
     def setUp(self):
-        #self.driver = webdriver.Chrome(executable_path=r'/Users/jessiexie/Documents/GitHub/DoggieChat/flask/tests/chromedriver') 
+        #self.driver = webdriver.Chrome(executable_path=r'/Users/jessiexie/Documents/GitHub/DoggieChat/flask/chromedriver') 
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
 #################################################################################################################################
-    # 0. Test the layout page
+    # # 0. Test the layout page
     def test_layout_page(self):
         driver = self.driver
         driver.get("http://127.0.0.1:5000")  
@@ -119,7 +118,7 @@ class UserTest(unittest.TestCase):
             redirect_url = driver.current_url
             self.assertIn("/history", redirect_url)
 
-################################################################################################################################
+# ################################################################################################################################
     # 1. Test the home page
     def test_home_page(self):
         driver = self.driver
