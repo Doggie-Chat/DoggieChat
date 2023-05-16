@@ -157,9 +157,23 @@ class Testlogin(unittest.TestCase):
                 repwd='bbbbbbbb',
                 email='2681735200@qq.com',
                 key=verify
-            ))# use valid key
+            ), follow_redirects=True)# use valid key
             self.assertEqual(response_reset.status_code, 200)
-            self.assertIn(b'LOGIN', response_reset.data)
+            self.assertIn('/login', response_reset.request.url)
+
+    # This function tests the wrong email in reset.
+    def test_reset_verify_email_unexist_email(self):
+        with app.test_client() as client:
+        # directly access email verify function
+            response_send = client.get('/reset/update?email=abc@163.com&username=test3')
+            self.assertEqual(response_send.json["code"], 500)
+    
+    # This function tests the wrong username steps in reset.
+    def test_reset_verify_email_unexist_user(self):
+        with app.test_client() as client:
+        # directly access email verify function
+            response_send = client.get('/reset/update?email=2681735200@qq.com&username=unexist123')
+            self.assertEqual(response_send.json["code"], 400)
     
     # This function tests correct steps with wrong email verify key in reset.
     def test_reset_verify_email_incorrectcode(self):

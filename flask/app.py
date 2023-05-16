@@ -111,8 +111,8 @@ def register():
         email = request.form.get("email")
         key = request.form.get("key")
         if username in users: # check whether username exists.
-            msg="username already exists! Please login in!"
-            return redirect(url_for("login"))
+            msg="Username already exists! Please login in!"
+            return render_template('login.html',msg=msg)
         elif password != repassword: # check whether input passwords are same
             msg="The passwords are not the same!"
             return redirect(url_for("register"))
@@ -132,7 +132,7 @@ def register():
             emailst.append(email)# add the new email to list.
             msg="Registeration Successful!"
             return redirect(url_for("login"))
-    return render_template('register.html')
+    return render_template('register.html',users=users)
 
 # define the function of sending verification email code.
 @app.route("/send", methods=['POST','GET'])
@@ -191,19 +191,21 @@ def reset():
         else:# pass the verification and correctly reset the password.
             usr.password=generate_password_hash(repassword)# use hash to encode the password.
             db.session.commit() # Update the new password to record in database.
-            return render_template("login.html")
-    return render_template("reset.html")
+            return redirect(url_for("login"))
+    return render_template("reset.html",users=users)
 
 # define the function of sending email verification code in reset page which is similar to the function of sending email verification code in register page.
 @app.route("/reset/update", methods=['POST','GET'])
 def update():
     email = request.args.get("email")
     username = request.args.get("username")
-    actemail=User.query.filter_by(username=username).first().email
-    print(username)
-    if email not in emailst:
+    if username in users:
+        actemail=User.query.filter_by(username=username).first().email
+    else:
+        actemail=None
+    if email not in emailst:#email not exist
         return jsonify({"code":500,"message": "","data":None})
-    elif actemail!=email:
+    elif actemail!=email:#email not match the username or username not exist.
         return jsonify({"code":400,"message": "","data":None})
     elif request.method == 'GET':
         # generate the code and send email to user's input email

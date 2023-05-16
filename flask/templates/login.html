@@ -51,18 +51,6 @@
       <!--register or reset block end-->
     </div>
 </div>
-<!--flash message-->
-{% if request.endpoint == 'login' %}
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="flash-{{ category }}">
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-{% endif %}
 
 
 {% endblock content %}
