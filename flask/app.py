@@ -73,8 +73,8 @@ def login():
         my_checkbox = request.form.get('my-checkbox')
         user=User.query.filter_by(username=username).first()
         if username is not None:
-
             if username not in users:# if the user's username is not exists, return to register page
+                msg="username not found, please register first!"
                 return redirect(url_for("register"))
             elif user and check_password_hash(user.password, password):# the user's input matches record
                 if my_checkbox == "on":# check whether user checked 'remember me'
@@ -110,10 +110,9 @@ def register():
         repassword = request.form.get('repwd')
         email = request.form.get("email")
         key = request.form.get("key")
-
         if username in users: # check whether username exists.
             msg="Username already exists! Please login in!"
-            return render_template('login.html',msg=msg)
+            return render_template('login.html',msg=msg,users=users)
         elif password != repassword: # check whether input passwords are same
             msg="The passwords are not the same!"
             return redirect(url_for("register"))
@@ -173,22 +172,22 @@ def reset():
         usr=User.query.filter_by(username=username).first()# get the record from database
         if username not in users:# username not exist
             msg="username not exists! Please register!"
-            return render_template("reset.html",msg=msg)
+            return render_template("reset.html",users=users,msg=msg)
         elif newpassword != repassword:# different password
             msg="The passwords are not the same!"
-            return render_template("reset.html",msg=msg)
+            return render_template("reset.html",users=users,msg=msg)
         elif len(newpassword)<=6 or len(newpassword)>=16:# check the length of password
             msg="The length of the password should be more than 6 and less than 15."
-            return render_template("reset.html",msg=msg)
+            return render_template("reset.html",users=users,msg=msg)
         elif usr.email!=email:# check whether the email match the records in database.
             msg="Email not correct!"
-            return render_template("reset.html",msg=msg)
+            return render_template("reset.html",users=users,msg=msg)
         elif email not in code.keys():# check whether user has send the email code.
             msg="please send verification code first!"
-            return render_template("reset.html",msg=msg)
+            return render_template("reset.html",users=users,msg=msg)
         elif key!=code[email]:# check whether the code match the record stored in dictionary.
             msg="incorrect code"
-            return render_template("reset.html",msg=msg)
+            return render_template("reset.html",users=users,msg=msg)
         else:# pass the verification and correctly reset the password.
             usr.password=generate_password_hash(repassword)# use hash to encode the password.
             db.session.commit() # Update the new password to record in database.
