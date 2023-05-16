@@ -1171,7 +1171,7 @@ class UserTest(unittest.TestCase):
         search_button = driver.find_element_by_id("Search")
         driver.execute_script("arguments[0].click();", search_button)
 
-        sleep(1)
+        sleep(2)
         # Verify the search result
         search_result_table = self.driver.find_element_by_css_selector("#search-result table")
         table_text = search_result_table.text

@@ -64,7 +64,7 @@ class Testlogin(unittest.TestCase):
     def test_register_correct(self):
         with app.test_client() as client:
         # Make a request to /send to obtain the verification code
-            response_send = client.get('/send?email=abcd@123.com')
+            response_send = client.get('/send?email=abcd@345.com')
             self.assertEqual(response_send.json["code"], 200)
             verify = response_send.json["data"]
 
@@ -73,7 +73,7 @@ class Testlogin(unittest.TestCase):
                 username='test4',
                 pwd='abcdefgh',
                 repwd='abcdefgh',
-                email='abcd@123.com',
+                email='abcd@345.com',
                 key=verify
             ), follow_redirects=True)
             self.assertEqual(response_register.status_code, 200)
@@ -117,8 +117,7 @@ class Testlogin(unittest.TestCase):
             response = client.post('/reset', data=dict(
                 username='testnone', # not existed username
                 pwd='wrongpassword',
-                repwd='wrongpassword',
-            ))
+                repwd='wrongpassword'))
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'RESET PASSWORD', response.data)
     
@@ -181,13 +180,15 @@ class Testlogin(unittest.TestCase):
         # Make a request to /reset/update to obtain the verification code
             response_send = client.get('/reset/update?email=2681735200@qq.com&username=test3')
             self.assertEqual(response_send.json["code"], 200)
+            verify = 'ABCDEF'# use invalid key
             response_reset = client.post('/reset', data=dict(
                 username='test3',
                 pwd='aaaaaaaa',
                 repwd='aaaaaaaa',
                 email='2681735200@qq.com',
-                key='abcdef'
-            ))# use invalid key
+                key=verify
+            ))
+            print(response_reset)
             self.assertEqual(response_reset.status_code, 200)
             self.assertIn(b'RESET PASSWORD', response_reset.data)
 
