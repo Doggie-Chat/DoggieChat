@@ -38,7 +38,7 @@
             </div>
             <!--logo area end-->
             <!--nav area-->
-            <div class="col-md-6">
+            <div class="col-md-5">
               <!-- Use navigation bar to make the header fit for smaller screen -->
               <nav class="navbar navbar-expand-md">
                 <div class="container-fluid">
@@ -77,7 +77,7 @@
             </div>
             <!--nav area end-->
             <!--sign up / log in area-->
-            <div class="col-md-3 login-signup">
+            <div class="col-md-4 login-signup">
               {% if current_user.is_authenticated %}
                 <p id="Welcome-msg">Welcome, <span id="username">{{ current_user.username }}</span></p>
                 <button class="button" onclick="location.href='logout'">Log Out</button>
