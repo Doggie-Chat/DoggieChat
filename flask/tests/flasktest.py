@@ -1,4 +1,15 @@
 import unittest
+import sys
+import os
+
+# Get the parent directory of flasktest.py
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+
+# Add the parent directory to the sys.path
+sys.path.append(parent_dir)
+
+# Import the app object from the parent directory
 from app import app
 
 '''This class test all the functions related to the login system which includes the login, register and reset page.'''
