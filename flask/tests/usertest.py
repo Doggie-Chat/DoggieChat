@@ -19,150 +19,154 @@ class UserTest(unittest.TestCase):
         #self.driver = webdriver.Chrome(executable_path=r'/Users/jessiexie/Documents/GitHub/DoggieChat/flask/tests/chromedriver') 
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
-
-    # # # 0. Test the layout page
-    # # def test_layout_page(self):
-    # #     driver = self.driver
-    # #     driver.get("http://127.0.0.1:5000")  
-
-    # #     # Check if the page title is correct
-    # #     self.assertIn("Doggie Chat", driver.title)
-
-    # #     # Check if the logo is displayed
-    # #     logo = driver.find_element_by_xpath("//div[@class='logo']/a/img")
-    # #     self.assertTrue(logo.is_displayed())
-
-    # #     # Check if the navigation links are displayed
-    # #     nav_links = driver.find_elements_by_xpath("//ul[@class='navbar-nav ml-auto']/li/a")
-    # #     self.assertEqual(len(nav_links), 3)
-
-    # #     # Check if the "Sign Up" button is displayed
-    # #     signup_button = driver.find_element_by_xpath("//button[contains(text(), 'Sign Up')]")
-    # #     self.assertTrue(signup_button.is_displayed())
-
-    # #     # Check if the "Log In" button is displayed
-    # #     login_button = driver.find_element_by_xpath("//button[contains(text(), 'Log In')]")
-    # #     self.assertTrue(login_button.is_displayed())
-
-    # #     # Check if the footer is displayed
-    # #     footer = driver.find_element_by_xpath("//footer/p[@class='footer']")
-    # #     self.assertTrue(footer.is_displayed())
-
-
-    # def test_navigation_links(self):
+##############################################################################################
+    # 0.Test the register page
+    # def test_register_success(self):
     #     driver = self.driver
-    #     driver.get("http://127.0.0.1:5000")
+    #     driver.get("http://127.0.0.1:5000/register")
 
-    #     # Click on the home link and check the redirect URL
-    #     home_link = driver.find_element_by_css_selector("a.nav-link[href='home']")
-    #     home_link.click()
-    #     redirect_url = driver.current_url
-    #     self.assertIn("/home", redirect_url)
+    #     # Check if the register form is displayed
+    #     register_form = driver.find_element_by_css_selector("div.register-part form")
+    #     self.assertTrue(register_form.is_displayed())
 
-    #     # Click on the chat link and check the redirect URL
-    #     chat_link = driver.find_element_by_css_selector("a.nav-link[href='chat']")
-    #     chat_link.click()
-    #     redirect_url = driver.current_url
-    #     if not "/login" in redirect_url:
-    #         self.assertIn("/chat", redirect_url)
+    #     # Fill out the registration form
+    #     username = driver.find_element_by_id("register-username")
+    #     username.clear()
+    #     username.send_keys("testuser")
+
+    #     password = driver.find_element_by_id("register-password")
+    #     password.clear()
+    #     password.send_keys("password123")
+
+    #     confirm_password = driver.find_element_by_id("confirm-register-password")
+    #     confirm_password.clear()
+    #     confirm_password.send_keys("password123")
+
+    #     email = driver.find_element_by_id("register-email")
+    #     email.clear()
+    #     email.send_keys("usertest@import.com")
+
+    #     # Click the verify button
+    #     verify_button = driver.find_element_by_id("captcha-btn")
+    #     verify_button.click()
+        
+    #     try:
+    #         # Wait for the alert to appear
+    #         alert = WebDriverWait(driver, 10).until(EC.alert_is_present())
+    #         # Get the alert text
+    #         alert_text = alert.text
+    #         # Handle the alert
+    #         if alert_text == "Sucessfully send the code!":
+    #             # Accept the alert
+    #             alert.accept()
+    #         else:
+    #             # Dismiss the alert
+    #             alert.dismiss()
+
+    #     except TimeoutException:
+    #         # Handle the case when no alert is present
+    #         pass
+
+    #     # Send a request to generate a verification code
+    #     response = requests.get("http://127.0.0.1:5000/send", params={"email": "usertest@import.com"})
+    #     data = response.json()
+
+    #     # Check the response and get the verification code
+    #     if data.get("code") == 200 and "data" in data:
+    #         verification_code = data["data"]
+    #         # Wait for the verification code input field to be visible
+    #         code_input = driver.find_element_by_id("register-varify")
+    #         # Enter the verification code
+    #         code_input.clear()
+    #         code_input.send_keys(verification_code)
+    #         # Submit the registration form
+    #         submit_button = driver.find_element_by_id("register-submit")
+    #         # Click the submit button using JavaScript
+    #         driver.execute_script("arguments[0].click();", submit_button)
+    #         # Check if the user is redirected to the login page after successful registration
+    #         self.assertIn("/login", driver.current_url)
+    #     elif data.get("code") == 500:
+    #         print("Email is already registered")
+    #         self.assertIn("/register", driver.current_url)
+    #         return
     #     else:
-    #         self.assertIn("/login", redirect_url)
-    #         # Log in with valid credentials
-    #         username = driver.find_element_by_id("login-username")
-    #         username.clear()
-    #         username.send_keys("123")
+    #         # Handle the case when the verification code generation fails
+    #         print("Failed to generate verification code")
+    #         return
 
-    #         password = driver.find_element_by_id("pwd")
-    #         password.clear()
-    #         password.send_keys("1111111")
-
-    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
-    #         login_button.click()
-
-    #         # Check if the user is redirected to the home page
-    #         self.assertIn("/home", driver.current_url)
-
-    #         # Click on the chat link and check the redirect URL
-    #         chat_link = driver.find_element_by_css_selector("a.nav-link[href='chat']")
-    #         chat_link.click()
-    #         redirect_url = driver.current_url
-    #         self.assertIn("/chat", redirect_url)
-         
-    #     # Click on the history link and check the redirect URL
-    #     history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
-    #     history_link.click()
-    #     redirect_url = driver.current_url
-    #     if not "/login" in redirect_url:
-    #         self.assertIn("/history", redirect_url)
-    #     else:
-    #         self.assertIn("/login", redirect_url)
-    #         # Log in with valid credentials
-    #         username = driver.find_element_by_id("login-username")
-    #         username.clear()
-    #         username.send_keys("123")
-
-    #         password = driver.find_element_by_id("pwd")
-    #         password.clear()
-    #         password.send_keys("1111111")
-
-    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
-    #         login_button.click()
-
-    #         # Check if the user is redirected to the home page
-    #         self.assertIn("/home", driver.current_url)
-
-    #         # Click on the history link and check the redirect URL
-    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
-    #         history_link.click()
-    #         redirect_url = driver.current_url
-    #         self.assertIn("/history", redirect_url)
-
-
-
-    # # 1. Test the home page
-    # def test_home_page(self):
+    # def test_register_username_exists(self): # Test whether to print an error message if the username exists in the database
     #     driver = self.driver
-    #     driver.get("http://127.0.0.1:5000")
+    #     driver.get("http://127.0.0.1:5000/register")
 
-    #     # Check if the welcome message is displayed
-    #     welcome_message = driver.find_element_by_xpath("//h1[@class='intro']")
-    #     self.assertIsNotNone(welcome_message)
+    #     # Fill out the registration form with an existing username
+    #     username_input = driver.find_element_by_id("register-username")
+    #     username_input.clear()
+    #     username_input.send_keys("testuser")
 
-    #      # Check if the "Let's chat!" button is present
-    #     chat_button = driver.find_element_by_xpath("//a[@id='start-chat']")
-    #     self.assertIsNotNone(chat_button)
+    #     # Trigger the onblur event using JavaScript
+    #     driver.execute_script("arguments[0].blur();", username_input)
 
-    #     # Click on the "Let's chat!" button
-    #     chat_button.click()
+    #     # Check if the error message is displayed
+    #     error_message = driver.find_element_by_id("register-username-message")
+    #     self.assertTrue(error_message.is_displayed())
+    #     self.assertEqual(error_message.text, "Username already exists!")
 
-    #     # Get the redirected URL
-    #     redirect_url = driver.current_url
+    # def test_register_password_not_match(self): # Test whether to print an error message if the password is not match
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/register")
 
-    #     # Check if the user is redirected to the login page or the chat page based on login status
-    #     if "/login" in redirect_url:
-    #         # Log in with valid credentials
-    #         username = driver.find_element_by_id("login-username")
-    #         username.clear()
-    #         username.send_keys("123")
+    #     # Fill out the registration form with an invalid password
+    #     password_input = driver.find_element_by_id("register-password")
+    #     password_input.clear()
+    #     password_input.send_keys("password123")
 
-    #         password = driver.find_element_by_id("pwd")
-    #         password.clear()
-    #         password.send_keys("1111111")
+    #     confirm_password_input = driver.find_element_by_id("confirm-register-password")
+    #     confirm_password_input.clear()
+    #     confirm_password_input.send_keys("password456")
 
-    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
-    #         login_button.click()
+    #     # Trigger the onblur event using JavaScript
+    #     driver.execute_script("arguments[0].blur();", confirm_password_input)
 
-    #         # Check if the user is redirected to the home page
-    #         self.assertIn("/home", driver.current_url)
-    #         # Find the chat button on the home page
-    #         chat_button = driver.find_element_by_xpath("//a[@id='start-chat']")
-    #         self.assertIsNotNone(chat_button)
-    #         # Click on the chat button    
-    #         chat_button.click()
-            
-    #     self.assertIn("/chat", driver.current_url)
+    #     # Check if the error message is displayed
+    #     error_message = driver.find_element_by_id("register-password-message")
+    #     self.assertTrue(error_message.is_displayed())
+    #     self.assertEqual(error_message.text, "Passwords do not match!")
 
+    # def test_register_password_invalid(self): # Test whether to print an error message if the password is invalid
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/register")
 
+    #     # Fill out the registration form with an invalid password
+    #     password_input = driver.find_element_by_id("register-password")
+    #     password_input.clear()
+    #     password_input.send_keys("123")
+
+    #     # Fill out the registration form with an invalid password
+    #     confirm_password_input = driver.find_element_by_id("confirm-register-password")
+    #     confirm_password_input.clear()
+    #     confirm_password_input.send_keys("123")
+
+    #     # Trigger the onblur event using JavaScript
+    #     driver.execute_script("arguments[0].blur();", confirm_password_input)
+
+    #     # Check if the error message is displayed
+    #     error_message = driver.find_element_by_id("register-password-message")
+    #     self.assertTrue(error_message.is_displayed())
+    #     self.assertEqual(error_message.text, "Password must be between 7 and 15 characters!")
+
+    # def test_register_required_fields(self):
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/register")
+
+    #     # Click the Verify button without filling in any input fields
+    #     verify_button = driver.find_element_by_id("captcha-btn")
+    #     verify_button.click()
+
+    #     # Check if the error message is displayed
+    #     error_message = driver.find_element_by_id("register-verify-message")
+    #     self.assertTrue(error_message.is_displayed())
+    #     self.assertEqual(error_message.text, "Please fill out all required fields.")
+##############################################################################################
     # # 2.Test the login page
     # def test_login_success(self):
     #     driver = self.driver
@@ -171,12 +175,12 @@ class UserTest(unittest.TestCase):
     #     # Test the username field
     #     username = driver.find_element_by_id("login-username")
     #     username.clear()
-    #     username.send_keys("123")  
+    #     username.send_keys("testuser")  
 
     #     # Test the password field
     #     password = driver.find_element_by_id("pwd")
     #     password.clear()
-    #     password.send_keys("1111111")  
+    #     password.send_keys("password123")  
 
     #     # Test the remember me checkbox
     #     remember_me = driver.find_element_by_id("my-checkbox")
@@ -197,7 +201,7 @@ class UserTest(unittest.TestCase):
 
     #     # Check if user information is displayed correctly
     #     username_displayed = driver.find_element_by_xpath("//span[@id='username']")
-    #     self.assertEqual(username_displayed.text, "123") 
+    #     self.assertEqual(username_displayed.text, "TESTUSER") 
 
     #     # Check if logout button is present
     #     logout_button = driver.find_element_by_xpath("//button[text()='Log Out']")
@@ -216,7 +220,7 @@ class UserTest(unittest.TestCase):
     #     # Provide the password field
     #     password = driver.find_element_by_id("pwd")
     #     password.clear()
-    #     password.send_keys("1111111")  
+    #     password.send_keys("1234567")  
 
     #     # Test the login button
     #     login_button = driver.find_element_by_xpath("//input[@value='Login']")
@@ -306,11 +310,11 @@ class UserTest(unittest.TestCase):
     #     # Fill out the form
     #     username = driver.find_element_by_id("login-username")
     #     username.clear()
-    #     username.send_keys("123")
+    #     username.send_keys("testuser")
 
     #     password = driver.find_element_by_id("pwd")
     #     password.clear()
-    #     password.send_keys("1111111")
+    #     password.send_keys("password123")
 
     #     # Select the "Remember me" checkbox
     #     remember_me = driver.find_element_by_id("my-checkbox")
@@ -335,11 +339,11 @@ class UserTest(unittest.TestCase):
     #     # Fill out the form again
     #     username = driver.find_element_by_id("login-username")
     #     username.clear()
-    #     username.send_keys("123")
+    #     username.send_keys("testuser")
 
     #     password = driver.find_element_by_id("pwd")
     #     password.clear()
-    #     password.send_keys("1111111")
+    #     password.send_keys("password123")
 
     #     # Ensure "Remember me" checkbox is not selected
     #     remember_me = driver.find_element_by_id("my-checkbox")
@@ -378,34 +382,35 @@ class UserTest(unittest.TestCase):
     #     # Check if the page has been redirected to the registration page
     #     self.assertIn("/register", driver.current_url)
 
-    # 3.Test the register page
-    # def test_register_success(self):
+##############################################################################################
+    ## 3.Test the reset page
+    # def test_reset_success(self): # Test whether the user can successfully reset the password
     #     driver = self.driver
-    #     driver.get("http://127.0.0.1:5000/register")
+    #     driver.get("http://127.0.0.1:5000/reset")
 
     #     # Check if the register form is displayed
-    #     register_form = driver.find_element_by_css_selector("div.register-part form")
-    #     self.assertTrue(register_form.is_displayed())
+    #     reset_form = driver.find_element_by_css_selector("div.reset-part form")
+    #     self.assertTrue(reset_form.is_displayed())
 
     #     # Fill out the registration form
-    #     username = driver.find_element_by_id("register-username")
+    #     username = driver.find_element_by_id("reset-username")
     #     username.clear()
-    #     username.send_keys("test123")
+    #     username.send_keys("testuser")
 
-    #     password = driver.find_element_by_id("register-password")
+    #     password = driver.find_element_by_id("reset-password")
     #     password.clear()
-    #     password.send_keys("password123")
+    #     password.send_keys("password456")
 
-    #     confirm_password = driver.find_element_by_id("confirm-register-password")
+    #     confirm_password = driver.find_element_by_id("confirm-reset-password")
     #     confirm_password.clear()
-    #     confirm_password.send_keys("password123")
+    #     confirm_password.send_keys("password456")
 
-    #     email = driver.find_element_by_id("register-email")
+    #     email = driver.find_element_by_id("reset-email")
     #     email.clear()
-    #     email.send_keys("jessiexieee@gmail.com")
+    #     email.send_keys("usertest@import.com")
 
     #     # Click the verify button
-    #     verify_button = driver.find_element_by_id("captcha-btn")
+    #     verify_button = driver.find_element_by_id("captcha-btnr")
     #     verify_button.click()
         
     #     try:
@@ -424,98 +429,218 @@ class UserTest(unittest.TestCase):
     #     except TimeoutException:
     #         # Handle the case when no alert is present
     #         pass
-
+    
     #     # Send a request to generate a verification code
-    #     response = requests.get("http://127.0.0.1:5000/send", params={"email": "jessiexieee@gmail.com"})
+    #     response = requests.get("http://127.0.0.1:5000/reset/update", params={"username": "testuser", "email": "usertest@import.com"})
     #     data = response.json()
-
-
-    #     # Check the response and get the verification code
-    #     if data.get("code") == 200 and "data" in data:
+    
+    #     # Check the response data and get the verification code
+    #     if data.get("code") == 200:
     #         verification_code = data["data"]
-    #         # Wait for the verification code input field to be visible
-    #         code_input = driver.find_element_by_id("register-varify")
     #         # Enter the verification code
+    #         code_input = driver.find_element_by_id("reset-varify")
     #         code_input.clear()
     #         code_input.send_keys(verification_code)
-
-    #         # Submit the registration form
-    #         submit_button = driver.find_element_by_id("register-submit")
-    #         # Scroll down the page to the submit button
-    #         driver.execute_script("arguments[0].scrollIntoView();", submit_button)
-    #         sleep(2)
-    #         # Click the submit button
-    #         submit_button.click()
-    #         # Check if the user is redirected to the login page after successful registration
+    #         # Submit the reset form
+    #         submit_button = driver.find_element_by_id("reset-submit")
+    #         # Click the submit button using JavaScript
+    #         driver.execute_script("arguments[0].click();", submit_button)      
+    #         # Check if the user is redirected to the login page after successful reset
     #         self.assertIn("/login", driver.current_url)
-    #     elif data.get("code") == 500:
-    #         print("Email is already registered")
-    #         self.assertIn("/register", driver.current_url)
-    #         return
     #     else:
     #         # Handle the case when the verification code generation fails
     #         print("Failed to generate verification code")
-    #         return
 
-    # def test_register_username_exists(self): # Test whether to print an error message if the username exists in the database
+
+    # def test_reset_username_not_exist(self): # Test whether to print an error message if the username does not exist in the database
     #     driver = self.driver
-    #     driver.get("http://127.0.0.1:5000/register")
+    #     driver.get("http://127.0.0.1:5000/reset")
 
-    #     # Fill out the registration form with an existing username
-    #     username_input = driver.find_element_by_id("register-username")
-    #     username_input.clear()
-    #     username_input.send_keys("test1")
+    #     # Fill out the form with a username that is not in the list
+    #     username = driver.find_element_by_id("reset-username")
+    #     username.clear()
+    #     username.send_keys("nonexistentuser")
 
-    #     # Trigger the onblur event using JavaScript
-    #     driver.execute_script("arguments[0].blur();", username_input)
+    #      # Trigger the onblur event using JavaScript
+    #     driver.execute_script("arguments[0].blur();", username)
 
     #     # Check if the error message is displayed
-    #     error_message = driver.find_element_by_id("register-username-message")
+    #     error_message = driver.find_element_by_id("reset-username-message")
     #     self.assertTrue(error_message.is_displayed())
-    #     self.assertEqual(error_message.text, "Username already exists!")
+    #     self.assertEqual(error_message.text, "Username does not exist!")
 
-    def test_register_password_not_match(self): # Test whether to print an error message if the password is not match
-        driver = self.driver
-        driver.get("http://127.0.0.1:5000/register")
+    # def test_reset_invalid_email(self): # Test invalid email address (the email address is not in the database)
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/reset")
 
-        # Fill out the registration form with an invalid password
-        password_input = driver.find_element_by_id("register-password")
-        password_input.clear()
-        password_input.send_keys("password123")
+    #     # Fill out the form with invalid email
+    #     username = driver.find_element_by_id("reset-username")
+    #     username.send_keys("testuser")
 
-        confirm_password_input = driver.find_element_by_id("confirm-register-password")
-        confirm_password_input.clear()
-        confirm_password_input.send_keys("password456")
+    #     email = driver.find_element_by_id("reset-email")
+    #     email.send_keys("invalid_email")
 
-        # Trigger the onblur event using JavaScript
-        driver.execute_script("arguments[0].blur();", confirm_password_input)
+    #     # Check the response
+    #     response = requests.get("http://127.0.0.1:5000/reset/update", params={"email": "invalid_email", "username": "testuser"})
+    #     self.assertEqual(response.json()["code"], 500)
 
-        # Check if the error message is displayed
-        error_message = driver.find_element_by_id("register-password-message")
-        self.assertTrue(error_message.is_displayed())
-        self.assertEqual(error_message.text, "Passwords do not match!")
+    # def test_non_matching_email_and_username(self): # Test non-matching email and username if the email is in the database
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000/reset")
 
-    def test_register_password_invalid(self): # Test whether to print an error message if the password is invalid
-        driver = self.driver
-        driver.get("http://127.0.0.1:5000/register")
+    #     # Fill out the form with non-matching email and username
+    #     username = driver.find_element_by_id("reset-username")
+    #     username.send_keys("test1")
 
-        # Fill out the registration form with an invalid password
-        password_input = driver.find_element_by_id("register-password")
-        password_input.clear()
-        password_input.send_keys("123")
+    #     email = driver.find_element_by_id("reset-email")
+    #     email.send_keys("usertest@import.com")
 
-        # Fill out the registration form with an invalid password
-        confirm_password_input = driver.find_element_by_id("confirm-register-password")
-        confirm_password_input.clear()
-        confirm_password_input.send_keys("123")
-        
-        # Trigger the onblur event using JavaScript
-        driver.execute_script("arguments[0].blur();", confirm_password_input)
+    #     # Check the response
+    #     response = requests.get("http://127.0.0.1:5000/reset/update", params={"email": "usertest@import.com", "username": "test1"})
+    #     self.assertEqual(response.json()["code"], 400)
 
-        # Check if the error message is displayed
-        error_message = driver.find_element_by_id("register-password-message")
-        self.assertTrue(error_message.is_displayed())
-        self.assertEqual(error_message.text, "Password must be between 7 and 15 characters!")
+####################################################################################
+
+    # # 4. Test the layout page
+    # def test_layout_page(self):
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000")  
+
+    #     # Check if the page title is correct
+    #     self.assertIn("Doggie Chat", driver.title)
+
+    #     # Check if the logo is displayed
+    #     logo = driver.find_element_by_xpath("//div[@class='logo']/a/img")
+    #     self.assertTrue(logo.is_displayed())
+
+    #     # Check if the navigation links are displayed
+    #     nav_links = driver.find_elements_by_xpath("//ul[@class='navbar-nav ml-auto']/li/a")
+    #     self.assertEqual(len(nav_links), 3)
+
+    #     # Check if the "Sign Up" button is displayed
+    #     signup_button = driver.find_element_by_xpath("//button[contains(text(), 'Sign Up')]")
+    #     self.assertTrue(signup_button.is_displayed())
+
+    #     # Check if the "Log In" button is displayed
+    #     login_button = driver.find_element_by_xpath("//button[contains(text(), 'Log In')]")
+    #     self.assertTrue(login_button.is_displayed())
+
+    #     # Check if the footer is displayed
+    #     footer = driver.find_element_by_xpath("//footer/p[@class='footer']")
+    #     self.assertTrue(footer.is_displayed())
+
+
+    # def test_navigation_links(self):
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000")
+
+    #     # Click on the home link and check the redirect URL
+    #     home_link = driver.find_element_by_css_selector("a.nav-link[href='home']")
+    #     home_link.click()
+    #     redirect_url = driver.current_url
+    #     self.assertIn("/home", redirect_url)
+
+    #     # Click on the chat link and check the redirect URL
+    #     chat_link = driver.find_element_by_css_selector("a.nav-link[href='chat']")
+    #     chat_link.click()
+    #     redirect_url = driver.current_url
+    #     if not "/login" in redirect_url:
+    #         self.assertIn("/chat", redirect_url)
+    #     else:
+    #         self.assertIn("/login", redirect_url)
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password456")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         login_button.click()
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+
+    #         # Click on the chat link and check the redirect URL
+    #         chat_link = driver.find_element_by_css_selector("a.nav-link[href='chat']")
+    #         chat_link.click()
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/chat", redirect_url)
+         
+    #     # Click on the history link and check the redirect URL
+    #     history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #     history_link.click()
+    #     redirect_url = driver.current_url
+    #     if not "/login" in redirect_url:
+    #         self.assertIn("/history", redirect_url)
+    #     else:
+    #         self.assertIn("/login", redirect_url)
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password456")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         login_button.click()
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+
+    #         # Click on the history link and check the redirect URL
+    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #         history_link.click()
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/history", redirect_url)
+
+##############################################################################################
+    # # 5. Test the home page
+    # def test_home_page(self):
+    #     driver = self.driver
+    #     driver.get("http://127.0.0.1:5000")
+
+    #     # Check if the welcome message is displayed
+    #     welcome_message = driver.find_element_by_xpath("//h1[@class='intro']")
+    #     self.assertIsNotNone(welcome_message)
+
+    #      # Check if the "Let's chat!" button is present
+    #     chat_button = driver.find_element_by_xpath("//a[@id='start-chat']")
+    #     self.assertIsNotNone(chat_button)
+
+    #     # Click on the "Let's chat!" button
+    #     chat_button.click()
+
+    #     # Get the redirected URL
+    #     redirect_url = driver.current_url
+
+    #     # Check if the user is redirected to the login page or the chat page based on login status
+    #     if "/login" in redirect_url:
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password456")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         login_button.click()
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+    #         # Find the chat button on the home page
+    #         chat_button = driver.find_element_by_xpath("//a[@id='start-chat']")
+    #         self.assertIsNotNone(chat_button)
+    #         # Click on the chat button    
+    #         chat_button.click()
+            
+    #     self.assertIn("/chat", driver.current_url)
 
    
 

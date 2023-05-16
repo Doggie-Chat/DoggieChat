@@ -15,7 +15,7 @@
     <!--username block-->
     <div id="username" class="register-block">
       <label class="control-label" for="register-username">Username</label>
-      <input class="form-control" type="text" name="username" id="register-username" placeholder="Please enter your username" required onblur="checkUsername('register')"><br>
+      <input class="form-control" type="text" name="username" id="register-username" placeholder="Please enter your username" required onblur="checkUsernameRegister()"><br>
       <i class="icon bi bi-person-fill"></i>
     </div>
     <div id="register-username-list">{{ users | tojson | safe }}</div>

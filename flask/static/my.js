@@ -15,13 +15,13 @@ function mOut(obj) {
 }
 
 
-
-function checkUsername(prefix) {
-  const usernameInput = document.getElementById(`${prefix}-username`);
+// Function to display a message if the username exists (used for register page)
+function checkUsernameRegister() {
+  const usernameInput = document.getElementById(`register-username`);
   const username = usernameInput.value;
-  const users = JSON.parse(document.getElementById(`${prefix}-username-list`).textContent);
+  const users = JSON.parse(document.getElementById(`register-username-list`).textContent);
 
-  const usernameMessage = document.getElementById(`${prefix}-username-message`);
+  const usernameMessage = document.getElementById(`register-username-message`);
 
   if (users.includes(username)) {
     usernameMessage.style.display = "block";
@@ -32,8 +32,25 @@ function checkUsername(prefix) {
   }
 }
 
+// Function to display a message if the username does NOT exist (used for reset page)
+function checkUsernameReset() {
+  const usernameInput = document.getElementById(`reset-username`);
+  const username = usernameInput.value;
+  const users = JSON.parse(document.getElementById(`reset-username-list`).textContent);
 
-// Function to check if the passwords match and display a message if not (used for register and reset page)
+  const usernameMessage = document.getElementById(`reset-username-message`);
+
+  if (!users.includes(username)) {
+    usernameMessage.style.display = "block";
+    usernameMessage.textContent = "Username does not exist!";
+  } else {
+    usernameMessage.style.display = "none";
+    usernameMessage.textContent = "";
+  }
+}
+
+
+// Function to display a message if passwords are invalid and not match (used for register and reset page)
 function checkPasswords(prefix) {
   // Get the password input elements
   const passwordInput = document.getElementById(`${prefix}-password`);
