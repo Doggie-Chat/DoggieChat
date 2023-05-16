@@ -11,6 +11,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.alert import Alert
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.support.select import Select
+
 
 class UserTest(unittest.TestCase):
 
@@ -970,8 +972,196 @@ class UserTest(unittest.TestCase):
     #     self.assertEqual(month_label.text, "5")  # Update with the expected next month
     #     self.assertEqual(year_label.text, "2023")  # Update with the expected year
 
+##################################################################################################################################
+   ## 4.Test the history page
+    # def test_history_search(self):
+    #     driver = self.driver
+    #     self.driver.get("http://127.0.0.1:5000/history")
+    #     current_url = driver.current_url
+    #     if "/login" in current_url:
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
 
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password123")
 
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         driver.execute_script("arguments[0].click();", login_button)
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+    #         # Click on the history link and check the redirect URL
+    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #         driver.execute_script("arguments[0].click();", history_link)
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/history", redirect_url)
+    #     # Select a specific date
+    #     date_input = self.driver.find_element_by_id("date-input")
+    #     date_input.clear()
+    #     date_input.send_keys("2023-05-15")
+
+    #     # Find the dog select dropdown
+    #     dog_select = Select(self.driver.find_element_by_id("dogname"))
+    #     # Select "Luna" option
+    #     dog_select.select_by_value("Luna")
+
+    #     # Click the "Search" button
+    #     search_button = driver.find_element_by_id("Search")
+    #     driver.execute_script("arguments[0].click();", search_button)
+        
+    #     sleep(1)
+    #     # Verify the search result
+    #     # Find the search result table
+    #     search_result_table = self.driver.find_element_by_css_selector("#search-result table")
+    #     # Verify if the table header is displayed correctly
+    #     table_header = search_result_table.find_element_by_tag_name("tr")
+    #     self.assertEqual(table_header.find_element_by_class_name("date-col").text, "Date")
+    #     self.assertEqual(table_header.find_element_by_class_name("name-col").text, "Name")
+    #     self.assertEqual(table_header.find_element_by_class_name("content-col").text, "Content")
+    #     # Assert the expected behavior
+    #     self.assertTrue(table_header.is_displayed())
+
+    # def test_dog_dropdown(self):
+    #     driver = self.driver
+    #     self.driver.get("http://127.0.0.1:5000/history")
+    #     current_url = driver.current_url
+    #     if "/login" in current_url:
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password123")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         driver.execute_script("arguments[0].click();", login_button)
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+    #         # Click on the history link and check the redirect URL
+    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #         driver.execute_script("arguments[0].click();", history_link)
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/history", redirect_url)
+    #     dog_select = Select(self.driver.find_element_by_id("dogname"))
+    #     # Verify the dropdown options
+    #     options = [o.get_attribute("value") for o in dog_select.options]
+    #     expected_options = ["All", "Jack", "Luna", "Bob", "Ruby", "Rosie", "Zeus"]
+    #     self.assertEqual(options, expected_options)
+
+    # def test_search_without_date(self): # Test search functionality with only dog name and without date
+    #     driver = self.driver
+    #     self.driver.get("http://127.0.0.1:5000/history")
+    #     current_url = driver.current_url
+    #     if "/login" in current_url:
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password123")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         driver.execute_script("arguments[0].click();", login_button)
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+    #         # Click on the history link and check the redirect URL
+    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #         driver.execute_script("arguments[0].click();", history_link)
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/history", redirect_url)
+    #     dog_select = Select(self.driver.find_element_by_id("dogname"))
+    #     # Select "Luna" option
+    #     dog_select.select_by_value("Luna")
+    #     # Click the "Search" button
+    #     search_button = driver.find_element_by_id("Search")
+    #     driver.execute_script("arguments[0].click();", search_button)
+    #     sleep(1)
+    #     # Verify the search result
+    #     search_result_table = self.driver.find_element_by_css_selector("#search-result table")
+    #     # Assert the expected behavior
+    #     self.assertTrue(search_result_table.is_displayed())
+
+    # def test_search_without_dogname(self): # Test search functionality with only date and without dog name
+    #     driver = self.driver
+    #     self.driver.get("http://127.0.0.1:5000/history")
+    #     current_url = driver.current_url
+    #     if "/login" in current_url:
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password123")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         driver.execute_script("arguments[0].click();", login_button)
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+    #         # Click on the history link and check the redirect URL
+    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #         driver.execute_script("arguments[0].click();", history_link)
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/history", redirect_url)
+    #     date_input = self.driver.find_element_by_id("date-input")
+    #     date_input.clear()
+    #     date_input.send_keys("2023-05-15")
+    #     # Click the "Search" button
+    #     search_button = driver.find_element_by_id("Search")
+    #     driver.execute_script("arguments[0].click();", search_button)
+    #     sleep(1)
+    #     # Verify the search result
+    #     search_result_table = self.driver.find_element_by_css_selector("#search-result table")
+    #     # Assert the expected behavior
+    #     self.assertTrue(search_result_table.is_displayed())
+
+    # def test_search_without_both(self): # Test search functionality without both date and dog name
+    #     driver = self.driver
+    #     self.driver.get("http://127.0.0.1:5000/history")
+    #     current_url = driver.current_url
+    #     if "/login" in current_url:
+    #         # Log in with valid credentials
+    #         username = driver.find_element_by_id("login-username")
+    #         username.clear()
+    #         username.send_keys("testuser")
+
+    #         password = driver.find_element_by_id("pwd")
+    #         password.clear()
+    #         password.send_keys("password123")
+
+    #         login_button = driver.find_element_by_xpath("//input[@value='Login']")
+    #         driver.execute_script("arguments[0].click();", login_button)
+
+    #         # Check if the user is redirected to the home page
+    #         self.assertIn("/home", driver.current_url)
+    #         # Click on the history link and check the redirect URL
+    #         history_link = driver.find_element_by_css_selector("a.nav-link[href='history']")
+    #         driver.execute_script("arguments[0].click();", history_link)
+    #         redirect_url = driver.current_url
+    #         self.assertIn("/history", redirect_url)
+
+    #     date_input = self.driver.find_element_by_id("date-input")
+    #     date_input.clear()
+    #     # Click the "Search" button
+    #     search_button = driver.find_element_by_id("Search")
+    #     driver.execute_script("arguments[0].click();", search_button)
+    #     sleep(1)
+    #     # Verify the search result
+    #     search_result_table = self.driver.find_element_by_css_selector("#search-result table")
+    #     # Assert the expected behavior
+    #     self.assertTrue(search_result_table.is_displayed())
+     
 
 
 ##################################################################################################################################
