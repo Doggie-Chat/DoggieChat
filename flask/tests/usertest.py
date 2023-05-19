@@ -15,7 +15,6 @@ from selenium.webdriver.support.select import Select
 
 class UserTest(unittest.TestCase):
 
-
     def setUp(self):
         #self.driver = webdriver.Chrome(executable_path=r'/Users/jessiexie/Documents/GitHub/DoggieChat/flask/chromedriver') 
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
@@ -1227,8 +1226,6 @@ class UserTest(unittest.TestCase):
         self.assertIn("Jack", table_text)
         self.assertIn("2023-05-16", table_text)
         self.assertIn("2023-05-15", table_text)
-     
-
 
 ##################################################################################################################################
     def tearDown(self):
