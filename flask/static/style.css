@@ -967,8 +967,8 @@ input[type="submit"]:hover {
 
 
 .top .out-1 {
-  width: 9rem;
-  height: 9rem;
+  width: 8.5rem;
+  height: 8.5rem;
   border-radius: 100%;
   -webkit-border-radius: 100%;
   background: rgba(255, 255, 255, 0.4);
@@ -980,8 +980,8 @@ input[type="submit"]:hover {
 
 
 .top .out-1 .out-2 {
-  width: 8rem;
-  height: 8rem;
+  width: 7.5rem;
+  height: 7.5rem;
   border-radius: 100%;
   -webkit-border-radius: 100%;
   background: #ffffff;
@@ -992,8 +992,8 @@ input[type="submit"]:hover {
 
 
 .top .out-1 .out-2 .signBtn {
-  width: 7rem;
-  height: 7rem;
+  width: 6.8rem;
+  height: 6.8rem;
   border-radius: 100%;
   -webkit-border-radius: 100%;
   border: 1px #7ebdff solid;
@@ -1050,7 +1050,7 @@ input[type="submit"]:hover {
   padding-left: 10px;
   padding-right: 10px;
   font-weight: bolder;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 
 }
 
@@ -1102,10 +1102,10 @@ input[type="submit"]:hover {
 .Calendar table tr td span {
   margin: 0 auto;
   display: block;
-  line-height: 28px;
+  line-height: 26px;
   width: 25px;
   height: 25px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 100%;
 }
 .Calendar table tr .onToday span {
@@ -1160,6 +1160,8 @@ input[type="submit"]:hover {
 .guess-game #guessInput {
   padding: 5px; 
   font-size: 14px;
+  border: 2px solid var(--check-in);
+  border-radius: 10px;
 }
 
 .guess-game #guessButton {
@@ -1167,6 +1169,7 @@ input[type="submit"]:hover {
   background-color: var(--send-button);
   color: #fff;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px; 
 }
