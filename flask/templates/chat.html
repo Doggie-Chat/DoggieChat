@@ -325,10 +325,17 @@
     </div>
         <!-- chat page right login record part end-->
 
-
     <div class="app-right-bottom">
+        <!--
         <div class="slogan">
-            <p>Have a good time with Doggie Chat!</p>
+            <p>Play game with Doggie Chat!</p>
+        </div>
+        -->
+        <div class="guess-game">
+            <h6>Guess the Number Game</h6>
+            <p>Guess a number between 1 and 100:</p>
+            <input type="number" id="guessInput">
+            <button id="guessButton">Guess</button>
         </div>
     </div>
 </div>
@@ -340,5 +347,8 @@
 <script src="{{ url_for('static',filename='dog_select.js') }}"></script>
 <!--Login record js-->
 <script src="{{ url_for('static',filename='login_record.js') }}"></script>
+<!--game js-->
+<script src="{{ url_for('static',filename='game.js') }}"></script>
+
 {% endblock content %}
 
