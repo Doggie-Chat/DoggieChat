@@ -1,3 +1,4 @@
+// This dog_select.js file is used to handle the dog selection
 const tabsParentContainer = document.querySelector(".dog-tab-parent");
 const tabsMarker = tabsParentContainer.querySelector(".tab_marker");
 const visibleTab = tabsParentContainer.querySelector(

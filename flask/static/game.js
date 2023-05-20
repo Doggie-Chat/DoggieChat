@@ -1,3 +1,4 @@
+// This game.js file is used to implement the guessing number game
 // generate a random number between 1 and 100
 const randomNumber = Math.floor(Math.random() * 100) + 1;
 
@@ -18,8 +19,6 @@ guessButton.addEventListener('click', function() {
 
 	// check if the user's guess is correct
 	if (userGuess === randomNumber) {
-		// resultMessage.textContent = 'Congratulations! Correct.';
-		// resultMessage.style.color = '#32CD32'; // LimeGreen		
 		guessGame.style.display = "none";
 		slogan.style.display = "block";
 		alert("Congratulations! You find the correct number! The bonus point is added to your account!")
@@ -38,9 +37,7 @@ guessButton.addEventListener('click', function() {
             element.innerHTML = counts;
           })
           .catch(error => {
-            console.error(error);
-    // Handle any errors that occurred during the request
-    // ...
+            console.error(error); 
           });
 
 	} else if (userGuess < randomNumber) {
