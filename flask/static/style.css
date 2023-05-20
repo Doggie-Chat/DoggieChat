@@ -526,7 +526,6 @@ input[type="submit"]:hover {
 
 #verify-wrap {
   display: flex;
-  align-items: right;
   width: 50%;
 }
 
@@ -975,11 +974,6 @@ input[type="submit"]:hover {
   margin-right: 4px;
   background-color: var(--chat-input);
   color: var(--text-dark);
-}
-
-.chat-input:placeholder {
-  color: var(--text-light);
-  font-size: 12px;
 }
 
 /* 4. Chat right part */
