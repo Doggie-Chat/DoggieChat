@@ -1165,14 +1165,19 @@ input[type="submit"]:hover {
   border: 2px solid var(--check-in);
   background-color: var(--check-in);
   border-radius: 40px;
-  padding: 20px;
+  padding: 60px;
   margin-top: 15px;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
   font-style: italic;
   transition: all 0.3s ease;
+  height: 100%;
+}
+.slogan {
+  width: 100%;
+  height: 166px;
 }
 
 .guess-game {
@@ -1183,7 +1188,8 @@ input[type="submit"]:hover {
   margin-top: 15px;
   text-align: center;
   height: 166px;
-  width: 315px;
+  width: 100%;
+  display: none;
 }
 
 .guess-game h6 {
