@@ -20,7 +20,7 @@ class UserTest(unittest.TestCase):
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
 #################################################################################################################################
-    # # 0. Test the layout page
+   # 0. Test the layout page
     def test_layout_page(self):
         driver = self.driver
         driver.get("http://127.0.0.1:5000")  
@@ -830,7 +830,7 @@ class UserTest(unittest.TestCase):
         send_button = driver.find_element_by_class_name("chat-send-btn")
         driver.execute_script("arguments[0].click();", send_button)
 
-        sleep(5)
+        sleep(10)
 
         # Verify the updated content in the chat window
         main_chat = driver.find_element_by_id("mainchat")
@@ -876,7 +876,7 @@ class UserTest(unittest.TestCase):
 
         # Check the presence and content of the "Check in" button text
         check_in_button_text = check_in_button.find_element_by_id("sign-txt").text
-        self.assertEqual(check_in_button_text, "Check in")
+        self.assertEqual(check_in_button_text, "Check In")
 
         # Check the presence and content of the login days count
         login_days_count = check_in_button.find_element_by_id("sign-count").text
@@ -998,6 +998,108 @@ class UserTest(unittest.TestCase):
         month_label = self.driver.find_element_by_id("idCalendarMonth")
         self.assertEqual(month_label.text, "5")  # Update with the expected next month
         self.assertEqual(year_label.text, "2023")  # Update with the expected year
+
+    def test_check_in_displays_game(self):
+        driver = self.driver
+        self.driver.get("http://127.0.0.1:5000/chat")
+        current_url = driver.current_url
+        if "/login" in current_url:
+            # Log in with valid credentials
+            username = driver.find_element_by_id("login-username")
+            username.clear()
+            username.send_keys("testuser")
+
+            password = driver.find_element_by_id("pwd")
+            password.clear()
+            password.send_keys("password123")
+
+            login_button = driver.find_element_by_xpath("//input[@value='Login']")
+            driver.execute_script("arguments[0].click();", login_button)
+
+            # Check if the user is redirected to the home page
+            self.assertIn("/home", driver.current_url)
+            # Find the chat button on the home page
+            chat_button = driver.find_element_by_xpath("//a[@id='start-chat']")
+            self.assertIsNotNone(chat_button)
+            # Click on the chat button    
+            driver.execute_script("arguments[0].click();", chat_button)    
+            # Check if the user is redirected to the chat page
+            self.assertIn("/chat", driver.current_url)   
+
+        # Simulate the user not being checked in
+        self.driver.execute_script("isSign = false;")
+
+        # Click the "Check In" button
+        check_in_button = self.driver.find_element_by_id("signIn")
+        driver.execute_script("arguments[0].click();", check_in_button)
+
+        sleep(1)
+
+        # Verify that the game is displayed
+        guess_input = self.driver.find_element_by_id("guessInput")
+        guess_button = self.driver.find_element_by_id("guessButton")
+        self.assertTrue(guess_input.is_displayed())
+        self.assertTrue(guess_button.is_displayed())
+
+
+    def test_game_correct_guess(self):
+        driver = self.driver
+        self.driver.get("http://127.0.0.1:5000/chat")
+        current_url = driver.current_url
+        if "/login" in current_url:
+            # Log in with valid credentials
+            username = driver.find_element_by_id("login-username")
+            username.clear()
+            username.send_keys("testuser")
+
+            password = driver.find_element_by_id("pwd")
+            password.clear()
+            password.send_keys("password123")
+
+            login_button = driver.find_element_by_xpath("//input[@value='Login']")
+            driver.execute_script("arguments[0].click();", login_button)
+
+            # Check if the user is redirected to the home page
+            self.assertIn("/home", driver.current_url)
+            # Find the chat button on the home page
+            chat_button = driver.find_element_by_xpath("//a[@id='start-chat']")
+            self.assertIsNotNone(chat_button)
+            # Click on the chat button    
+            driver.execute_script("arguments[0].click();", chat_button)    
+            # Check if the user is redirected to the chat page
+            self.assertIn("/chat", driver.current_url)   
+
+        # Simulate the user not being checked in
+        self.driver.execute_script("isSign = false;")
+
+        # Click the "Check In" button
+        check_in_button = self.driver.find_element_by_id("signIn")
+        driver.execute_script("arguments[0].click();", check_in_button)
+
+        # Wait for the game input and button to be displayed
+        guess_input = self.driver.find_element_by_id("guessInput")
+        guess_button = self.driver.find_element_by_id("guessButton")
+        self.assertTrue(guess_input.is_displayed())
+        self.assertTrue(guess_button.is_displayed())
+
+        # Get the correct number from JavaScript
+        correct_number = self.driver.execute_script("return randomNumber;")
+
+        # Guess the correct number
+        guess_input.send_keys(str(correct_number))
+        guess_button.click()
+
+        # Verify the alert message with the correct number
+        alert_message = Alert(driver)
+        self.assertEqual(alert_message.text, f"Congratulations! You find the correct number! The bonus point is added to your account!")
+        alert_message.accept()
+
+        # Verify that the game elements are hidden and the slogan is displayed
+        guess_game = self.driver.find_element_by_class_name("guess-game")
+        slogan = self.driver.find_element_by_class_name("slogan")
+        self.assertFalse(guess_game.is_displayed())
+        self.assertTrue(slogan.is_displayed())
+
 
 # #################################################################################################################################
    # 4.Test the history page
