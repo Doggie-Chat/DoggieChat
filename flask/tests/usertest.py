@@ -376,7 +376,7 @@ class UserTest(unittest.TestCase):
         # Check if the page has been redirected to the registration page
         self.assertIn("/register", driver.current_url)
 
-# #################################################################################################################################
+#################################################################################################################################
     # 3.Test the register page
     def test_register_success(self):
         driver = self.driver
@@ -397,7 +397,7 @@ class UserTest(unittest.TestCase):
 
         confirm_password = driver.find_element_by_id("confirm-register-password")
         confirm_password.clear()
-        confirm_password.send_keys("0000000")
+        confirm_password.send_keys("1234567")
 
         email = driver.find_element_by_id("register-email")
         email.clear()
@@ -525,7 +525,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual(error_message.text, "Please fill out all required fields.")
 
 
-##################################################################################################################################
+# ##################################################################################################################################
     # 4.Test the reset page
     def test_reset_success(self): # Test whether the user can successfully reset the password
         driver = self.driver
