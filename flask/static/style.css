@@ -12,124 +12,139 @@ body {
   font-family: verdana, sans-serif;
 }
 
-
 /* 2. Header */
 .customer-header {
-    background: linear-gradient(to right, #66bb48 0%, #d8e67c 100%);
-    top: 0;
-    width: 100%;
-    position: fixed; /* fix the header */
-    z-index: 100; /* make sure the header is on top of the background image */
-  }
-  
-  .logo {
-    padding: 10px 10px 0px 0px;
-  }
-  
-  .logo img {
-    padding-left: 20px;
-    height: 75px;
-    transition: all 0.3s;
-  }
-  
-  .logo a:hover img {
-    opacity: 0.8;
-    transform: scale(0.9);
-  }
-  
-  .navbar-nav .nav-link {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 15px;
-    display: inline-block;
-    margin-top: 20px;
-    margin-right: 50px;
-  }
-  
-  .navbar-nav .nav-link:hover {
-    color: #000000;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-  }
-  
-  .navbar-toggler {
-    border: none;
-  }
+  background: linear-gradient(to right, #66bb48 0%, #d8e67c 100%);
+  top: 0;
+  width: 100%;
+  position: fixed; /* fix the header */
+  z-index: 100; /* make sure the header is on top of the background image */
+}
 
+.logo {
+  padding: 10px 10px 0px 0px;
+}
 
-.login-signup .button{
-    background-color: #76cefd;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 25px;
-    width: 120px;
-    font-weight: bold;
-  }
+.logo img {
+  padding-left: 20px;
+  height: 75px;
+  transition: all 0.3s;
+}
 
-  .login-signup .button:hover {
-    background-color: #1e88e5;
-    transform: translateY(-2px);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .login-signup .button:active {
-    transform: translateY(0);
-    box-shadow: none;
-  }
+.logo a:hover img {
+  opacity: 0.8;
+  transform: scale(0.9);
+}
 
-  #Welcome-msg {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 15px;
-    display: inline-block;
-    margin-top: 20px;
-    margin-right: 50px;
-  }
-  
-  #Welcome-msg #username {
-    color: #1e88e5; 
-    text-transform: uppercase;
-  }
+.navbar-nav .nav-link {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 15px;
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 50px;
+}
 
+.navbar-nav .nav-link:hover {
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.login-signup .button {
+  background-color: #76cefd;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 25px;
+  width: 120px;
+  font-weight: bold;
+}
+
+.login-signup .button:hover {
+  background-color: #1e88e5;
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-signup .button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+#Welcome-msg {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+#Welcome-msg #username {
+  color: #1e88e5;
+  text-transform: uppercase;
+}
 
 /* 3. Main */
 .main-container {
-  min-height: calc(100vh - 110px); /* set the minimum height to the container, minus the header and footer height */
+  min-height: calc(
+    100vh - 110px
+  ); /* set the minimum height to the container, minus the header and footer height */
   width: 100%; /* set the width of the container */
   padding-top: 100px; /* Add padding-top equal to the height of the header to prevent content from being hidden */
   flex-grow: 1; /* make the main-container grow to take up all available space */
   margin: 0 30px; /* set 12px margin on the left and right sides */
 }
 
-
-
 /* 4. Footer */
 .footer {
-    background: linear-gradient(to right,  #66bb48 0%, #d8e67c 100%);
-    position: fixed; 
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    color: white;
-    text-align: center;
-    margin-top: auto;
-    margin-bottom: 0px;
-    font-size: small;
-    z-index:1000;
-  }
+  background: linear-gradient(to right, #66bb48 0%, #d8e67c 100%);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 0px;
+  font-size: small;
+  z-index: 1000;
+}
 
 /* 5. Mobile setting */
 /*--responsive--*/
-@media (max-width: 480px) {
+@media (max-width: 820px) {
+  .main-container {
+    padding-top: 150px; /* Add some top padding to avoid content overlay */
+  }
+
+  .customer-header {
+    padding: 0 10px; /* Reduce padding on small screens */
+    width: 100%;
+  }
+
+  .login-signup .button {
+    font-size: 14px; /* Reduce font size on small screens */
+    padding: 8px 16px; /* Reduce padding on small screens */
+    margin-top: 0px; /* Reduce margin on small screens */
+  }
+
+}
+
+@media (max-width: 680px) {
   .customer-header {
     padding: 0 10px; /* Reduce padding on small screens */
     width: 100%;
@@ -142,44 +157,66 @@ body {
   }
 
   .main-container {
-    padding-top: 160px; /* Add some top padding to avoid content overlay */
+    padding-top: 100px; /* Add some top padding to avoid content overlay */
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Add new CSS to make header show in a row */
+  .customer-header .row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .customer-header .col-md-3 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .customer-header .col-md-5 {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .customer-header .col-md-4 {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 0px;
   }
 }
 /*--responsive end--*/
 
-
-
 /* The index.html file 
 ---------------------------------------
+1. Basic setting
+2. Welcome part
+3. Dog image part
+4. Mobile setting 
 */
 
+/* 1. Basic setting */
 .page-1 {
   background-color: #ffffff;
   margin-top: 10px;
-
 }
 
-#home-container{
+#home-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   margin-top: 10px;
   width: 100%;
-
 }
 
-
-/* Welcome part*/
-
+/* 2. Welcome part*/
 /* Style the welcome div */
-
 #welcome {
   padding: 20px;
   flex-direction: column;
   align-items: center;
 }
-
 
 /* Style the welcome h1 */
 #welcome h1 {
@@ -189,7 +226,6 @@ body {
   margin-bottom: 60px;
   text-shadow: 1px 1px 3px rgba(5, 5, 5, 0.1);
 }
-
 
 .intro .typing {
   font-size: 30px;
@@ -219,7 +255,7 @@ body {
 }
 
 #welcome .larger-text {
-  font-size: 20px; 
+  font-size: 20px;
 }
 
 /* Style the welcome button */
@@ -235,28 +271,26 @@ body {
 }
 
 #start-chat:hover {
-  background:  #1e88e5;;
+  background: #1e88e5;
   box-shadow: 0px 0px 10px #5b72e6;
 }
 
-
-/* Dog image part*/
-#dog-img{
+/* 3. Dog image part*/
+#dog-img {
   margin-top: 30px;
   margin-left: 30px;
   padding-left: 50px;
   width: 65%;
-  
 }
-
 
 #dog-img.animated {
   animation: jumpAndWag 3s;
   animation-iteration-count: 2;
 }
 
-@keyframes jumpAndWag  {
-  0%, 100% {
+@keyframes jumpAndWag {
+  0%,
+  100% {
     transform: translateY(0) rotate(0);
   }
   25% {
@@ -270,15 +304,14 @@ body {
   }
 }
 
-
+/* 4. Mobile setting */
 /*--responsive--*/
-@media (max-width: 480px) {
-
+@media (max-width: 680px) {
   .page-1 {
     margin-top: 0px;
   }
 
-  #home-container{
+  #home-container {
     margin-top: 0px;
   }
 
@@ -301,14 +334,13 @@ body {
 
   #welcome p {
     font-size: 14px;
-
   }
 
   #welcome .larger-text {
     font-size: 18px; /* adjust the font size as needed */
   }
 
-  #dog-img{
+  #dog-img {
     margin-bottom: 80px;
   }
 }
@@ -316,19 +348,26 @@ body {
 
 /*===================================*/
 /* The login.html file,  register.html file, and reset.html file
----------------------------------------*/
+---------------------------------------
+1. Basic setting
+2. Login /  register / reset part 
+3. Mobile setting 
+*/
 
-/* styles.css */
-
-.login-page, .register-page, .reset-page {
+/* 1. Basic setting*/
+.login-page,
+.register-page,
+.reset-page {
   background-image: url(images/dog_background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-
-.login-part, .register-part, .reset-part {
+/* 2. Login /  register / reset part */
+.login-part,
+.register-part,
+.reset-part {
   width: 600px;
   background-color: #ffffff;
   padding: 40px;
@@ -337,22 +376,25 @@ body {
   border-radius: 5px;
 }
 
-
-.login-title, .register-title, .reset-title {
+.login-title,
+.register-title,
+.reset-title {
   font-size: 24px;
   text-align: center;
   margin-bottom: 30px;
   color: #66bb48;
 }
 
-.login-block, .register-block, .reset-block {
+.login-block,
+.register-block,
+.reset-block {
   margin-top: 20px;
   position: relative;
 }
 
-
-
-.login-page #username .icon, .register-block .icon, .reset-block .icon {
+.login-page #username .icon,
+.register-block .icon,
+.reset-block .icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -361,11 +403,13 @@ body {
 
 .login-page #password .icon {
   position: absolute;
-  top: calc(30%); /* Set different top to the password icon to make it look better on the screen*/
+  top: calc(
+    30%
+  ); /* Set different top to the password icon to make it look better on the screen*/
   left: 10px;
 }
 
-.login-block label, 
+.login-block label,
 .register-block label,
 .reset-block label {
   display: block;
@@ -374,15 +418,14 @@ body {
   margin-bottom: 5px;
 }
 
-
-.login-block input[type="text"], 
-.login-block input[type="password"], 
-.register-block input[type="text"], 
-.register-block input[type="password"], 
+.login-block input[type="text"],
+.login-block input[type="password"],
+.register-block input[type="text"],
+.register-block input[type="password"],
 .register-block input[type="email"],
-.reset-block input[type="text"], 
-.reset-block input[type="password"], 
-.reset-block input[type="email"]{
+.reset-block input[type="text"],
+.reset-block input[type="password"],
+.reset-block input[type="email"] {
   width: 100%;
   padding: 8px;
   padding-left: 35px;
@@ -390,13 +433,13 @@ body {
   border-radius: 3px;
 }
 
-.login-block input[type="text"]:focus, 
+.login-block input[type="text"]:focus,
 .login-block input[type="password"]:focus,
-.register-block input[type="text"]:focus, 
-.register-block input[type="password"]:focus, 
+.register-block input[type="text"]:focus,
+.register-block input[type="password"]:focus,
 .register-block input[type="email"]:focus,
-.reset-block input[type="text"]:focus, 
-.reset-block input[type="password"]:focus, 
+.reset-block input[type="text"]:focus,
+.reset-block input[type="password"]:focus,
 .reset-block input[type="email"]:focus {
   border-color: #3498db;
 }
@@ -405,7 +448,7 @@ input[type="submit"] {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background-color:  #76cefd;
+  background-color: #76cefd;
   color: #fff;
   font-size: 16px;
   border: none;
@@ -417,13 +460,11 @@ input[type="submit"]:hover {
   background-color: #5b72e6;
 }
 
-
-.login-block.remember-reset.row{
+.login-block.remember-reset.row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 
 .login-block span {
   font-size: 16px;
@@ -444,7 +485,6 @@ input[type="submit"]:hover {
   text-decoration: none;
 }
 
-
 .login-block p {
   font-size: 17px;
 }
@@ -452,15 +492,15 @@ input[type="submit"]:hover {
 .login-block p a {
   text-transform: uppercase;
   font-size: 18px;
-  text-decoration:none;
+  text-decoration: none;
   letter-spacing: 1px;
   padding: 10px;
 }
 
-.login-block h6 a:hover, .login-block p a:hover {
+.login-block h6 a:hover,
+.login-block p a:hover {
   text-decoration: underline;
 }
-
 
 /* Styles for verify part */
 #verify {
@@ -509,39 +549,47 @@ input[type="submit"]:hover {
   border-color: #3498db;
 }
 
-.username-message, .password-message, .verify-message {
+.username-message,
+.password-message,
+.verify-message {
   color: red;
   font-size: 15px;
   display: none;
 }
 
-#register-username-list, #reset-username-list {
+#register-username-list,
+#reset-username-list {
   display: none;
 }
 
-
-
+/* 3. Mobile setting */
 /*--responsive--*/
-@media (max-width: 480px) {
-
-
-  .login-page, .register-page, .reset-page {
-    background-image: none;
+@media (max-width: 820px) {
+  .login-page,
+  .register-page,
+  .reset-page {
+    background-repeat: repeat-y;
   }
-  
-  .login-part, .register-part {
-    width: 100%;
+}
+
+@media (max-width: 680px) {
+  .login-part,
+  .register-part {
+    width: 90%;
   }
 
   .login-block input[type="text"],
   .login-block input[type="password"],
-  .register-block input[type="text"], 
-  .register-block input[type="password"], 
+  .register-block input[type="text"],
+  .register-block input[type="password"],
   .register-block input[type="email"] {
     font-size: 10.5px;
   }
 
-  .login-block span#remember-me, .login-block h6, .login-block p {
+  .login-block span#remember-me,
+  .login-block h6,
+  .login-block p,
+  .login-block p a {
     font-size: 14px;
   }
 
@@ -552,17 +600,21 @@ input[type="submit"]:hover {
   #verify-wrap label {
     min-width: 95px;
     font-size: 10px;
-
   }
-
 }
 /*--responsive end--*/
 
 /*===================================*/
 /* The chat.html
----------------------------------------*/
+---------------------------------------
+1. Basic setting
+2. Chat left part
+3. Chat middle part
+4. Chat right part
+5. Mobile setting 
+*/
 
-/* chat left part */
+/* 1. Basic setting */
 .chat-page {
   display: flex;
   justify-content: center;
@@ -581,10 +633,10 @@ input[type="submit"]:hover {
   --chat-input: #f5f8fc;
   --text-dark: #1a2f45;
   --text-light: #445e78;
-  --que-ans:#72c0ff;
+  --que-ans: #72c0ff;
   --que-ans-time: #868686;
   --send-button: #0062ff;
-  --send-button-hover: #f100fd;;
+  --send-button-hover: #f100fd;
   --check-in: #5f94f5;
   --check-in-select: #1485ff;
 }
@@ -597,6 +649,7 @@ input[type="submit"]:hover {
   max-width: 1800px;
 }
 
+/* 2. Chat left part */
 .chat-left {
   height: 100%;
   width: 300px;
@@ -623,17 +676,17 @@ input[type="submit"]:hover {
   margin-left: 12px;
 }
 
-.chat-left-header .app-logo{
+.chat-left-header .app-logo {
   width: 40px;
   height: 40px;
   margin-left: 12px;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 
-.chat-left-header .app-logo img{
+.chat-left-header .app-logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 /* tab part*/
@@ -644,7 +697,7 @@ input[type="submit"]:hover {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  height: 85px; 
+  height: 85px;
 }
 
 .dog-tab-parent .tab_header .tab {
@@ -672,13 +725,12 @@ input[type="submit"]:hover {
   background-color: var(--tab-select);
 }
 
-
 .dog-tab-parent .tab_header .tab:nth-child(1) label {
   border-radius: 5px 0 0 0;
 }
 
-.dog-tab-parent .tab_header .tab:nth-child(3) label{
-   border-radius: 0 5px 0 0;
+.dog-tab-parent .tab_header .tab:nth-child(3) label {
+  border-radius: 0 5px 0 0;
 }
 
 .dog-tab-parent .tab_header .tab:nth-child(4) label {
@@ -688,8 +740,6 @@ input[type="submit"]:hover {
 .dog-tab-parent .tab_header .tab:nth-child(6) label {
   border-radius: 0 0 5px 0;
 }
-
-
 
 .dog-tab-parent .tab_content {
   margin: auto;
@@ -721,7 +771,7 @@ input[type="submit"]:hover {
   border-radius: 50%;
   -o-object-fit: cover;
   object-fit: cover;
-  border: 1px solid var(--box-border); 
+  border: 1px solid var(--box-border);
 }
 
 .dog-profile-box h2 {
@@ -734,7 +784,7 @@ input[type="submit"]:hover {
   align-items: center;
 }
 
-.dog-profile-box button{
+.dog-profile-box button {
   padding: 12px;
   width: 180px;
   font-size: 16px;
@@ -748,7 +798,9 @@ input[type="submit"]:hover {
 }
 
 .dog-profile-box button:hover {
-  background-color: var(--tab-move); /* Choose a slightly darker color for hover */
+  background-color: var(
+    --tab-move
+  ); /* Choose a slightly darker color for hover */
   transform: scale(1.1); /* Slightly increase the button size on hover */
 }
 
@@ -759,7 +811,7 @@ input[type="submit"]:hover {
 
 .dog-info .info-row {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: flex-start;
   margin-bottom: 10px;
 }
@@ -770,7 +822,8 @@ input[type="submit"]:hover {
   margin-right: 5px;
 }
 
-.dog-info .dog-age, .dog-info .dog-breed {
+.dog-info .dog-age,
+.dog-info .dog-breed {
   font-weight: 500;
   color: #595656;
 }
@@ -792,11 +845,7 @@ input[type="submit"]:hover {
   font-size: 12px;
 }
 
-
-
-
-/* chat middle part */
-
+/* 3. Chat middle part */
 .chat-wrapper {
   background-color: var(--box-color);
   border: 1px solid #ddd;
@@ -814,7 +863,7 @@ input[type="submit"]:hover {
   background-color: #f2f2f2;
 }
 
-#mainchat{
+#mainchat {
   overflow-y: scroll;
   scroll-behavior: smooth;
   height: 600px;
@@ -878,7 +927,6 @@ input[type="submit"]:hover {
   border-top: 1px solid #ddd;
 }
 
-
 .chat-wrapper .chat-send-btn {
   margin-left: 10px;
   padding-left: 10px;
@@ -889,7 +937,7 @@ input[type="submit"]:hover {
   border-radius: 20px;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .chat-send-btn:hover {
@@ -920,7 +968,6 @@ input[type="submit"]:hover {
   background-color: var(--chat-input);
 }
 
-
 .chat-input {
   border: none;
   outline: none;
@@ -936,9 +983,8 @@ input[type="submit"]:hover {
   font-size: 12px;
 }
 
-
-/* chat right part */
-.chat-right{
+/* 4. Chat right part */
+.chat-right {
   display: flex;
   flex-direction: column;
   margin-left: 30px;
@@ -946,7 +992,7 @@ input[type="submit"]:hover {
 
 .app-login-record {
   margin: 0 auto;
-  border: 2px solid var(--check-in); 
+  border: 2px solid var(--check-in);
   border-radius: 30px;
   overflow: hidden; /* To hide overflowing child elements */
   height: 480px; /* Set height to 480px */
@@ -956,7 +1002,7 @@ input[type="submit"]:hover {
 .top {
   width: 100%;
   height: 150px;
-  background: var(--check-in); 
+  background: var(--check-in);
   margin-bottom: 16px;
   overflow: hidden;
   display: flex;
@@ -964,7 +1010,6 @@ input[type="submit"]:hover {
   align-items: center;
   border-radius: 20px;
 }
-
 
 .top .out-1 {
   width: 8.5rem;
@@ -978,7 +1023,6 @@ input[type="submit"]:hover {
   margin: 10px auto 10px auto;
 }
 
-
 .top .out-1 .out-2 {
   width: 7.5rem;
   height: 7.5rem;
@@ -989,7 +1033,6 @@ input[type="submit"]:hover {
   justify-content: center;
   align-items: center;
 }
-
 
 .top .out-1 .out-2 .signBtn {
   width: 6.8rem;
@@ -1022,10 +1065,9 @@ input[type="submit"]:hover {
   line-height: 2rem !important;
 }
 
-
 .top .out-1:active {
-  animation: sign .25s forwards;
-  -webkit-animation: sign .25s forwards;
+  animation: sign 0.25s forwards;
+  -webkit-animation: sign 0.25s forwards;
 }
 
 #signIn {
@@ -1051,7 +1093,6 @@ input[type="submit"]:hover {
   padding-right: 10px;
   font-weight: bolder;
   margin-bottom: 10px;
-
 }
 
 /* Styles for the login record Top part end */
@@ -1114,7 +1155,6 @@ input[type="submit"]:hover {
 }
 /* Styles for the login record  Calendar part end */
 
-
 .app-right-bottom {
   display: flex;
   align-items: center;
@@ -1135,7 +1175,7 @@ input[type="submit"]:hover {
   transition: all 0.3s ease;
 }
 
-.guess-game{
+.guess-game {
   text-align: center;
   border: 2px solid var(--check-in);
   border-radius: 30px;
@@ -1147,37 +1187,36 @@ input[type="submit"]:hover {
 }
 
 .guess-game h6 {
-	color: #3150ed;
+  color: #3150ed;
   font-weight: bold;
 }
 
 .guess-game p {
-	color: #007aff;
+  color: #007aff;
   margin-bottom: 5px;
   font-size: 14px;
 }
 
 .guess-game #guessInput {
-  padding: 5px; 
+  padding: 5px;
   font-size: 14px;
   border: 2px solid var(--check-in);
   border-radius: 10px;
 }
 
 .guess-game #guessButton {
-  padding: 5px 5px; 
+  padding: 5px 5px;
   background-color: var(--send-button);
   color: #fff;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .guess-game #guessButton:hover {
-	background-color: var(--send-button-hover);
+  background-color: var(--send-button-hover);
 }
-
 
 .resultMessage {
   padding-top: 5px;
@@ -1186,72 +1225,117 @@ input[type="submit"]:hover {
 
 /*chat right part end*/
 
-
+/* 5. Mobile setting */
 /*--responsive--*/
 @media screen and (max-width: 820px) {
-  .chat-container{
-    margin-top: 100px;
-    margin-left: 150px;
-    height: 100%;
+  .chat-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
+
+  .chat-left,
   .chat-right {
-    transform: translateX(-100%);
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
+    flex-basis: calc(50% - 30px); 
+    max-width: calc(50% - 30px); 
+    box-sizing: border-box;
+    order: 1;
+    margin: 15px;
   }
+
+  .chat-middle {
+    flex-basis: 100%;
+    max-width: 90%;
+    order: 2;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+   .customer-header{
+    margin-left: 80px;
+    max-width: 75%;
+
+   }
+
+  .chat-container {
+   display: block;
+   flex-wrap: nowrap;
+   flex-direction: column;
+   align-items: center;
+   margin-left: 80px;
+  }
+
+  #mainchat {
+    width: 300px;
+    height: 500px;
+  } 
+  
+  .chat-left{
+    margin-top: 50px;
+    max-width: 300px;
+  }
+
+  .chat-middle{
+    margin-left: 15px;
+    max-width: 300px;
+  }
+
+  .chat-right .app-login-record, .chat-right .guess-game  {
+    width: 300px;
+  }
+  .chat-right .guess-game {
+    min-width:300px;
+    margin-left: 80px;
+    margin-bottom: 30px;
+  }
+
+
 
 }
 
 
+/*
 @media screen and (max-width: 680px) {
   .chat-container {
     flex-direction: column;
     padding: 30px;
-    margin-left:10px;
+    margin-left: 10px;
     margin-right: 10px;
     width: 85%;
+    flex-wrap: nowrap;
   }
 
-  .chat-left {
-    transform: translateX(0);
-    position: relative;
-    opacity: 1;
-    height: 100%;
-    width: 100%;
-    margin-right: 0;
-  }
-
+  .chat-left,
+  .chat-middle,
   .chat-right {
-    transform: translateX(0);
-    position: relative;
-    opacity: 1;
-    height: 100%;
     width: 100%;
-    margin-left: 0;
+    box-sizing: border-box;
+    margin: 15px; 
   }
 
-  .chat-middle {
-    height: calc(100% - 48px);
-    margin-bottom: 30px;
+  #mainchat {
+    width: 300px;
+    height: 500px;
   }
 
-  #mainchat{
-    padding-top: 60px;
-    width:300px
+  .guess-game{
+    margin-bottom: 50px;
   }
 }
-
+*/
 /*--responsive end--*/
-
 
 /*===================================*/
 /* The history.html file
----------------------------------------*/
+---------------------------------------
+1. Basic setting
+2. Search part
+3. Mobile setting 
+*/
+
+/* 1. Basic setting */
 .history-page {
   padding-top: 15px;
   background-image: url(images/dog_background.jpg);
@@ -1259,7 +1343,7 @@ input[type="submit"]:hover {
   background-repeat: no-repeat;
   background-position: center center;
   --send-button: #0062ff;
-  --send-button-hover: #f100fd;;
+  --send-button-hover: #f100fd;
 }
 
 .history-container {
@@ -1267,18 +1351,20 @@ input[type="submit"]:hover {
   width: 80%;
   padding: 20px;
   background-color: white;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin-top: 50px;
 }
 
+/* 2. Search part */
 .search-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.search-input input, .search-input select {
+.search-input input,
+.search-input select {
   width: 30%;
   padding: 10px;
   margin: 10px 0;
@@ -1305,8 +1391,8 @@ input[type="submit"]:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
-  max-height: 600px;  /* Set the height */
-  overflow: auto;  /* Create a scrollbar when the content exceeds the height */
+  max-height: 600px; /* Set the height */
+  overflow: auto; /* Create a scrollbar when the content exceeds the height */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1322,7 +1408,7 @@ input[type="submit"]:hover {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
-  background-color: #5C7AEA;
+  background-color: #5c7aea;
   color: white;
   font-weight: bold;
 }
@@ -1340,23 +1426,22 @@ input[type="submit"]:hover {
 }
 
 #search-result .date-col {
-  width: 8%; 
+  width: 8%;
 }
 
 #search-result .name-col {
-  width: 6%;  
+  width: 6%;
 }
 
 #search-result .content-col {
-  width: 86%;  
+  width: 86%;
 }
-
 
 #dog-gif {
   height: 360px;
   width: auto;
   display: block;
-  margin-top:30px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -1365,11 +1450,11 @@ input[type="submit"]:hover {
   width: auto;
   display: block;
   margin-left: 60px;
-  margin-top:30px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
-
+/* 3. Mobile setting */
 /*--responsive--*/
 @media screen and (max-width: 680px) {
   .history-container {
@@ -1377,9 +1462,10 @@ input[type="submit"]:hover {
     width: 95%;
   }
 
-  .search-input input, .search-input select {
+  .search-input input,
+  .search-input select {
     padding: 5px;
-    margin: 5px
+    margin: 5px;
   }
 
   .search-input input {
@@ -1390,7 +1476,7 @@ input[type="submit"]:hover {
     font-size: 14px;
   }
 
-  .table-content td{
+  .table-content td {
     font-size: 12px;
   }
 
@@ -1402,13 +1488,12 @@ input[type="submit"]:hover {
   }
 
   #dog-gif {
-      height: 250px;
-    }
-    
-    #history-note {
-      height: 150px;
-      margin-left: 0px;
-    }
+    height: 250px;
   }
 
+  #history-note {
+    height: 150px;
+    margin-left: 0px;
+  }
+}
 /*--responsive end--*/
