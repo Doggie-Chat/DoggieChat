@@ -247,6 +247,16 @@ class Testchat(unittest.TestCase):
             self.assertEqual(response_chat.status_code, 200)
             self.assertEqual(response_chat.json["dog"], "Bob")
 
+    def test_game_bonus(self):
+        with app.test_client() as client:# login before access the chat page
+            response = client.post('/login', data=dict(
+                username='test3',
+                pwd='bbbbbbbb'
+            ), follow_redirects=True)
+            self.assertIn(b'DOGGIE CHAT', response.data)
+            response_game=client.get('/chat/game')# access the game function, pretend the user has find the correct number.
+            self.assertEqual(response_game.json["status"], "success")# check whether the status is success.
+
 '''This class test all the functions related to the history page.'''
 class Testhistory(unittest.TestCase):
     def setUp(self):# init
