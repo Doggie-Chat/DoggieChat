@@ -195,6 +195,11 @@ $$("signIn").onclick = function() {
 		type: "GET",
 		success: function (data) {
 			count = data["counts"];
+			logged = data["today"];//get the status whether the user checked in today.
+			if(logged == "no") { // if it is the first time the user check in today, and not finish the game, show the game.
+			    $(".slogan").hide();
+				$(".guess-game").show();
+			}
 			if(isSign == false) {
 				var res = cale.SignIn();
 				if(res == '1') {

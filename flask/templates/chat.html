@@ -32,7 +32,7 @@
                <input id="tab_3" type="radio" name="tab">
                <label for="tab_3">Bob</label>
             </div>
-             {% if checkin >= 7 %}
+             {% if checkin >= 15 %}
               <div class="tab">
                 <input id="tab_4" type="radio" name="tab">
                 <label for="tab_4">Ruby</label>
@@ -291,13 +291,13 @@
             <div class="out-1" id="signIn">
                 <div class="out-2">
                     <div class="signBtn">
-                        <strong id="sign-txt">Check in</strong>
-                        <span>Login Days: <em id="sign-count">{{ checkin }}</em></span>
+                        <strong id="sign-txt">Check In</strong>
+                        <span>Points: <em id="sign-count">{{ checkin }}</em></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tips">Check in more than 7 days to unlock doggies</div>
+        <div class="tips">Getting 15 or more Points to unlock doggies</div>
         <div class="Calendar">
             <div id="toyear">
                 <div id="idCalendarPre">&lt;</div>
@@ -326,12 +326,12 @@
         <!-- chat page right login record part end-->
 
     <div class="app-right-bottom">
-        <!--
+        
         <div class="slogan">
             <p>Play game with Doggie Chat!</p>
         </div>
-        -->
-        <div class="guess-game">
+       
+        <div class="guess-game" style="display: none;">
             <h6>Guess the Number Game</h6>
             <p>Guess a number between 1 and 100:</p>
             <input type="number" id="guessInput">

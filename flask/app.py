@@ -259,8 +259,10 @@ def check():
     username=current_user.username
     today = date.today()
     check=Checkin.query.filter_by(username=username).first()# get the previous check in days from database.
-    if check.current_login==today:# if the user has already checked in today, keep the count.
-        return jsonify({"counts":check.checkincount,"status":"checked"})
+    if check.current_login==check.last_login==today:# if the user has already checked in today, keep the count. the "yes" represents the user has already checked in today.
+        return jsonify({"counts":check.checkincount,"status":"checked","today":"yes"})
+    elif check.current_login==today:
+        return jsonify({"counts":check.checkincount,"status":"checked","today":"no"})
     else:
         if check.checkincount is None:# check whether the user has checked before
             check.checkincount=1
@@ -269,7 +271,7 @@ def check():
         check.last_login=check.current_login
         check.current_login=today
         db.session.commit()
-    return jsonify({"counts":check.checkincount,"status":"checked"}) # parse the checked days to front-end via ajax.
+    return jsonify({"counts":check.checkincount,"status":"checked","today":"no"}) # parse the checked days to front-end via ajax.
 
 # define the function of switch dogs.
 @app.route("/chat/switch", methods=['POST','GET'])
@@ -337,7 +339,23 @@ def search():
             doglist.append(row.name)
             content.append(row.content)
         return jsonify({'date':datelist,'dog':doglist,'content':content,'status':'success4'})
-    
+
+# define the function of the gaming result. It will add a bonus point to user's account if they finish the game.
+@app.route("/chat/game", methods=['POST','GET'])
+@login_required
+def game():
+    username=current_user.username # get the username 
+    check=Checkin.query.filter_by(username=username).first()#get the points in the account
+    today = date.today()
+    if check.current_login == check.last_login == today:
+        return jsonify({"counts":check.checkincount,"status":"updated"})
+    else:
+        check.checkincount=check.checkincount+1 # add 1 point to account
+        check.last_login=check.current_login
+        db.session.commit()
+        return jsonify({"counts":check.checkincount,"status":"success"})
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0')
