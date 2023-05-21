@@ -3,15 +3,15 @@
 Jessie Xie (21918545) <br>
 Jiachuan Liu (23292749)
 
-## 💡 Purpose
+## 💡 **Purpose**
 
 The purpose of the Doggie Chat web application is to provide a platform for users to interact and chat with AI puppies. Dogs are known to be loyal friends of humans, but it can be challenging to understand their words in the real world. With Doggie Chat, users can engage in conversations and interact with six different AI dogs, each with their own unique personalities.
 
-### Design and Use
+### **Design and Use**
 
 The web application is designed with the following components:
 
-#### Opening View
+#### **Opening View**
 
 The opening view consists of three main parts:
 
@@ -26,7 +26,7 @@ The opening view consists of three main parts:
 <img src="md-imgs/reset.png" alt="reset" width="45%"/>
 <img src="md-imgs/home.png" alt="home" width="45%"/>
 
-#### Chat View
+#### **Chat View**
 
 The chat view is the main section where users can engage in conversations with the AI dogs. This section is divided into three parts:
 
@@ -44,7 +44,7 @@ The chat view is the main section where users can engage in conversations with t
 
 
 
-#### Search View
+#### **Search View**
 
 In the search view, users have the ability to search through their historical chat records. They can filter the records based on the dog they interacted with or specific days.
 
@@ -55,7 +55,7 @@ In the search view, users have the ability to search through their historical ch
 
 The Doggie Chat web application provides users with an enjoyable and interactive platform to chat with AI puppies. By offering different dogs with unique personalities and incorporating features like check-ins and mini-games, users can have a rewarding experience while engaging with the virtual canine companions.
 
-## ⚙️ Architecture
+## ⚙️ **Architecture**
 
 The Doggie Chat web application follows a client-server architecture, with a simple and lightweight database setup using SQLite. Here is an overview of the application's architecture:
 
@@ -97,7 +97,7 @@ The Doggie Chat web application follows a client-server architecture, with a sim
 The Doggie Chat web application architecture provides a simple and efficient platform for users to chat with AI puppies. It leverages client-side technologies like HTML, CSS, AJAX, jQuery, and Bootstrap, along with server-side technologies and database management, to deliver a seamless and engaging user experience.
 
 
-## 💻 How to launch the web application
+## 💻 **How to launch the web application**
 
 To launch the Doggie Chat web application locally, follow these steps:
 
@@ -179,26 +179,26 @@ To launch the Doggie Chat web application locally, follow these steps:
 Now you can enjoy chatting with the AI puppies on the locally hosted Doggie Chat web application. If you encounter any issues, make sure to double-check the steps and ensure that the API keys are correctly configured.
 
 
-## 🔧 How to run tests
-## Unit Tests
+## 🔧 **How to run tests**
+### **Unit Tests**
 
 Unit tests for the Doggie Chat web application cover three main parts: the login system, chat functionality, and chat history. Here is a description of the unit tests and instructions on how to run them:
 
-### Login System Part
+#### 1.Login System Part
 
-#### Login Page:
+##### 1.1. Login Page:
 - Test the correct login by providing valid credentials.
 - Test an incorrect password to verify the error handling.
 - Test a non-existent user to ensure appropriate error handling.
 
-#### Register Page:
+##### 1.2. Register Page:
 - Test a correct registration by providing valid user information.
 - Test the email verification process for an already registered email.
 - Test an incorrect email format to validate the error handling.
 - Test an incorrect email verification code to ensure appropriate error handling.
 - Test an already existing username to verify the error handling.
 
-#### Reset Page:
+##### 1.3. Reset Page:
 - Test a non-existent username to ensure appropriate error handling.
 - Test an incorrect password length to validate the error handling.
 - Test the correct steps to reset the password.
@@ -206,18 +206,18 @@ Unit tests for the Doggie Chat web application cover three main parts: the login
 - Test an incorrect username to ensure appropriate error handling.
 - Test an incorrect email verification code to validate the error handling.
 
-### Chat Part
+#### 2.Chat Part
 
 - Test the answer function to ensure the chatbot can reply appropriately to user messages.
 - Test the switch function to ensure users can switch between different dogs for chatting.
 - Test the check-in functionality to verify if users can successfully check-in.
 - Test the game bonus functionality to ensure users receive the bonus point for completing the mini-game.
 
-### History Part
+#### 3.History Part
 
 - Test various conditions to search and retrieve the user's chat history.
 
-### Running the Unit Tests:
+### **Running the Unit Tests:**
 
 To run the unit tests for the Doggie Chat web application, follow these steps:
 
@@ -229,14 +229,14 @@ To run the unit tests for the Doggie Chat web application, follow these steps:
      ```
  4. Unit tests result:
 
- <img src="md-imgs/unittest.png" alt="unittest" width="60%"/>
+<img src="md-imgs/unittest.png" alt="unittest" width="60%"/>
 
  
 Note: The unit tests should succeed during the first run. However, when running the tests again after the initial success, failures may occur in the register test because the new account has already been created in the database during the first run of the test script. If you still want to run the test script multiple times, ensure that you remove the record of the `username test4` from both the `checkin` and `user` tables in the database.
 
 Running the unit tests helps ensure that different parts of the Doggie Chat web application function correctly and as intended. It validates the behavior of the login system, chat functionality, and chat history, providing confidence in the application's overall reliability.
 
-### User tests
+### **User tests**
 User tests simulate users' activities to ensure that the Doggie Chat web application functions correctly. The tests cover all three views: opening, chat, and search. Follow the instructions below to run the user tests:
 
 1. **Ensure Flask Server is Running**:
@@ -270,7 +270,7 @@ Running the above command will execute the user tests and verify the functionali
    - This step ensures that the functions related to the test mini-game work correctly during subsequent test runs.
 5. Save the changes to the database.
 
-## 🗓️ Commit logs
+## 🗓️ **Commit logs**
 In the project, Jiachuan contributes 50% and focuses on the back-end development and unit testing. Jessie also contributes 50% and focuses on front-end development and user testing.
 ```
 * commit 7acc827ea4e9f4f764dd35eb9d62ace87ee3cade (HEAD -> main, origin/main, origin/HEAD)
@@ -892,7 +892,7 @@ In the project, Jiachuan contributes 50% and focuses on the back-end development
 ```
 
 
-## 📒 References
+## 📒 **References**
 
 1. tenor.com. (n.d.). Dog Cute GIF - Dog Cute Puppy - Discover & Share GIFs. [online] Available at: [https://tenor.com/9PPu.gif](https://tenor.com/9PPu.gif) (Accessed: 21 May 2023).
 
