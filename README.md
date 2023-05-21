@@ -890,14 +890,11 @@ In the project, Jiachuan contributes 50% and is responsible for the back-end dev
 
 
 ## 📒 References
-1. Flaticon. (n.d.). Dog [Image]. Available at: [https://www.flaticon.com/free-icon/dog_2527324](https://www.flaticon.com/free-icon/dog_2527324) (Accessed: 21 May 2023).
+1. https://www.facebook.com/flaticon (n.d.). Dog free icons designed by Vitaly Gorbachev. [online] Flaticon. Available at: [https://www.flaticon.com/free-icon/dog_2527324](https://www.flaticon.com/free-icon/dog_2527324) (Accessed: 21 May 2023).
 
-2. Tenor. (n.d.). Dog GIF. Available at: [https://tenor.com/9PPu.gif](https://tenor.com/9PPu.gif) (Accessed: 21 May 2023).
+2. tenor.com. (n.d.). Dog Cute GIF - Dog Cute Puppy - Discover & Share GIFs. [online]  Available at: [https://tenor.com/9PPu.gif](https://tenor.com/9PPu.gif) (Accessed: 21 May 2023).
 
-3. Vecteezy. (n.d.). Dog Seamless Pattern Theme - Bone, Paw, Foot Print for Use as Wallpaper or Background [Image]. Available at: [https://www.vecteezy.com/vector-art/464040-dog-seamless-pattern-theme-bone-paw-foot-print-for-use-as-wallpaper-or-background](https://www.vecteezy.com/vector-art/464040-dog-seamless-pattern-theme-bone-paw-foot-print-for-use-as-wallpaper-or-background) (Accessed: 21 May 2023).
-
-
-
+3. Vecteezy. (n.d.). Download dog seamless pattern theme, bone, paw foot print for use as wallpaper or background for free. [online] Available at: [https://www.vecteezy.com/vector-art/464040-dog-seamless-pattern-theme-bone-paw-foot-print-for-use-as-wallpaper-or-background](https://www.vecteezy.com/vector-art/464040-dog-seamless-pattern-theme-bone-paw-foot-print-for-use-as-wallpaper-or-background) (Accessed: 21 May 2023).
 
 
 
