@@ -17,15 +17,15 @@ import string
 import openai
 from datetime import date,datetime
 #setup chatgpt api
-openai.api_key = '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'
-openai.organization = 'org-TbfW12zKWBbFDrfoDdtPTlQv'
+openai.api_key = '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' # your openai api key
+openai.organization = 'org-TbfW12zKWBbFDrfoDdtPTlQv' # your openai organization id
 dicuser={"role": "user", "content": ""}
 dicass={"role": "assistant", "content": ""}
 #setup email api and SSL
-host_server = 'smtp.gmail.com'  
-sender_mail = 'test001ceshi@gmail.com'
-pwd = 'dslvhouvwuvtvbvw'
-mail_title = 'Webchat Authentication code'
+host_server = 'smtp.gmail.com'  # your email host server
+sender_mail = 'test001ceshi@gmail.com' # your sender email
+pwd = 'dslvhouvwuvtvbvw' # your sender email key
+mail_title = 'Webchat Authentication code' 
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
