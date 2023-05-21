@@ -13,11 +13,15 @@ The web application is designed with the following components:
 The opening view consists of three main parts:
 
 1. Register: Users need to register an account by providing necessary information, including an email address for verification purposes.
-2. Login: Registered users can log in to access the Doggie Chat webpage.
+2. Login: Registered users can log in to access the chat and search pages.
 3. Reset: In case users forget their password, they can reset it through the reset password page. Users need to provide their email address for verification purpose
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/4869fbfa-c23d-4ad3-9cf2-0e896c10dbe2" alt="opening" width="80%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/4869fbfa-c23d-4ad3-9cf2-0e896c10dbe2" alt="opening" width="70%"/>
 
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/9e70d6a0-2e54-44a6-9d60-89c8f678bb9f" alt="login" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/32a03098-7733-4eb2-b934-863eca97a852" alt="register" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/5694e1f2-3a02-4b27-8010-ab17b7747ac1" alt="reset" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/aa349f4c-3510-45d7-931c-ead90ec06fd4" alt="home" width="45%"/>
 
 #### Chat View
 
@@ -25,17 +29,27 @@ The chat view is the main section where users can engage in conversations with t
 
 1. Dog Selection: Upon logging in, users can choose from three different dogs to chat with. Each dog has its own distinct personality and characteristics.
 2. Chat Interface: Once a dog is selected, users can start conversing with the chosen dog. They can exchange messages and have interactive conversations.
-3. Check-in and Mini-games: The chat page also includes a check-in feature. Users can check in once a day, earning one point for each check-in. Additionally, a number guessing mini-game is presented after check-in. Successfully completing the mini-game grants the user an extra point. The mini-game disappears once completed, ensuring users can earn a maximum of two points per day. After checking in for 15 minutes or more, the user unlocks the ability to chat with the other three dogs.
+
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/fea2fb38-edcc-4e0f-afc5-a589da0cda44" alt="chat-with-three" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/8c944e65-1bab-499c-8323-bfc28c832428" alt="chat-with-six" width="45%"/>
+
+3. Check-in and Mini-games: The chat page also includes a check-in feature. Users can check in once a day, earning one point for each check-in. Additionally, a number guessing mini-game is presented after check-in. Successfully completing the mini-game grants the user an extra point. The mini-game disappears once completed, ensuring users can earn a maximum of two points per day. After earning 15 points or more, the user unlocks the ability to chat with the other three dogs.
 
 <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/52bf2cdb-adfa-41e9-8d66-6bf043c291a9" alt="chat" width="70%"/>
+
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/d792cedd-5ce9-4622-acdd-1538f87e0bf4" alt="check-in" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/a2b03685-ad03-426e-a478-1663fc58b18d" alt="mini-game" width="45%"/>
+
 
 
 #### Search View
 
 In the search view, users have the ability to search through their historical chat records. They can filter the records based on the dog they interacted with or specific days.
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/1108c803-b14c-4ac9-a9d9-3e142b12956e" alt="search" width="50%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/1108c803-b14c-4ac9-a9d9-3e142b12956e" alt="search" width="70%"/>
 
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/b9e1f67b-67ea-4985-8683-e3e2eb9e9a28" alt="history1" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/e55caff1-0e6e-483d-a051-9e31d789fab9" alt="history2" width="45%"/>
 
 
 The Doggie Chat web application provides users with an enjoyable and interactive platform to chat with AI puppies. By offering different dogs with unique personalities and incorporating features like check-ins and mini-games, users can have a rewarding experience while engaging with the virtual canine companions.
@@ -59,12 +73,14 @@ The Doggie Chat web application follows a client-server architecture, with a sim
    - It handles user registration, login, password reset, and other user-related functionalities.
    - The server also manages the AI chatbot logic, which processes user messages and generates responses.
    - The server communicates with the OpenAI API to utilize the AI models for generating dog-like responses.
+   - The server uses Flask-SQLAlchemy to perform CRUD operations in the database.
 
 3. **Database**:
    - The Doggie Chat web application uses SQLite as the database system.
-   - SQLite is a self-contained, serverless, and file-based database that is simple to set up and manage.
    - SQLite stores user information, chat history, and other relevant data in a single file.
    - It provides a lightweight and efficient solution for managing the application's data without requiring additional database software.
+   - Database schema:
+   <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/7b566db6-2cea-4d03-9587-a9cfa6b5384a" alt="schema" width="60%"/>
 
 4. **API Integration**:
    - The Doggie Chat web application integrates with external APIs to enhance its functionality.
@@ -74,7 +90,6 @@ The Doggie Chat web application follows a client-server architecture, with a sim
 5. **Security**:
    - The web application incorporates security measures to protect user data and ensure a secure experience.
    - User passwords are stored using secure hashing techniques, preventing unauthorized access to sensitive information.
-   - The application follows secure coding practices to mitigate common web application vulnerabilities, such as cross-site scripting (XSS) and SQL injection.
    - User authentication and authorization mechanisms are implemented to control access to the application's features and resources.
 
 The Doggie Chat web application architecture provides a simple and efficient platform for users to chat with AI puppies. It leverages client-side technologies like HTML, CSS, AJAX, jQuery, and Bootstrap, along with server-side technologies and database management, to deliver a seamless and engaging user experience.
@@ -90,7 +105,7 @@ To launch the Doggie Chat web application locally, follow these steps:
    - Clone the repository to your local machine using Git. Open a terminal or command prompt and navigate to the cloned repository directory:
      ```
      git clone <repository_url>
-     cd doggie-chat
+     cd DoggieChat
      ```
    - Create a virtual environment:
      - For Windows (using Command Prompt):
@@ -131,13 +146,15 @@ To launch the Doggie Chat web application locally, follow these steps:
    - Open the `app.py` file in the code editor.
    - Locate the following lines:
      ```python
-     openai.api_key = ''
-     openai.organization = ''
+     openai.api_key = '' # your openai api key
+     openai.organization = '' # your openai organization id
      ```
      Replace the empty strings `''` with your OpenAI API key.
    - Similarly, find the lines:
      ```python
-     email_api_key = ''
+     host_server = ''  # your email host server
+     sender_mail = '' # your sender email
+     pwd = '' # your sender email key
      ```
      Replace the empty string `''` with your email API key.
 
@@ -198,9 +215,17 @@ Unit tests for the Doggie Chat web application cover three main parts: the login
 To run the unit tests for the Doggie Chat web application, follow these steps:
 
 1. Enter the environment with the required packages. Make sure you have all the necessary dependencies installed.
+2. Stop running the flask app, by pressing `Ctrl + C`
+3. Run the `flasktest.py` script while being in the environment. Make sure you are in the `flask` folder
+     ```bash
+     python -m tests.flasktest
+     ```
+ 4. Unit tests result:
+ <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/fa037838-a913-413f-ab6c-ba351d1b134c" alt="unittest" width="60%"/>
 
-2. Run the `flasktest.py` script while being in the environment. Make sure you are in the correct directory and haven't made any changes to the file locations.
 
+ 
+ 
 Note: The unit tests should succeed during the first run. However, when running the tests again after the initial success, failures may occur in the register test because the new account has already been created in the database during the first run of the test script. If you still want to run the test script multiple times, ensure that you remove the record of the `username test4` from both the `checkin` and `user` tables in the database.
 
 Running the unit tests helps ensure that different parts of the Doggie Chat web application function correctly and as intended. It validates the behavior of the login system, chat functionality, and chat history, providing confidence in the application's overall reliability.
@@ -225,7 +250,10 @@ User tests simulate users' activities to ensure that the Doggie Chat web applica
      ```bash
      python -m tests.usertest
      ```
-
+4. **User Tests Results**:
+   - <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/4cf37641-b83d-40ef-b98f-a28ffef3c1c8" alt="usertest" width="60%"/>
+ 
+ 
 Running the above command will execute the user tests and verify the functionality of the web application. Note that if you want to run the user tests again within the same day, you need to modify the data for the `testuser` in the database. Specifically, you should follow these steps:
 
 1. Access the database used by the Doggie Chat web application.
