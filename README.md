@@ -5,7 +5,7 @@ Jiachuan Liu (23292749)
 
 ## 💡 **Purpose**
 
-The purpose of the Doggie Chat web application is to provide a platform for users to interact and chat with AI puppies. Dogs are known to be loyal friends of humans, but it can be challenging to understand their words in the real world. With Doggie Chat, users can engage in conversations and interact with six different AI dogs, each with their own unique personalities.
+The purpose of the Doggie Chat web application is to provide a platform for users to interact and chat with AI puppies, allowing people who can't keep dogs to experience the joy of interacting with dogs. Dogs are known to be loyal friends of humans, but it can be challenging to understand their words in the real world. With Doggie Chat, users can engage in conversations and interact with six different AI dogs, each with their own unique personalities.
 
 ### **Design and Use**
 
@@ -232,7 +232,18 @@ To run the unit tests for the Doggie Chat web application, follow these steps:
 <img src="md-imgs/unittest.png" alt="unittest" width="60%"/>
 
  
-Note: The unit tests should succeed during the first run. However, when running the tests again after the initial success, failures may occur in the register test because the new account has already been created in the database during the first run of the test script. If you still want to run the test script multiple times, ensure that you remove the record of the `username test4` from both the `checkin` and `user` tables in the database.
+Note: The unit tests should succeed during the first run. However, when running the tests again after the initial success, failures may occur in the register test because the new account has already been created in the database during the first run of the test script. 
+
+To run the test script multiple times, follow these steps to remove the record of the username "test4" from both the checkin and user tables in the database:
+
+1. **Delete data in the checkin table:**
+   - Remove all entries associated with the username "test4" from the checkin table.
+  
+
+2. **Remove the record from the user table:**
+   - Delete the entry with the username "test4" from the user table.
+
+Make sure to delete data in the specified order to ensure the correct removal of data.
 
 Running the unit tests helps ensure that different parts of the Doggie Chat web application function correctly and as intended. It validates the behavior of the login system, chat functionality, and chat history, providing confidence in the application's overall reliability.
 
