@@ -36,7 +36,6 @@ The chat view is the main section where users can engage in conversations with t
 3. Check-in and Mini-games: The chat page also includes a check-in feature. Users can check in once a day, earning one point for each check-in. Additionally, a number guessing mini-game is presented after check-in. Successfully completing the mini-game grants the user an extra point. The mini-game disappears once completed, ensuring users can earn a maximum of two points per day. After earning 15 points or more, the user unlocks the ability to chat with the other three dogs.
 
 <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/52bf2cdb-adfa-41e9-8d66-6bf043c291a9" alt="chat" width="70%"/>
-
 <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/d792cedd-5ce9-4622-acdd-1538f87e0bf4" alt="check-in" width="45%"/>
 <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/a2b03685-ad03-426e-a478-1663fc58b18d" alt="mini-game" width="45%"/>
 
@@ -48,9 +47,8 @@ In the search view, users have the ability to search through their historical ch
 
 <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/1108c803-b14c-4ac9-a9d9-3e142b12956e" alt="search" width="70%"/>
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/b9e1f67b-67ea-4985-8683-e3e2eb9e9a28" alt="history1" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/e55caff1-0e6e-483d-a051-9e31d789fab9" alt="history2" width="45%"/>
-
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/ae9617d4-794a-4902-bad5-8f9d0960780d" alt="history1" width="45%"/>
+<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/63afd9a9-7f96-46c4-84a0-7dc04a084df6" alt="history2" width="45%"/>
 
 The Doggie Chat web application provides users with an enjoyable and interactive platform to chat with AI puppies. By offering different dogs with unique personalities and incorporating features like check-ins and mini-games, users can have a rewarding experience while engaging with the virtual canine companions.
 
