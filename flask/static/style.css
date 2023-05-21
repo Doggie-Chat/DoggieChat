@@ -1354,6 +1354,7 @@ input[type="submit"]:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  height: 480px;
 }
 
 #search-result table {
