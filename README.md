@@ -19,12 +19,12 @@ The opening view consists of three main parts:
 2. Login: Registered users can log in to access the chat and search pages.
 3. Reset: In case users forget their password, they can reset it through the reset password page. Users need to provide their email address for verification purpose
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/4869fbfa-c23d-4ad3-9cf2-0e896c10dbe2" alt="opening" width="70%"/>
+<img src="md-imgs/opening.png" alt="opening" width="70%"/>
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/9e70d6a0-2e54-44a6-9d60-89c8f678bb9f" alt="login" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/32a03098-7733-4eb2-b934-863eca97a852" alt="register" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/5694e1f2-3a02-4b27-8010-ab17b7747ac1" alt="reset" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/aa349f4c-3510-45d7-931c-ead90ec06fd4" alt="home" width="45%"/>
+<img src="md-imgs/login.png" alt="login" width="45%"/>
+<img src="md-imgs/register.png" alt="register" width="45%"/>
+<img src="md-imgs/reset.png" alt="reset" width="45%"/>
+<img src="md-imgs/home.png" alt="home" width="45%"/>
 
 #### Chat View
 
@@ -33,14 +33,14 @@ The chat view is the main section where users can engage in conversations with t
 1. Dog Selection: Upon logging in, users can choose from three different dogs to chat with. Each dog has its own distinct personality and characteristics.
 2. Chat Interface: Once a dog is selected, users can start conversing with the chosen dog. They can exchange messages and have interactive conversations.
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/fea2fb38-edcc-4e0f-afc5-a589da0cda44" alt="chat-with-three" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/8c944e65-1bab-499c-8323-bfc28c832428" alt="chat-with-six" width="45%"/>
+<img src="md-imgs/chat3.png" alt="chat-with-three" width="45%"/>
+<img src="md-imgs/chat6.png" alt="chat-with-six" width="45%"/>
 
 3. Check-in and Mini-games: The chat page also includes a check-in feature. Users can check in once a day, earning one point for each check-in. Additionally, a number guessing mini-game is presented after check-in. Successfully completing the mini-game grants the user an extra point. The mini-game disappears once completed, ensuring users can earn a maximum of two points per day. After earning 15 points or more, the user unlocks the ability to chat with the other three dogs.
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/52bf2cdb-adfa-41e9-8d66-6bf043c291a9" alt="chat" width="70%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/d792cedd-5ce9-4622-acdd-1538f87e0bf4" alt="check-in" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/a2b03685-ad03-426e-a478-1663fc58b18d" alt="mini-game" width="45%"/>
+<img src="md-imgs/chat.png" alt="chat" width="70%"/>
+<img src="md-imgs/check-in.png" alt="check-in" width="45%"/>
+<img src="md-imgs/mini-game.png" alt="mini-game" width="45%"/>
 
 
 
@@ -48,10 +48,10 @@ The chat view is the main section where users can engage in conversations with t
 
 In the search view, users have the ability to search through their historical chat records. They can filter the records based on the dog they interacted with or specific days.
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/1108c803-b14c-4ac9-a9d9-3e142b12956e" alt="search" width="70%"/>
+<img src="md-imgs/search.png" alt="search" width="70%"/>
 
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/ae9617d4-794a-4902-bad5-8f9d0960780d" alt="history1" width="45%"/>
-<img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/63afd9a9-7f96-46c4-84a0-7dc04a084df6" alt="history2" width="45%"/>
+<img src="md-imgs/history1.png" alt="history1" width="45%"/>
+<img src="md-imgs/history2.png" alt="history2" width="45%"/>
 
 The Doggie Chat web application provides users with an enjoyable and interactive platform to chat with AI puppies. By offering different dogs with unique personalities and incorporating features like check-ins and mini-games, users can have a rewarding experience while engaging with the virtual canine companions.
 
@@ -81,7 +81,8 @@ The Doggie Chat web application follows a client-server architecture, with a sim
    - SQLite stores user information, chat history, and other relevant data in a single file.
    - It provides a lightweight and efficient solution for managing the application's data without requiring additional database software.
    - Database schema:
-   <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/7b566db6-2cea-4d03-9587-a9cfa6b5384a" alt="schema" width="60%"/>
+
+   <img src="md-imgs/databaseschema.png" alt="schema" width="60%"/>
 
 4. **API Integration**:
    - The Doggie Chat web application integrates with external APIs to enhance its functionality.
@@ -227,7 +228,8 @@ To run the unit tests for the Doggie Chat web application, follow these steps:
      python -m tests.flasktest
      ```
  4. Unit tests result:
- <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/fa037838-a913-413f-ab6c-ba351d1b134c" alt="unittest" width="60%"/>
+
+ <img src="md-imgs/unittest.png" alt="unittest" width="60%"/>
 
  
 Note: The unit tests should succeed during the first run. However, when running the tests again after the initial success, failures may occur in the register test because the new account has already been created in the database during the first run of the test script. If you still want to run the test script multiple times, ensure that you remove the record of the `username test4` from both the `checkin` and `user` tables in the database.
@@ -255,7 +257,8 @@ User tests simulate users' activities to ensure that the Doggie Chat web applica
      python -m tests.usertest
      ```
 4. **User Tests Results**:
-   - <img src="https://github.com/Doggie-Chat/DoggieChat/assets/82140642/4cf37641-b83d-40ef-b98f-a28ffef3c1c8" alt="usertest" width="60%"/>
+
+   - <img src="md-imgs/usertest.png" alt="usertest" width="60%"/>
  
  
 Running the above command will execute the user tests and verify the functionality of the web application. Note that if you want to run the user tests again within the same day, you need to modify the data for the `testuser` in the database. Specifically, you should follow these steps:
