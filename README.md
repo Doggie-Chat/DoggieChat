@@ -268,7 +268,7 @@ Running the above command will execute the user tests and verify the functionali
 5. Save the changes to the database.
 
 ## 🗓️ Commit logs
-In the project, Jiachuan contributes 50% and is responsible for the back-end development and unit testing. Jessie also contributes 50% and focuses on front-end development and user testing.
+In the project, Jiachuan contributes 50% and focuses on the back-end development and unit testing. Jessie also contributes 50% and focuses on front-end development and user testing.
 ```
 * commit 7acc827ea4e9f4f764dd35eb9d62ace87ee3cade (HEAD -> main, origin/main, origin/HEAD)
 | Author: JessieXie111 <82140642+JessieXie111@users.noreply.github.com>
