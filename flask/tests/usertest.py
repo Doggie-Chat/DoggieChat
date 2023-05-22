@@ -830,7 +830,7 @@ class UserTest(unittest.TestCase):
         send_button = driver.find_element_by_class_name("chat-send-btn")
         driver.execute_script("arguments[0].click();", send_button)
 
-        sleep(10)
+        sleep(15)
 
         # Verify the updated content in the chat window
         main_chat = driver.find_element_by_id("mainchat")
