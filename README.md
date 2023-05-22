@@ -225,7 +225,7 @@ To run the unit tests for the Doggie Chat web application, follow these steps:
 2. Stop running the flask app, by pressing `Ctrl + C`
 3. Run the `flasktest.py` script while being in the environment. Make sure you are in the `flask` folder
      ```bash
-     python -m tests.flasktest
+     python -W ignore -m tests.flasktest
      ```
  4. Unit tests result:
 
@@ -265,7 +265,7 @@ User tests simulate users' activities to ensure that the Doggie Chat web applica
 3. **Run the User Tests**:
    - Execute the following command to run the user tests:
      ```bash
-     python -m tests.usertest
+     python -W ignore -m tests.usertest
      ```
 4. **User Tests Results**:
 
