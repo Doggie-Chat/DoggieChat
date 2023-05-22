@@ -59,8 +59,7 @@ def load_user(username):
 @app.route("/")
 @app.route("/home")
 def index():
-    title="home"
-    return render_template("index.html", title=title)
+    return render_template("index.html", title='home')
 
 # define the route of login page of our website
 @app.route("/login", methods=['POST','GET'])
@@ -105,7 +104,6 @@ def unauthorized():
 # define the route of register page.
 @app.route("/register", methods=['POST','GET'])
 def register():
-    title="register"
     if request.method == 'POST':# get the user's input via POST.
         username = request.form.get('username')
         password = request.form.get('pwd')
@@ -134,7 +132,7 @@ def register():
             emailst.append(email)# add the new email to list.
             msg="Registeration Successful!"
             return redirect(url_for("login"))
-    return render_template('register.html',users=users, title=title)
+    return render_template('register.html',users=users, title='register')
 
 # define the function of sending verification email code.
 @app.route("/send", methods=['POST','GET'])
@@ -165,7 +163,6 @@ def send():
 # define the route of reset page.
 @app.route("/reset", methods=['POST','GET'])
 def reset():
-    title='reset'
     if request.method == 'POST': # get all the input info
         username = request.form.get('username')
         newpassword = request.form.get('pwd')
@@ -195,7 +192,7 @@ def reset():
             usr.password=generate_password_hash(repassword)# use hash to encode the password.
             db.session.commit() # Update the new password to record in database.
             return redirect(url_for("login"))
-    return render_template("reset.html",users=users, title=title)
+    return render_template("reset.html",users=users, title='reset')
 
 # define the function of sending email verification code in reset page which is similar to the function of sending email verification code in register page.
 @app.route("/reset/update", methods=['POST','GET'])
@@ -233,11 +230,10 @@ def update():
 @app.route("/chat", methods=['POST','GET'])
 @login_required
 def chat():# parse the username, checkin days and time to html.
-    title='chat'
     username=current_user.username
     current_time = datetime.now().strftime("%I:%M:%S %p").lower().lstrip("0")
     checkin=Checkin.query.filter_by(username=username).first().checkincount
-    return render_template("chat.html",username=username,checkin=checkin,current_time=current_time, title=title)
+    return render_template("chat.html",username=username,checkin=checkin,current_time=current_time, title='chat')
 
 # define the function of getting the user's input question and generate response from Chatgpt API and parse it to front-end via Ajax.
 @app.route("/chat/answer", methods=['POST','GET'])
@@ -292,10 +288,9 @@ def switch():
 @app.route("/history", methods=['POST','GET'])
 @login_required
 def history():
-    title='search'
     username=current_user.username
     today = date.today()
-    return render_template("history.html",username=username,today=today, title=title)# parse the username and date to front-end.
+    return render_template("history.html",username=username,today=today, title='search')# parse the username and date to front-end.
 
 # define the function of searching histories.
 @app.route("/history/search", methods=['POST','GET'])
