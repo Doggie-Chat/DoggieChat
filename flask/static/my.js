@@ -194,7 +194,7 @@ function updateEmailCaptchaClick() {
 $(function () {
   bindEmailCaptchaClick();
   updateEmailCaptchaClick();
-  
+
   // Get the #mainchat element
   var mainchat = document.getElementById('mainchat');
   // Function to scroll the #mainchat element to the bottom
@@ -214,6 +214,7 @@ $(function () {
     var qtime = $("<div>").text(currentTimeQ).addClass("qtime");
     $("#mainchat").append(newqe);
     $("#mainchat").append(qtime);
+    scrollToBottom(); // Scroll to the bottom of the chat
     // use ajax to send the question to flask via GET.
     $.ajax({
       url: "/chat/answer?question=" + question,
