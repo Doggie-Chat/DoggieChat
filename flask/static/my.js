@@ -194,13 +194,14 @@ function updateEmailCaptchaClick() {
 $(function () {
   bindEmailCaptchaClick();
   updateEmailCaptchaClick();
+  
   // Get the #mainchat element
   var mainchat = document.getElementById('mainchat');
-
   // Function to scroll the #mainchat element to the bottom
   function scrollToBottom() {
     mainchat.scrollTop = mainchat.scrollHeight;
   }
+
   // This function get the users input and send it to flask via ajax. Then get the reply from chatgpt in flask. It will automatically add a <div> in the main chat div to show the user's input and chatgpt's reply.
   $("#enter").click(function (event) {
     // get the user's input question and add it to a div with class Que and a div with current time. show it in the mainchat div.
