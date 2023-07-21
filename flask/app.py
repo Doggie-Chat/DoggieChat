@@ -29,7 +29,7 @@ mail_title = 'Webchat Authentication code'
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-app.secret_key='ezra'
+app.secret_key=''
 migrate=Migrate(app,db)
 login_manager=LoginManager()
 login_manager.init_app(app)
