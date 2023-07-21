@@ -17,19 +17,19 @@ import string
 import openai
 from datetime import date,datetime
 #setup chatgpt api
-openai.api_key = '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'
-openai.organization = "org-TbfW12zKWBbFDrfoDdtPTlQv"
+openai.api_key = ''
+openai.organization = ""
 dicuser={"role": "user", "content": ""}
 dicass={"role": "assistant", "content": ""}
 #setup email api and SSL
-host_server = 'smtp.gmail.com'  
-sender_mail = 'test001ceshi@gmail.com'
-pwd = 'dslvhouvwuvtvbvw'
+host_server = ''  
+sender_mail = ''
+pwd = ''
 mail_title = 'Webchat Authentication code'
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-app.secret_key='ezra'
+app.secret_key=''
 migrate=Migrate(app,db)
 login_manager=LoginManager()
 login_manager.init_app(app)
